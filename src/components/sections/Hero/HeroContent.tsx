@@ -117,12 +117,15 @@ export default function HeroContent() {
           {/* ── Pre-title: FULL STACK & AI DEVELOPER ── */}
           <motion.div
             variants={fadeUpItem}
-            className="text-[0.7rem] sm:text-[0.8rem] md:text-[0.9rem] font-bold text-white/50 tracking-[0.3em] uppercase mb-4 sm:mb-6"
+            className="text-[1.1rem] sm:text-[1.3rem] md:text-[1.5rem] text-white/80 tracking-wide mb-4 sm:mb-6"
             style={{
-              fontFamily: '"Satoshi", "Inter", system-ui, sans-serif',
+              fontFamily: 'var(--font-instrument), Georgia, serif',
+              fontStyle: 'italic',
+              fontWeight: 400,
+              textTransform: 'none',
             }}
           >
-            FULL STACK &amp; AI DEVELOPER
+            Full Stack &amp; AI Developer
           </motion.div>
 
           {/* ── Main Heading with Name (H1 for SEO) ── */}
@@ -179,39 +182,52 @@ export default function HeroContent() {
           {/* ── Sub-Title (Description) ── */}
           <motion.p
             variants={fadeUpItem}
-            className="text-[0.8rem] sm:text-[0.95rem] md:text-[1.1rem] max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-12 px-4 uppercase tracking-[0.12em] text-white/70"
+            className="text-[1.5rem] sm:text-[1.9rem] md:text-[2.2rem] max-w-5xl mx-auto leading-[1.3] mb-8 sm:mb-12 px-4 normal-case tracking-[-0.01em] text-white/95"
             style={{
-              fontFamily: 'var(--font-playfair), "Playfair Display", Georgia, serif',
+              fontFamily: 'var(--font-instrument), Georgia, serif',
               fontStyle: 'italic',
-              textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+              fontWeight: 400,
+              textShadow: '0 2px 20px rgba(255, 255, 255, 0.12)',
             }}
             itemProp="description"
           >
-            CRAFTING{' '}
+            &ldquo;Crafting{' '}
             <span
-              className="font-bold animate-pulse-slow"
               style={{
                 background: 'linear-gradient(90deg, #FF5C29 0%, #FF1493 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                fontWeight: 500,
               }}
             >
-              AI-POWERED
+              AI-powered
             </span>{' '}
-            PLATFORMS FOR{' '}
-            <br />
+            platforms for
+            <br className="hidden sm:block" />
             <span
-              className="font-bold"
               style={{
-                background: 'linear-gradient(90deg, #FF1493 0%, #FF8C00 100%)',
+                background: 'linear-gradient(90deg, #FF5C29 0%, #FF1493 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                fontWeight: 500,
               }}
             >
-              SAAS &amp; WEB INNOVATORS
-            </span>
+              SaaS
+            </span>{' '}
+            &amp; web{' '}
+            <span
+              style={{
+                background: 'linear-gradient(90deg, #FF5C29 0%, #FF1493 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontWeight: 500,
+              }}
+            >
+              innovators
+            </span>.&rdquo;
           </motion.p>
 
           {/* ── CTA Buttons ── */}

@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState, useMemo, memo } from 'react';
 import { Briefcase, CheckCircle2, TrendingUp, LucideIcon } from 'lucide-react';
 import GlowCard from '@/components/ui/GlowCard';
+import { projects } from '../Work/work.data';
 
 interface StatItem {
   value: number;
@@ -15,7 +16,7 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { value: 5, label: 'Projects Built', suffix: '+', max: 10, icon: CheckCircle2, color: '#FF6B35' },
+  { value: projects.length, label: 'Projects Built', suffix: '+', max: 12, icon: CheckCircle2, color: '#FF6B35' },
   { value: 1, label: 'Years Experience', suffix: '+', max: 5, icon: Briefcase, color: '#3B82F6' },
   { value: 20, label: 'Technologies', suffix: '+', max: 30, icon: TrendingUp, color: '#10B981' },
 ];

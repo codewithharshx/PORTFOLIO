@@ -24,7 +24,7 @@ export default function Hero() {
         <meta itemProp="givenName" content="Rameshwar" />
         <meta itemProp="familyName" content="Bhagwat" />
         <meta itemProp="jobTitle" content="Full Stack & AI Developer" />
-        <meta itemProp="description" content={`${PERSONAL_INFO.name} is a Full Stack & AI Developer specializing in React, Next.js, TypeScript, Node.js, Python, and AI-powered product engineering. Featured projects include WebCraft and Safecoast.`} />
+        <meta itemProp="description" content={`${PERSONAL_INFO.name} is a Full Stack & AI Developer specializing in React, Next.js, TypeScript, Node.js, Python, and AI-powered product engineering. Featured projects include WebCraft, Safecoast, and AI ML Progress Tracker.`} />
         <meta itemProp="url" content={SITE_URL} />
         <meta itemProp="email" content={PERSONAL_INFO.email} />
         <meta itemProp="telephone" content={PERSONAL_INFO.phone} />

@@ -26,8 +26,8 @@ export const projects: Project[] = [
     techStack: ["React", "Next.js", "Tailwind CSS", "Firebase"],
     image: "/images/projects/project4.png",
     hoverImage: "/images/projects/project4-hover.png",
-    liveUrl: "https://webcraft-demo.com",
-    githubUrl: "https://github.com/yourusername/webcraft",
+    liveUrl: "https://webcraftx.vercel.app/",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/WebCraft.git",
     color: "99, 102, 241"
   },
   {
@@ -46,8 +46,8 @@ export const projects: Project[] = [
     techStack: ["React", "Node.js", "Express.js", "MySQL", "Tailwind CSS", "Axios"],
     image: "/images/projects/project6.png",
     hoverImage: "/images/projects/project6-hover.png",
-    liveUrl: "https://library-management-demo.com",
-    githubUrl: "https://github.com/Rameshwar-bhagwat10/DBMS-Project",
+    liveUrl: "",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/DBMS-Project.git",
     color: "37, 99, 235"
   },
   {
@@ -63,8 +63,8 @@ export const projects: Project[] = [
     techStack: ["Next.js", "TypeScript", "Node.js", "Tailwind CSS", "OpenWeather API"],
     image: "/images/projects/project2.png",
     hoverImage: "/images/projects/project2-hover.png",
-    liveUrl: "https://safecoast-demo.com",
-    githubUrl: "https://github.com/yourusername/safecoast",
+    liveUrl: "https://safecoast.vercel.app/home",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/Costal-Hazards.git",
     color: "0, 119, 182"
   },
   {
@@ -80,8 +80,8 @@ export const projects: Project[] = [
     techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "NLTK", "Matplotlib"],
     image: "/images/projects/project3.png",
     hoverImage: "/images/projects/project3-hover.png",
-    liveUrl: "https://your-demo-link.com",
-    githubUrl: "https://github.com/yourusername/spam-message-detection",
+    liveUrl: "",
+    githubUrl: "",
     color: "220, 53, 69"
   },
   {
@@ -97,8 +97,8 @@ export const projects: Project[] = [
     techStack: ["Next.js", "MongoDB", "Node.js", "Stripe", "Tailwind CSS"],
     image: "/images/projects/project5.png",
     hoverImage: "/images/projects/project5-hover.png",
-    liveUrl: "https://localmart-demo.com",
-    githubUrl: "https://github.com/yourusername/localmart",
+    liveUrl: "https://moungiri-store.vercel.app/",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/DiM-Project.git",
     color: "16, 185, 129"
   },
   {
@@ -114,8 +114,37 @@ export const projects: Project[] = [
     techStack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "OpenAI API"],
     image: "/images/projects/project1.png",
     hoverImage: "/images/projects/project1-hover.png",
-    liveUrl: "https://devory-app.com",
-    githubUrl: "https://github.com/yourusername/devory",
+    liveUrl: "",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/Devory.git",
     color: "138, 43, 226"
+  },
+  {
+    id: 7,
+    title: "AI ML Progress Tracker",
+    tagline: "Private Multi-User AI/ML Learning Progress Platform",
+    description: "A full-stack SaaS-style platform that enables users to follow a structured AI/ML roadmap, track daily learning tasks, and monitor progress in real time. The system includes role-based access (admin/member), collaborative progress tracking, and a secure backend powered by Supabase.",
+    features: [
+      "Structured AI/ML roadmap (Month → Week → Day → Tasks)",
+      "Task-level progress tracking with real-time updates",
+      "Role-based authentication (Admin & Member)",
+      "Admin panel for user management (create/delete users)",
+      "Multi-user progress visibility (view others’ progress)",
+      "Read-only access control for other users’ data",
+      "Progress analytics with percentage and visual indicators",
+      "Secure API system with session-based authentication"
+    ],
+    techStack: [
+      "Next.js (App Router)",
+      "TypeScript",
+      "Supabase (PostgreSQL + Auth)",
+      "Tailwind CSS",
+      "Node.js",
+      "REST API"
+    ],
+    image: "/images/projects/aiml-tracker.png",
+    hoverImage: "/images/projects/aiml-tracker-hover.png",
+    liveUrl: "https://mlroadmap.vercel.app/",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/Ml-Roadmap.git",
+    color: "34, 197, 94"
   },
 ];

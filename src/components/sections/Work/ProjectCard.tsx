@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { ExternalLink, Github } from 'lucide-react';
 import { Project, projects } from './work.data';
-import { useState, useRef, memo, useCallback, useMemo } from 'react';
+import { useState, useRef, memo, useCallback, useMemo, useEffect } from 'react';
 import { 
   SiNextdotjs, 
   SiReact, 
@@ -34,13 +34,17 @@ import {
   SiJavascript,
   SiExpress,
   SiMysql,
-  SiAxios
+  SiAxios,
+  SiSupabase
 } from 'react-icons/si';
 import { TbApi } from 'react-icons/tb';
+import { AnimatePresence } from 'framer-motion';
+import { Info } from 'lucide-react';
 
 // Tech stack icon mapping with original brand colors
 const techConfig: Record<string, { icon: React.ComponentType<{ size?: number; style?: React.CSSProperties; className?: string }>; color: string }> = {
   'Next.js': { icon: SiNextdotjs, color: '#FFFFFF' },
+  'Next.js (App Router)': { icon: SiNextdotjs, color: '#FFFFFF' },
   'React': { icon: SiReact, color: '#61DAFB' },
   'TypeScript': { icon: SiTypescript, color: '#3178C6' },
   'JavaScript': { icon: SiJavascript, color: '#F7DF1E' },
@@ -54,6 +58,8 @@ const techConfig: Record<string, { icon: React.ComponentType<{ size?: number; st
   'PostgreSQL': { icon: SiPostgresql, color: '#4169E1' },
   'MySQL': { icon: SiMysql, color: '#4479A1' },
   'MongoDB': { icon: SiMongodb, color: '#47A248' },
+  'Supabase': { icon: SiSupabase, color: '#3ECF8E' },
+  'Supabase (PostgreSQL + Auth)': { icon: SiSupabase, color: '#3ECF8E' },
   'TimescaleDB': { icon: SiPostgresql, color: '#FDB515' },
   'Redis': { icon: SiRedis, color: '#DC382D' },
   'Prisma': { icon: SiPrisma, color: '#2D3748' },
@@ -73,6 +79,7 @@ const techConfig: Record<string, { icon: React.ComponentType<{ size?: number; st
   'NLTK': { icon: SiPython, color: '#3776AB' },
   'Matplotlib': { icon: SiPython, color: '#11557C' },
   'OpenWeather API': { icon: TbApi, color: '#EB6E4B' },
+  'REST API': { icon: TbApi, color: '#009688' },
   'Axios': { icon: SiAxios, color: '#5A29E4' },
   'Android SDK': { icon: SiKotlin, color: '#3DDC84' },
 };
@@ -92,8 +99,17 @@ interface ProjectCardProps {
 
 const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'info' | 'error' } | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  // Auto-hide toast
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   // Alternating layout: even index = image left, odd index = image right
   const isReversed = index % 2 !== 0;
@@ -104,8 +120,22 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
 
   const handleMouseEnter = useCallback(() => setIsHovered(true), []);
   const handleMouseLeave = useCallback(() => setIsHovered(false), []);
-  const handleLiveClick = useCallback(() => window.open(project.liveUrl, '_blank'), [project.liveUrl]);
-  const handleGithubClick = useCallback(() => window.open(project.githubUrl, '_blank'), [project.githubUrl]);
+  
+  const handleLiveClick = useCallback(() => {
+    if (project.liveUrl && project.liveUrl.trim() !== "" && !project.liveUrl.includes("demo-link")) {
+      window.open(project.liveUrl, '_blank');
+    } else {
+      setToast({ message: "Live demo is currently being prepared and will be available soon!", type: 'info' });
+    }
+  }, [project.liveUrl]);
+
+  const handleGithubClick = useCallback(() => {
+    if (project.githubUrl && project.githubUrl.trim() !== "" && !project.githubUrl.includes("yourusername")) {
+      window.open(project.githubUrl, '_blank');
+    } else {
+      setToast({ message: "Source code is private for this project or will be uploaded soon.", type: 'info' });
+    }
+  }, [project.githubUrl]);
 
   // Memoize project schema
   const projectSchema = useMemo(() => ({
@@ -284,7 +314,15 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
           </h3>
 
           {/* Tagline */}
-          <p className="text-sm sm:text-base md:text-base lg:text-lg text-muted" itemProp="headline">
+          <p
+            className="text-base sm:text-lg md:text-lg lg:text-xl text-white/90"
+            itemProp="headline"
+            style={{
+              fontFamily: 'var(--font-instrument), Georgia, serif',
+              fontStyle: 'italic',
+              fontWeight: 400,
+            }}
+          >
             {project.tagline}
           </p>
 
@@ -300,7 +338,15 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
           />
 
           {/* Description */}
-          <p className="text-xs sm:text-sm md:text-sm lg:text-base text-white/80 leading-relaxed" itemProp="description">
+          <p
+            className="text-sm sm:text-base md:text-base lg:text-lg text-white/80 leading-relaxed"
+            itemProp="description"
+            style={{
+              fontFamily: 'var(--font-instrument), Georgia, serif',
+              fontStyle: 'italic',
+              fontWeight: 400,
+            }}
+          >
             {project.description}
           </p>
 
@@ -313,11 +359,18 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
                 style={{
                   opacity: isInView ? 1 : 0,
                   transform: isInView ? 'translateX(0)' : 'translateX(15px)',
-                  transition: `opacity 0.4s ease-out ${0.35 + idx * 0.06}s, transform 0.4s ease-out ${0.35 + idx * 0.06}s`,
+                  transition: `opacity(1) ease-out ${0.35 + idx * 0.06}s, transform 0.4s ease-out ${0.35 + idx * 0.06}s`,
                 }}
               >
                 <div className="w-1.5 h-1.5 md:w-2 md:h-2 rotate-45 bg-primary-gradient mt-1.5 md:mt-2 flex-shrink-0" aria-hidden="true" />
-                <p className="text-[11px] sm:text-xs md:text-sm text-white/70 leading-relaxed">
+                <p
+                  className="text-[12px] sm:text-sm md:text-base text-white/70 leading-relaxed"
+                  style={{
+                    fontFamily: 'var(--font-instrument), Georgia, serif',
+                    fontStyle: 'italic',
+                    fontWeight: 400,
+                  }}
+                >
                   {feature}
                 </p>
               </li>
@@ -343,12 +396,17 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
               return (
                 <span
                   key={idx}
-                  className="px-2 md:px-2.5 py-0.5 md:py-1 text-[10px] md:text-xs font-medium rounded-full bg-white/5 border border-white/10 inline-flex items-center gap-1 md:gap-1.5 hover:bg-white/10 transition-colors duration-200"
+                  className="px-2 md:px-2.5 py-0.5 md:py-1 text-[11px] md:text-sm rounded-full bg-white/5 border border-white/10 inline-flex items-center gap-1 md:gap-1.5 hover:bg-white/10 transition-colors duration-200"
                   role="listitem"
                   itemProp="keywords"
+                  style={{
+                    fontFamily: 'var(--font-instrument), Georgia, serif',
+                    fontStyle: 'italic',
+                    fontWeight: 400,
+                  }}
                 >
-                  <Icon size={10} className="flex-shrink-0 md:w-3 md:h-3" style={{ color: iconColor }} aria-hidden="true" />
-                  <span className="text-white/70">{tech}</span>
+                  <Icon size={12} className="flex-shrink-0 md:w-3.5 md:h-3.5" style={{ color: iconColor }} aria-hidden="true" />
+                  <span className="text-white/80">{tech}</span>
                 </span>
               );
             })}
@@ -364,31 +422,54 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
               transition: 'opacity 0.5s ease-out 0.6s, transform 0.5s ease-out 0.6s',
             }}
           >
-            {project.liveUrl && (
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={handleLiveClick}
-                rightIcon={<ExternalLink size={13} className="sm:w-3.5 sm:h-3.5" />}
-                aria-label={`View ${project.title} live demo`}
-                className="text-[11px] sm:text-xs px-3 sm:px-3.5 py-1.5 whitespace-nowrap"
-              >
-                View Live
-              </Button>
-            )}
-            {project.githubUrl && (
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={handleGithubClick}
-                rightIcon={<Github size={13} className="sm:w-3.5 sm:h-3.5" />}
-                aria-label={`View ${project.title} source code on GitHub`}
-                className="text-[11px] sm:text-xs px-3 sm:px-3.5 py-1.5 whitespace-nowrap"
-              >
-                Source Code
-              </Button>
-            )}
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={handleLiveClick}
+              rightIcon={<ExternalLink size={13} className="sm:w-3.5 sm:h-3.5" />}
+              aria-label={`View ${project.title} live demo`}
+              className="text-[11px] sm:text-xs px-3 sm:px-3.5 py-1.5 whitespace-nowrap"
+            >
+              View Live
+            </Button>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={handleGithubClick}
+              rightIcon={<Github size={13} className="sm:w-3.5 sm:h-3.5" />}
+              aria-label={`View ${project.title} source code on GitHub`}
+              className="text-[11px] sm:text-xs px-3 sm:px-3.5 py-1.5 whitespace-nowrap"
+            >
+              Source Code
+            </Button>
           </nav>
+
+          {/* Toast Notification */}
+          <AnimatePresence>
+            {toast && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#1a1a1a]/90 border border-white/10 backdrop-blur-xl shadow-2xl min-w-[320px] max-w-[90vw]"
+              >
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-gradient flex items-center justify-center">
+                  <Info size={16} className="text-white" />
+                </div>
+                <p className="text-sm font-medium text-white/90 leading-tight">
+                  {toast.message}
+                </p>
+                <button 
+                  onClick={() => setToast(null)}
+                  className="ml-auto text-white/40 hover:text-white/60 transition-colors"
+                >
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </article>

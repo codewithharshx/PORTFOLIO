@@ -161,9 +161,51 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
-          className="text-base sm:text-lg md:text-xl text-muted max-w-2xl mx-auto mb-8 sm:mb-12 px-2"
+          className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-8 sm:mb-12 px-2"
+          style={{
+            fontFamily: 'var(--font-instrument), Georgia, serif',
+            fontStyle: 'italic',
+            fontWeight: 400,
+            lineHeight: 1.4
+          }}
         >
-          Whether you're launching a startup or scaling an enterprise, I'm here to turn your vision into reality
+          &ldquo;Whether you're launching a{' '}
+          <span
+            style={{
+              background: 'linear-gradient(90deg, #FF5C29 0%, #FF1493 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: 500,
+            }}
+          >
+            startup
+          </span>{' '}
+          or scaling an{' '}
+          <span
+            style={{
+              background: 'linear-gradient(90deg, #FF1493 0%, #FF8C00 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: 500,
+            }}
+          >
+            enterprise
+          </span>
+          , I'm here to turn your{' '}
+          <span
+            style={{
+              background: 'linear-gradient(90deg, #00D2FF 0%, #3A7BD5 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: 500,
+            }}
+          >
+            vision
+          </span>{' '}
+          into reality.&rdquo;
         </motion.p>
 
         {/* Get in Touch Button */}

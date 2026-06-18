@@ -57,6 +57,9 @@ const SkillCard = memo(function SkillCard({ skill, index, onHover, isHovered }: 
     color: isHovered ? skill.color : 'rgba(255,255,255,0.6)',
     textShadow: isHovered ? `0 0 20px ${skill.color}80` : 'none',
     transition: 'color 0.3s ease, text-shadow 0.3s ease',
+    fontFamily: 'var(--font-instrument), Georgia, serif',
+    fontStyle: 'italic',
+    fontWeight: '400',
   }), [isHovered, skill.color]);
 
   const shadowStyle = useMemo(() => ({
@@ -117,7 +120,7 @@ const SkillCard = memo(function SkillCard({ skill, index, onHover, isHovered }: 
 
         {/* Skill name */}
         <span
-          className="text-[10px] sm:text-xs font-semibold whitespace-nowrap text-center"
+          className="text-xs sm:text-sm whitespace-nowrap text-center"
           style={nameStyle}
         >
           {skill.name}

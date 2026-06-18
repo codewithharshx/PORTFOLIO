@@ -68,6 +68,12 @@ const MarqueeRow = memo(function MarqueeRow({
     textShadow: variant === 'primary'
       ? '0 2px 20px rgba(255,255,255,0.15)'
       : '0 1px 10px rgba(255,255,255,0.05)',
+    fontFamily: 'var(--font-instrument), Georgia, serif',
+    fontStyle: 'italic',
+    fontWeight: '400',
+    fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+    textTransform: 'none' as const,
+    letterSpacing: '0.02em',
   }), [variant]);
 
   const separatorStyle = useMemo(() => ({

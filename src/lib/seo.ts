@@ -23,8 +23,10 @@ export function generateSEO(
     'Generative AI integration',
     'WebCraft',
     'Safecoast',
+    'AI ML Progress Tracker',
     'WebCraft project',
     'Safecoast project',
+    'AI ML Progress Tracker project',
   ];
 
   return {
@@ -64,8 +66,8 @@ export function generateSEO(
       title: pageTitle,
       description: pageDescription,
       images: [pageImage],
-      creator: '@Rameshwarbhagwat',
-      site: '@Rameshwarbhagwat',
+      creator: '@imram111_',
+      site: '@imram111_',
     },
     robots: {
       index: true,

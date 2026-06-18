@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Twitter, MapPin, Sparkles, LucideIcon } from 'lucide-react';
+import { Mail, Linkedin, Github, Instagram, MapPin, Sparkles, LucideIcon } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '@/lib/constants';
 import {
   SiReact, SiNextdotjs, SiTypescript, SiNodedotjs,
@@ -34,7 +34,7 @@ const expertise: ExpertiseItem[] = [
 // Pre-compute social links to avoid lookup on each render
 const linkedInUrl = SOCIAL_LINKS.find(l => l.name === 'LinkedIn')?.url || '#';
 const gitHubUrl = SOCIAL_LINKS.find(l => l.name === 'GitHub')?.url || '#';
-const twitterUrl = SOCIAL_LINKS.find(l => l.name === 'Twitter')?.url || '#';
+const instagramUrl = SOCIAL_LINKS.find(l => l.name === 'Instagram')?.url || '#';
 
 interface SocialLinkItem {
   name: string;
@@ -48,7 +48,7 @@ const socialLinks: SocialLinkItem[] = [
   { name: 'Email', icon: Mail, href: `mailto:${PERSONAL_INFO.email}`, label: 'Email Rameshwar Bhagwat', isExternal: false },
   { name: 'LinkedIn', icon: Linkedin, href: linkedInUrl, label: 'LinkedIn Profile', isExternal: true },
   { name: 'GitHub', icon: Github, href: gitHubUrl, label: 'GitHub Profile', isExternal: true },
-  { name: 'Twitter', icon: Twitter, href: twitterUrl, label: 'Twitter Profile', isExternal: true },
+  { name: 'Instagram', icon: Instagram, href: instagramUrl, label: 'Instagram Profile', isExternal: true },
 ];
 
 const ProfileCard = memo(function ProfileCard() {

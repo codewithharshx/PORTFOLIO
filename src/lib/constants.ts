@@ -1,6 +1,6 @@
 export const SITE_NAME = 'Rameshwar Bhagwat - Full Stack & AI Developer';
 export const SITE_URL = 'https://rameshwarbhagwat.me';
-export const SITE_DESCRIPTION = 'Rameshwar Bhagwat is a Full Stack & AI Developer specializing in React, Next.js, TypeScript, Node.js, and AI-powered web applications. Explore featured projects like WebCraft and Safecoast, focused on modern, scalable, and intelligent digital products.';
+export const SITE_DESCRIPTION = 'Rameshwar Bhagwat is a Full Stack & AI Developer specializing in React, Next.js, TypeScript, Node.js, and AI-powered web applications. Explore featured projects like WebCraft, Safecoast, and AI ML Progress Tracker, focused on modern, scalable, and intelligent digital products.';
 
 // SEO Keywords - Optimized for search ranking
 export const SEO_KEYWORDS = [
@@ -17,8 +17,10 @@ export const SEO_KEYWORDS = [
   'Generative AI integration',
   'WebCraft',
   'Safecoast',
+  'AI ML Progress Tracker',
   'WebCraft project',
   'Safecoast project',
+  'AI ML Progress Tracker project',
   'Next.js portfolio',
   'MERN Stack Developer',
   'JavaScript Developer India',
@@ -49,7 +51,7 @@ export const PERSONAL_INFO = {
     countryCode: 'IN',
   },
   image: '/images/profile/profile.jpeg',
-  bio: 'Rameshwar Bhagwat is a Full Stack & AI Developer with expertise in React, Next.js, TypeScript, Node.js, and Python. Specializing in building scalable web applications and AI-powered solutions, with featured projects including WebCraft and Safecoast.',
+  bio: 'Rameshwar Bhagwat is a Full Stack & AI Developer with expertise in React, Next.js, TypeScript, Node.js, and Python. Specializing in building scalable web applications and AI-powered solutions, with featured projects including WebCraft, Safecoast, and AI ML Progress Tracker.',
   shortBio: 'Full Stack & AI Developer specializing in React, Next.js, TypeScript, and AI-powered web applications.',
   expertise: [
     'Full Stack Development',
@@ -75,6 +77,6 @@ export const NAV_LINKS = [
 
 export const SOCIAL_LINKS = [
   { name: 'GitHub', url: 'https://github.com/Rameshwar-bhagwat10' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/Rameshwarbhagwat' },
-  { name: 'Twitter', url: 'https://twitter.com/Rameshwarbhagwat' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rameshwar-bhagwat-888540328' },
+  { name: 'Instagram', url: 'https://www.instagram.com/imram111_/' },
 ];

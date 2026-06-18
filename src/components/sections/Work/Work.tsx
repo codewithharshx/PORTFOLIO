@@ -87,7 +87,7 @@ export default function Work() {
       <meta itemProp="name" content="Featured Projects - Rameshwar Bhagwat Portfolio" />
       <meta
         itemProp="description"
-         content="Showcase of full-stack and AI-focused web development projects including WebCraft and Safecoast, built with React, Next.js, TypeScript, and modern scalable architecture."
+         content="Showcase of full-stack and AI-focused web development projects including WebCraft, Safecoast, and AI ML Progress Tracker, built with React, Next.js, TypeScript, and modern scalable architecture."
       />
       <meta itemProp="author" content="Rameshwar Bhagwat" />
 

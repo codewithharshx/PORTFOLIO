@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, X, Clock, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Instagram, X, Clock, ArrowUpRight } from 'lucide-react';
 import ContactForm from './ContactForm';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '@/lib/constants';
 
@@ -11,7 +11,7 @@ interface ContactCardProps {
 const socialIcons: Record<string, typeof Github> = {
   GitHub: Github,
   LinkedIn: Linkedin,
-  Twitter: Twitter,
+  Instagram: Instagram,
 };
 
 export default function ContactCard({ onClose }: ContactCardProps) {

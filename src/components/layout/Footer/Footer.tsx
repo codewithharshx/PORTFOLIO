@@ -1,13 +1,13 @@
 'use client';
 
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const socialLinks = [
   { name: 'GitHub', url: 'https://github.com/Rameshwar-bhagwat10', icon: Github, color: '#FFFFFF' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/Rameshwarbhagwat', icon: Linkedin, color: '#0A66C2' },
-  { name: 'Twitter', url: 'https://twitter.com/Rameshwarbhagwat', icon: Twitter, color: '#1DA1F2' },
-  { name: 'Email', url: 'mailto:rameshwarbhagwat@gmail.com', icon: Mail, color: '#30D158' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rameshwar-bhagwat-888540328', icon: Linkedin, color: '#0A66C2' },
+  { name: 'Instagram', url: 'https://www.instagram.com/imram111_/', icon: Instagram, color: '#E4405F' },
+  { name: 'Email', url: 'mailto:rameshwarbhagwat019@gmail.com', icon: Mail, color: '#30D158' },
 ];
 
 export default function Footer() {
