@@ -20,6 +20,11 @@ const Work = dynamic(() => import('@/components/sections/Work/Work'), {
   ssr: true,
 });
 
+const ActivityMetrics = dynamic(() => import('@/components/sections/Activity/ActivityMetrics'), {
+  loading: () => <div className="min-h-screen bg-[#0F0E0E]" />,
+  ssr: true,
+});
+
 const GitHubContributions = dynamic(() => import('@/components/sections/GitHub/GitHubContributions'), {
   loading: () => <div className="min-h-96 bg-[#0F0E0E]" />,
   ssr: true,
@@ -65,6 +70,7 @@ export default function Home() {
       <About />
       <Skills />
       <Work />
+      <ActivityMetrics />
       <GitHubContributions />
       <Contact />
     </div>
