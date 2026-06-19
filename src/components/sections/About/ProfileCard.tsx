@@ -91,7 +91,7 @@ const ProfileCard = memo(function ProfileCard() {
             }}
           />
           {/* Dark ring gap */}
-          <div className="absolute inset-0 rounded-full bg-[#141414]" />
+          <div className="absolute inset-0 rounded-full bg-[#101012]" />
           {/* Profile picture */}
           <div className="absolute inset-[2px] xs:inset-[3px] rounded-full overflow-hidden">
             <Image
@@ -104,7 +104,7 @@ const ProfileCard = memo(function ProfileCard() {
             />
           </div>
           {/* Online status dot */}
-          <div className="absolute bottom-0.5 right-0.5 xs:bottom-1 xs:right-1 sm:bottom-2 sm:right-2 w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full bg-emerald-500 border-2 xs:border-[3px] border-[#141414] z-10">
+          <div className="absolute bottom-0.5 right-0.5 xs:bottom-1 xs:right-1 sm:bottom-2 sm:right-2 w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full bg-emerald-500 border-2 xs:border-[3px] border-[#101012] z-10">
             <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-40" />
           </div>
         </div>
