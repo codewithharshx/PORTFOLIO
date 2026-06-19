@@ -139,11 +139,13 @@ html.lenis, html.lenis body {
   *,
   *::before,
   *::after {
-    @apply box-border m-0 p-0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   html {
-    @apply overflow-x-hidden;
+    overflow-x: hidden;
     scroll-padding-top: 0;
   }
 
@@ -221,9 +223,7 @@ html.lenis, html.lenis body {
     -webkit-text-fill-color: transparent !important;
     -webkit-text-stroke: var(--stroke-width, 1px) var(--stroke-color, rgba(255, 255, 255, 0.45));
     text-shadow: none;
-    transition:
-      -webkit-text-stroke-width 0.35s ease-out,
-      -webkit-text-stroke-color 0.35s ease-out;
+    transition: all 0.35s ease-out;
   }
 
   .stroke-text:hover,
