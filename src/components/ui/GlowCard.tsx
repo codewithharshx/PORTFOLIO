@@ -206,9 +206,10 @@ function GlowCard({
 
       {/* Inner content mask - creates the border effect by covering the center */}
       <div
-        className="absolute inset-[1.5px] rounded-[inherit] pointer-events-none bg-gradient-to-br from-[#1a1a1e] via-[#101012] to-[#0a0a0c] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+        className="absolute inset-[2px] rounded-[inherit] pointer-events-none"
         style={{
-          borderRadius: `calc(${borderRadius} - 1.5px)`,
+          borderRadius: `calc(${borderRadius} - 2px)`,
+          background: '#141414',
         }}
       />
 

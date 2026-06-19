@@ -65,7 +65,7 @@ const ProfileCard = memo(function ProfileCard() {
 
   return (
     <GlowCard
-      className="bg-gradient-to-br from-[#1c1c1f]/80 to-[#0e0e10]/80 border border-white/[0.08] rounded-xl xs:rounded-2xl sm:rounded-3xl w-full h-full shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1.5px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl"
+      className="bg-[#141414] border border-white/[0.06] rounded-xl xs:rounded-2xl sm:rounded-3xl w-full h-full"
       glowColor="rgba(249, 115, 22, 0.6)"
       glowSize={280}
     >
@@ -91,7 +91,7 @@ const ProfileCard = memo(function ProfileCard() {
             }}
           />
           {/* Dark ring gap */}
-          <div className="absolute inset-0 rounded-full bg-[#101012]" />
+          <div className="absolute inset-0 rounded-full bg-[#141414]" />
           {/* Profile picture */}
           <div className="absolute inset-[2px] xs:inset-[3px] rounded-full overflow-hidden">
             <Image
@@ -104,7 +104,7 @@ const ProfileCard = memo(function ProfileCard() {
             />
           </div>
           {/* Online status dot */}
-          <div className="absolute bottom-0.5 right-0.5 xs:bottom-1 xs:right-1 sm:bottom-2 sm:right-2 w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full bg-emerald-500 border-2 xs:border-[3px] border-[#101012] z-10">
+          <div className="absolute bottom-0.5 right-0.5 xs:bottom-1 xs:right-1 sm:bottom-2 sm:right-2 w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full bg-emerald-500 border-2 xs:border-[3px] border-[#141414] z-10">
             <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-40" />
           </div>
         </div>
