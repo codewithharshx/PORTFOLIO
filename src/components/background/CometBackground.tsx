@@ -64,7 +64,7 @@ export default function CometBackground() {
     if (!ctx) return;
 
     const isMobile = window.innerWidth < 768;
-    const maxComets = isMobile ? 3 : 6;
+    const maxComets = isMobile ? 8 : 16;
 
     const setupCanvas = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -131,9 +131,8 @@ export default function CometBackground() {
         // Draw trail gradient
         const grad = ctx.createLinearGradient(comet.x, comet.y, xEnd, yEnd);
         grad.addColorStop(0, `rgba(255, 255, 255, ${comet.opacity})`);
-        grad.addColorStop(0.15, `rgba(236, 72, 153, ${comet.opacity * 0.85})`); // vibrant pink
-        grad.addColorStop(0.5, `rgba(168, 85, 247, ${comet.opacity * 0.45})`); // purple
-        grad.addColorStop(1, `rgba(168, 85, 247, 0)`); // fades to transparent
+        grad.addColorStop(0.3, `rgba(255, 255, 255, ${comet.opacity * 0.4})`); 
+        grad.addColorStop(1, `rgba(255, 255, 255, 0)`); // fades to transparent
 
         ctx.strokeStyle = grad;
         ctx.lineWidth = comet.size;
