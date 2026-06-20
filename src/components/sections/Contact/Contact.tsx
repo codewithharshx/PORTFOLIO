@@ -217,56 +217,12 @@ export default function Contact() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsFormOpen(true)}
-          className="group relative px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base text-white backdrop-blur-xl bg-white/5 border border-white/20 hover:bg-white/10 transition-all duration-300 inline-flex items-center gap-2 sm:gap-3 overflow-hidden opacity-80"
+          className="group glowing-border-btn px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base text-white transition-all duration-300 inline-flex items-center gap-2 sm:gap-3 opacity-90 hover:opacity-100"
           aria-label="Open contact form"
         >
-          {/* White glow effect */}
-          <div className="absolute inset-0 rounded-full bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-          
-          {/* Shimmer effect - GPU optimized */}
-          <>
-            {/* Main shimmer stripe */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none rounded-full"
-              style={{
-                width: '80%',
-                background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 30%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 70%, transparent 100%)',
-                filter: 'blur(12px)',
-                transform: 'translateX(-100%)',
-              }}
-              animate={{
-                transform: ['translateX(-100%)', 'translateX(200%)'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                repeatDelay: 1.5,
-              }}
-              aria-hidden="true"
-            />
-            {/* Secondary glow layer */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none rounded-full"
-              style={{
-                width: '100%',
-                background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.05) 60%, transparent 100%)',
-                filter: 'blur(20px)',
-                transform: 'translateX(-100%)',
-              }}
-              animate={{
-                transform: ['translateX(-100%)', 'translateX(200%)'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                repeatDelay: 1.5,
-              }}
-              aria-hidden="true"
-            />
-          </>
-          
+          {/* Inner dark background mask */}
+          <div className="absolute inset-0 rounded-full bg-[#0F0E0E]/95 backdrop-blur-xl z-0 pointer-events-none transition-colors duration-300 group-hover:bg-[#0F0E0E]" />
+
           <span className="relative z-10">Get in Touch</span>
           
           {/* Arrow icon */}
@@ -285,22 +241,6 @@ export default function Contact() {
             />
           </svg>
         </motion.button>
-
-        {/* Availability Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mt-8 sm:mt-12 max-w-2xl mx-auto space-y-2 sm:space-y-3 px-2"
-        >
-          <p className="text-base sm:text-lg md:text-xl font-medium text-white">
-            Available for full-time roles and selective freelance projects.
-          </p>
-          <p className="text-xs sm:text-sm md:text-base text-white/50 leading-relaxed">
-            I focus on shipping clean, scalable web solutions that support real users and growing products.
-          </p>
-        </motion.div>
       </div>
 
       {/* Contact Form Modal - iOS Style */}

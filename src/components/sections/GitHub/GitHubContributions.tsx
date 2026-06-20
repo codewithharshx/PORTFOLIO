@@ -287,14 +287,17 @@ export default function GitHubContributions() {
                 href={`https://github.com/${GITHUB_USERNAME}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 xs:gap-2 px-4 xs:px-5 sm:px-6 py-2.5 xs:py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+                className="group glowing-border-btn-green px-4 xs:px-5 sm:px-6 py-2.5 xs:py-3 rounded-full font-medium text-xs xs:text-sm text-white/70 hover:text-white transition-all duration-300 inline-flex items-center gap-1.5 xs:gap-2 opacity-90 hover:opacity-100 cursor-pointer select-none"
               >
-                <Github className="w-4 h-4 xs:w-[18px] xs:h-[18px] text-white/70 group-hover:text-white transition-colors" />
-                <span className="text-xs xs:text-sm font-medium text-white/70 group-hover:text-white transition-colors">
+                {/* Inner dark background mask */}
+                <div className="absolute inset-0 rounded-full bg-[#0F0E0E]/95 backdrop-blur-xl z-0 pointer-events-none transition-colors duration-300 group-hover:bg-[#0F0E0E]" />
+
+                <Github className="relative z-10 w-4 h-4 xs:w-[18px] xs:h-[18px] text-white/70 group-hover:text-white transition-colors" />
+                <span className="relative z-10 text-xs xs:text-sm font-medium text-white/70 group-hover:text-white transition-colors">
                   Visit GitHub Profile
                 </span>
                 <svg 
-                  className="w-3.5 h-3.5 xs:w-4 xs:h-4 text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all" 
+                  className="relative z-10 w-3.5 h-3.5 xs:w-4 xs:h-4 text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"

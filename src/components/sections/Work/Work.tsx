@@ -293,15 +293,14 @@ export default function Work() {
 
           <motion.button
             onClick={() => setShowAll(!showAll)}
-            whileHover={{ scale: 1.04, y: -2, borderColor: 'rgba(255, 255, 255, 0.2)' }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 22 }}
-            className="group relative flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#161619]/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.05)] cursor-pointer select-none font-outfit transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="group glowing-border-btn-blue px-8 py-3.5 rounded-full font-semibold text-sm sm:text-base text-white transition-all duration-300 inline-flex items-center gap-3 opacity-90 hover:opacity-100 cursor-pointer select-none font-outfit"
           >
-            {/* Ambient Background Glow */}
-            <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10 bg-gradient-to-r from-orange-500/10 to-pink-500/10" />
+            {/* Inner dark background mask */}
+            <div className="absolute inset-0 rounded-full bg-[#0F0E0E]/95 backdrop-blur-xl z-0 pointer-events-none transition-colors duration-300 group-hover:bg-[#0F0E0E]" />
 
-            <span className="text-sm font-semibold tracking-wider text-white/80 group-hover:text-white transition-colors">
+            <span className="relative z-10 text-sm font-semibold tracking-wider text-white/80 group-hover:text-white transition-colors">
               {showAll ? 'Show Less' : `Explore ${remainingCount} More Project${remainingCount > 1 ? 's' : ''}`}
             </span>
 
@@ -309,7 +308,7 @@ export default function Work() {
             <motion.svg
               animate={{ rotate: showAll ? 180 : 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="w-4 h-4 text-white/60 group-hover:text-white transition-colors"
+              className="relative z-10 w-4 h-4 text-white/60 group-hover:text-white transition-colors"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

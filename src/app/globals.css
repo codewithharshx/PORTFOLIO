@@ -539,3 +539,138 @@ html.lenis, html.lenis body {
   .aurora-orb-4 { width: 380px; height: 380px; filter: blur(80px); }
   .aurora-orb-5 { width: 420px; height: 420px; filter: blur(80px); }
 }
+
+/* =====================================================
+   CLOCKWISE MOVING GLOWING BORDER BUTTON (Contact Section)
+   ===================================================== */
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes animate-angle {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+.glowing-border-btn {
+  position: relative;
+  background: transparent !important;
+  z-index: 10;
+}
+
+.glowing-border-btn::before,
+.glowing-border-btn::after {
+  content: "";
+  position: absolute;
+  inset: -1.5px; /* Border thickness */
+  z-index: -1;
+  background: conic-gradient(from var(--angle), #FF8C00, #FF5F00, #0F0E0E 30%, #0F0E0E 70%, #FF5F00, #FF8C00);
+  border-radius: inherit; /* Dynamically inherits the button's rounded-full border radius */
+  animation: animate-angle 3.5s linear infinite;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.glowing-border-btn::before {
+  opacity: 0.55;
+  filter: blur(12px);
+}
+
+.glowing-border-btn::after {
+  opacity: 0.95;
+}
+
+/* Hover effects: Speed up the rotation and amplify the glow */
+.glowing-border-btn:hover::before {
+  opacity: 0.95;
+  filter: blur(16px);
+  animation-duration: 1.5s;
+}
+
+.glowing-border-btn:hover::after {
+  opacity: 1;
+  animation-duration: 1.5s;
+}
+
+/* Green version (GitHub Activity) */
+.glowing-border-btn-green {
+  position: relative;
+  background: transparent !important;
+  z-index: 10;
+}
+
+.glowing-border-btn-green::before,
+.glowing-border-btn-green::after {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  background: conic-gradient(from var(--angle), #26a641, #39d353, #0F0E0E 30%, #0F0E0E 70%, #39d353, #26a641);
+  border-radius: inherit;
+  animation: animate-angle 3.5s linear infinite;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.glowing-border-btn-green::before {
+  opacity: 0.55;
+  filter: blur(12px);
+}
+
+.glowing-border-btn-green::after {
+  opacity: 0.95;
+}
+
+.glowing-border-btn-green:hover::before {
+  opacity: 0.95;
+  filter: blur(16px);
+  animation-duration: 1.5s;
+}
+
+.glowing-border-btn-green:hover::after {
+  opacity: 1;
+  animation-duration: 1.5s;
+}
+
+/* Blue version (Projects Section) */
+.glowing-border-btn-blue {
+  position: relative;
+  background: transparent !important;
+  z-index: 10;
+}
+
+.glowing-border-btn-blue::before,
+.glowing-border-btn-blue::after {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  background: conic-gradient(from var(--angle), #00D2FF, #0A84FF, #0F0E0E 30%, #0F0E0E 70%, #0A84FF, #00D2FF);
+  border-radius: inherit;
+  animation: animate-angle 3.5s linear infinite;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.glowing-border-btn-blue::before {
+  opacity: 0.55;
+  filter: blur(12px);
+}
+
+.glowing-border-btn-blue::after {
+  opacity: 0.95;
+}
+
+.glowing-border-btn-blue:hover::before {
+  opacity: 0.95;
+  filter: blur(16px);
+  animation-duration: 1.5s;
+}
+
+.glowing-border-btn-blue:hover::after {
+  opacity: 1;
+  animation-duration: 1.5s;
+}
