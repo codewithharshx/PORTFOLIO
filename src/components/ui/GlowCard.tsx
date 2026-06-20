@@ -74,6 +74,7 @@ interface GlowCardProps {
   glowColor?: string;
   glowSize?: number;
   borderRadius?: string;
+  maskBackground?: string;
 }
 
 function GlowCard({
@@ -82,6 +83,7 @@ function GlowCard({
   glowColor = 'rgba(255, 140, 0, 1)',
   glowSize = 200,
   borderRadius = '1.5rem',
+  maskBackground = '#141414',
 }: GlowCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
@@ -209,7 +211,7 @@ function GlowCard({
         className="absolute inset-[2px] rounded-[inherit] pointer-events-none"
         style={{
           borderRadius: `calc(${borderRadius} - 2px)`,
-          background: '#141414',
+          background: maskBackground,
         }}
       />
 

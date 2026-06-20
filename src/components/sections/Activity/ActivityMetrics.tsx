@@ -10,6 +10,7 @@ import {
   otherMetrics 
 } from './activity.data';
 import { projects } from '../Work/work.data';
+import GlowCard, { GlowCardGroup } from '@/components/ui/GlowCard';
 
 // --- Count Up Numeric Component ---
 const CountUpNumber = memo(function CountUpNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
@@ -362,220 +363,260 @@ export default function ActivityMetrics() {
         </div>
 
         {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+        <GlowCardGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {/* CARD 1: Concordive Rings (2x column width on larger screens) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="group relative overflow-hidden bg-[#161619]/70 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-[28px] p-6 sm:p-8 md:col-span-2 flex flex-col sm:flex-row items-center gap-8 transition-colors duration-300"
+          <GlowCard
+            className="border border-white/10 hover:border-white/20 rounded-[28px] backdrop-blur-xl bg-[#161619]/70 transition-colors duration-300 md:col-span-2 shadow-xl"
+            glowColor="rgba(255, 45, 85, 0.35)"
+            glowSize={300}
+            borderRadius="28px"
+            maskBackground="rgba(22, 22, 25, 0.7)"
           >
-            {/* Ambient subtle glow backplate */}
-            <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-red-500/5 via-green-500/5 to-blue-500/5" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-8 h-full w-full relative z-10"
+            >
+              {/* Ambient subtle glow backplate */}
+              <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-red-500/5 via-green-500/5 to-blue-500/5" />
 
-            <ActivityRings 
-              projectsPct={projectsPct} 
-              commitsPct={commitsPct} 
-              hoursPct={hoursPct} 
-            />
+              <ActivityRings 
+                projectsPct={projectsPct} 
+                commitsPct={commitsPct} 
+                hoursPct={hoursPct} 
+              />
 
-            {/* Legends list */}
-            <div className="flex-1 space-y-4 w-full">
-              <h3 className="text-xs uppercase tracking-widest text-white/40 font-bold font-outfit mb-2">
-                Activity Ring Log
-              </h3>
-              
-              {/* Ring Item 1 */}
-              <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-3 h-3 rounded-full bg-[#FF2D55] flex-shrink-0" />
-                  <div className="min-w-0">
-                    <span className="block text-xs sm:text-sm font-semibold text-white/90 font-outfit">{pMetric.name}</span>
-                    <span className="block text-[10px] text-white/40 font-outfit truncate max-w-[180px] sm:max-w-none">{pMetric.description}</span>
+              {/* Legends list */}
+              <div className="flex-1 space-y-4 w-full">
+                <h3 className="text-xs uppercase tracking-widest text-white/40 font-bold font-outfit mb-2">
+                  Activity Ring Log
+                </h3>
+                
+                {/* Ring Item 1 */}
+                <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-3 h-3 rounded-full bg-[#FF2D55] flex-shrink-0" />
+                    <div className="min-w-0">
+                      <span className="block text-xs sm:text-sm font-semibold text-white/90 font-outfit">{pMetric.name}</span>
+                      <span className="block text-[10px] text-white/40 font-outfit truncate max-w-[180px] sm:max-w-none">{pMetric.description}</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="block text-sm font-bold text-white font-outfit">
+                      <CountUpNumber value={projectCount} /> / {pMetric.target}
+                    </span>
+                    <span className="block text-[9px] text-[#FF2D55] font-bold font-outfit">{Math.round(projectsPct)}% Complete</span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="block text-sm font-bold text-white font-outfit">
-                    <CountUpNumber value={projectCount} /> / {pMetric.target}
-                  </span>
-                  <span className="block text-[9px] text-[#FF2D55] font-bold font-outfit">{Math.round(projectsPct)}% Complete</span>
-                </div>
-              </div>
 
-              {/* Ring Item 2 */}
-              <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-3 h-3 rounded-full bg-[#30D158] flex-shrink-0" />
-                  <div className="min-w-0">
-                    <span className="block text-xs sm:text-sm font-semibold text-white/90 font-outfit">{cMetric.name}</span>
-                    <span className="block text-[10px] text-white/40 font-outfit truncate max-w-[180px] sm:max-w-none">{cMetric.description}</span>
+                {/* Ring Item 2 */}
+                <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-3 h-3 rounded-full bg-[#30D158] flex-shrink-0" />
+                    <div className="min-w-0">
+                      <span className="block text-xs sm:text-sm font-semibold text-white/90 font-outfit">{cMetric.name}</span>
+                      <span className="block text-[10px] text-white/40 font-outfit truncate max-w-[180px] sm:max-w-none">{cMetric.description}</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="block text-sm font-bold text-white font-outfit">
+                      <CountUpNumber value={commitsGoalCount} /> / {cMetric.target}
+                    </span>
+                    <span className="block text-[9px] text-[#30D158] font-bold font-outfit">{Math.round(commitsPct)}% Complete</span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="block text-sm font-bold text-white font-outfit">
-                    <CountUpNumber value={commitsGoalCount} /> / {cMetric.target}
-                  </span>
-                  <span className="block text-[9px] text-[#30D158] font-bold font-outfit">{Math.round(commitsPct)}% Complete</span>
-                </div>
-              </div>
 
-              {/* Ring Item 3 */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-3 h-3 rounded-full bg-[#0A84FF] flex-shrink-0" />
-                  <div className="min-w-0">
-                    <span className="block text-xs sm:text-sm font-semibold text-white/90 font-outfit">{hMetric.name}</span>
-                    <span className="block text-[10px] text-white/40 font-outfit truncate max-w-[180px] sm:max-w-none">{hMetric.description}</span>
+                {/* Ring Item 3 */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-3 h-3 rounded-full bg-[#0A84FF] flex-shrink-0" />
+                    <div className="min-w-0">
+                      <span className="block text-xs sm:text-sm font-semibold text-white/90 font-outfit">{hMetric.name}</span>
+                      <span className="block text-[10px] text-white/40 font-outfit truncate max-w-[180px] sm:max-w-none">{hMetric.description}</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="block text-sm font-bold text-white font-outfit">
+                      <CountUpNumber value={hMetric.value} /> / {hMetric.target} {hMetric.unit}
+                    </span>
+                    <span className="block text-[9px] text-[#0A84FF] font-bold font-outfit">{Math.round(hoursPct)}% Complete</span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="block text-sm font-bold text-white font-outfit">
-                    <CountUpNumber value={hMetric.value} /> / {hMetric.target} {hMetric.unit}
-                  </span>
-                  <span className="block text-[9px] text-[#0A84FF] font-bold font-outfit">{Math.round(hoursPct)}% Complete</span>
-                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </GlowCard>
 
           {/* CARD 2: Visitor stats (Green, bar graph) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="group relative overflow-hidden bg-[#161619]/70 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-[28px] p-6 transition-colors duration-300 flex flex-col justify-between"
+          <GlowCard
+            className="border border-white/10 hover:border-white/20 rounded-[28px] backdrop-blur-xl bg-[#161619]/70 transition-colors duration-300 shadow-xl"
+            glowColor="rgba(48, 209, 88, 0.4)"
+            glowSize={250}
+            borderRadius="28px"
+            maskBackground="rgba(22, 22, 25, 0.7)"
           >
-            <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-green-500/5 to-transparent" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] uppercase tracking-widest text-[#30D158] font-bold font-outfit">
-                  Unique Visits
-                </span>
-                <TrendingUp size={16} className="text-[#30D158]" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="p-6 flex flex-col justify-between h-full w-full relative z-10"
+            >
+              <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-green-500/5 to-transparent" />
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[10px] uppercase tracking-widest text-[#30D158] font-bold font-outfit">
+                    Unique Visits
+                  </span>
+                  <TrendingUp size={16} className="text-[#30D158]" />
+                </div>
+                <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit">
+                  <CountUpNumber value={visitorCount} suffix="+" />
+                </h3>
+                <p className="text-[11px] text-white/40 mt-1 leading-normal font-outfit">
+                  {otherMetrics.visitorStats.description}
+                </p>
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-2 rounded-full bg-[#30D158]/10 text-[#30D158] text-[10px] font-bold font-outfit">
+                  <span>+12.4% this week</span>
+                </div>
               </div>
-              <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit">
-                <CountUpNumber value={visitorCount} suffix="+" />
-              </h3>
-              <p className="text-[11px] text-white/40 mt-1 leading-normal font-outfit">
-                {otherMetrics.visitorStats.description}
-              </p>
-              <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-2 rounded-full bg-[#30D158]/10 text-[#30D158] text-[10px] font-bold font-outfit">
-                <span>+12.4% this week</span>
-              </div>
-            </div>
-            
-            {/* Dynamic Graph */}
-            <TrafficBarChart data={weeklyTrafficData} />
-          </motion.div>
+              
+              {/* Dynamic Graph */}
+              <TrafficBarChart data={weeklyTrafficData} />
+            </motion.div>
+          </GlowCard>
 
           {/* CARD 3: Focus Hours logged (Blue, sparkline) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="group relative overflow-hidden bg-[#161619]/70 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-[28px] p-6 transition-colors duration-300 flex flex-col justify-between"
+          <GlowCard
+            className="border border-white/10 hover:border-white/20 rounded-[28px] backdrop-blur-xl bg-[#161619]/70 transition-colors duration-300 shadow-xl"
+            glowColor="rgba(10, 132, 255, 0.4)"
+            glowSize={250}
+            borderRadius="28px"
+            maskBackground="rgba(22, 22, 25, 0.7)"
           >
-            <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-blue-500/5 to-transparent" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] uppercase tracking-widest text-[#0A84FF] font-bold font-outfit">
-                  Focus Logged
-                </span>
-                <Clock size={16} className="text-[#0A84FF]" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="p-6 flex flex-col justify-between h-full w-full relative z-10"
+            >
+              <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-blue-500/5 to-transparent" />
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[10px] uppercase tracking-widest text-[#0A84FF] font-bold font-outfit">
+                    Focus Logged
+                  </span>
+                  <Clock size={16} className="text-[#0A84FF]" />
+                </div>
+                <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit">
+                  <CountUpNumber value={otherMetrics.focusHoursTotal.value} /> <span className="text-sm font-semibold text-white/40 font-outfit">hrs</span>
+                </h3>
+                <p className="text-[11px] text-white/40 mt-1 leading-normal font-outfit">
+                  {otherMetrics.focusHoursTotal.description}
+                </p>
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-2 rounded-full bg-[#0A84FF]/10 text-[#0A84FF] text-[10px] font-bold font-outfit">
+                  <span>Editor active logs</span>
+                </div>
               </div>
-              <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit">
-                <CountUpNumber value={otherMetrics.focusHoursTotal.value} /> <span className="text-sm font-semibold text-white/40 font-outfit">hrs</span>
-              </h3>
-              <p className="text-[11px] text-white/40 mt-1 leading-normal font-outfit">
-                {otherMetrics.focusHoursTotal.description}
-              </p>
-              <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-2 rounded-full bg-[#0A84FF]/10 text-[#0A84FF] text-[10px] font-bold font-outfit">
-                <span>Editor active logs</span>
-              </div>
-            </div>
 
-            {/* Dynamic Sparkline */}
-            <FocusSparkline data={weeklyFocusData} />
-          </motion.div>
+              {/* Dynamic Sparkline */}
+              <FocusSparkline data={weeklyFocusData} />
+            </motion.div>
+          </GlowCard>
 
           {/* CARD 4: Coffee logging (Orange, liquid cup fill) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="group relative overflow-hidden bg-[#161619]/70 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-[28px] p-6 transition-colors duration-300 flex flex-col justify-between h-full"
+          <GlowCard
+            className="border border-white/10 hover:border-white/20 rounded-[28px] backdrop-blur-xl bg-[#161619]/70 transition-colors duration-300 shadow-xl"
+            glowColor="rgba(249, 115, 22, 0.4)"
+            glowSize={250}
+            borderRadius="28px"
+            maskBackground="rgba(22, 22, 25, 0.7)"
           >
-            <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-orange-500/5 to-transparent" />
-            <div className="flex justify-between items-start gap-4">
-              <div>
-                <span className="text-[10px] uppercase tracking-widest text-orange-500 font-bold font-outfit block mb-1">
-                  Fuel Level
-                </span>
-                <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit mt-1">
-                  <CountUpNumber value={otherMetrics.coffeeConsumed.value} /> <span className="text-sm font-semibold text-white/40 font-outfit">cups</span>
-                </h3>
-                <p className="text-[11px] text-white/40 mt-2 leading-relaxed font-outfit">
-                  {otherMetrics.coffeeConsumed.description}
-                </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="p-6 flex flex-col justify-between h-full w-full relative z-10"
+            >
+              <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-orange-500/5 to-transparent" />
+              <div className="flex justify-between items-start gap-4">
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-orange-500 font-bold font-outfit block mb-1">
+                    Fuel Level
+                  </span>
+                  <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit mt-1">
+                    <CountUpNumber value={otherMetrics.coffeeConsumed.value} /> <span className="text-sm font-semibold text-white/40 font-outfit">cups</span>
+                  </h3>
+                  <p className="text-[11px] text-white/40 mt-2 leading-relaxed font-outfit">
+                    {otherMetrics.coffeeConsumed.description}
+                  </p>
+                </div>
+                <CaffeineLogGauge />
               </div>
-              <CaffeineLogGauge />
-            </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-3.5">
-              <span className="text-[10px] font-semibold text-white/40 font-outfit">Performance Multiplier</span>
-              <span className="text-[10px] font-bold text-orange-500 font-outfit">2.4x Speed boost</span>
-            </div>
-          </motion.div>
+              <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-3.5">
+                <span className="text-[10px] font-semibold text-white/40 font-outfit">Performance Multiplier</span>
+                <span className="text-[10px] font-bold text-orange-500 font-outfit">2.4x Speed boost</span>
+              </div>
+            </motion.div>
+          </GlowCard>
 
           {/* CARD 5: GitHub Contributions (Purple/Pink glow, Yearly Total) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="group relative overflow-hidden bg-[#161619]/70 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-[28px] p-6 transition-colors duration-300 flex flex-col justify-between"
+          <GlowCard
+            className="border border-white/10 hover:border-white/20 rounded-[28px] backdrop-blur-xl bg-[#161619]/70 transition-colors duration-300 shadow-xl"
+            glowColor="rgba(168, 85, 247, 0.4)"
+            glowSize={250}
+            borderRadius="28px"
+            maskBackground="rgba(22, 22, 25, 0.7)"
           >
-            <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-purple-500/5 to-transparent" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] uppercase tracking-widest text-[#a855f7] font-bold font-outfit">
-                  GitHub Code
-                </span>
-                <ArrowUpRight size={16} className="text-[#a855f7]/60 group-hover:text-[#a855f7] transition-colors" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="p-6 flex flex-col justify-between h-full w-full relative z-10"
+            >
+              <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 bg-gradient-to-r from-purple-500/5 to-transparent" />
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[10px] uppercase tracking-widest text-[#a855f7] font-bold font-outfit">
+                    GitHub Code
+                  </span>
+                  <ArrowUpRight size={16} className="text-[#a855f7]/60 group-hover:text-[#a855f7] transition-colors" />
+                </div>
+                <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit">
+                  <CountUpNumber value={yearlyCommits} /> <span className="text-sm font-semibold text-white/40 font-outfit">commits</span>
+                </h3>
+                <p className="text-[11px] text-white/40 mt-1 leading-normal font-outfit">
+                  {otherMetrics.commitsThisYear.description}
+                </p>
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-2 rounded-full bg-[#a855f7]/10 text-[#a855f7] text-[10px] font-bold font-outfit">
+                  <span>Active contributor</span>
+                </div>
               </div>
-              <h3 className="text-3xl font-extrabold text-white tracking-tight font-outfit">
-                <CountUpNumber value={yearlyCommits} /> <span className="text-sm font-semibold text-white/40 font-outfit">commits</span>
-              </h3>
-              <p className="text-[11px] text-white/40 mt-1 leading-normal font-outfit">
-                {otherMetrics.commitsThisYear.description}
-              </p>
-              <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-2 rounded-full bg-[#a855f7]/10 text-[#a855f7] text-[10px] font-bold font-outfit">
-                <span>Active contributor</span>
-              </div>
-            </div>
 
-            {/* iOS Styled progress indicator bar */}
-            <div className="mt-6">
-              <div className="flex justify-between items-center text-[10px] font-semibold text-white/40 font-outfit mb-1.5">
-                <span>Daily Contribution Goal</span>
-                <span className="text-[#a855f7]">100% Consistent</span>
+              {/* iOS Styled progress indicator bar */}
+              <div className="mt-6">
+                <div className="flex justify-between items-center text-[10px] font-semibold text-white/40 font-outfit mb-1.5">
+                  <span>Daily Contribution Goal</span>
+                  <span className="text-[#a855f7]">100% Consistent</span>
+                </div>
+                <div className="w-full h-1.5 bg-white/[0.04] border border-white/[0.03] rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-[#0A84FF] to-[#a855f7] rounded-full"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                  />
+                </div>
               </div>
-              <div className="w-full h-1.5 bg-white/[0.04] border border-white/[0.03] rounded-full overflow-hidden">
-                <motion.div 
-                  className="h-full bg-gradient-to-r from-[#0A84FF] to-[#a855f7] rounded-full"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                />
-              </div>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+          </GlowCard>
+        </GlowCardGroup>
       </div>
     </section>
   );
