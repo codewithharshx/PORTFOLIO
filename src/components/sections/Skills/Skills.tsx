@@ -226,7 +226,7 @@ export default function Skills() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-10%" }}
+          viewport={{ once: true, margin: "-10%" }}
           variants={headerContainerVariants}
           onAnimationComplete={(definition) => {
             if (definition === 'visible') {

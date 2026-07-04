@@ -142,9 +142,10 @@ const TimelineItem = memo(function TimelineItem({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, margin: "-12%" }}
+      viewport={{ once: true, margin: "-12%" }}
       variants={variants}
       className="relative"
+      style={{ willChange: 'transform, opacity' }}
     >
       {/* Desktop layout */}
       <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-8 lg:items-center">
@@ -305,7 +306,7 @@ export default function TimelineStrip() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: "-10%" }}
+        viewport={{ once: true, margin: "-10%" }}
         variants={headerContainerVariants}
         className="text-center mb-8 xs:mb-10 sm:mb-12 md:mb-16 px-4"
       >
@@ -411,7 +412,7 @@ export default function TimelineStrip() {
           className="flex justify-center lg:justify-center mt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.4 }}
         >
           <div className="hidden lg:flex flex-col items-center gap-2">
@@ -426,24 +427,28 @@ export default function TimelineStrip() {
       </div>
 
       {/* CSS for pulse animations */}
-      <style jsx>{`
-        .timeline-pulse-1 {
-          animation: timeline-pulse 1.5s ease-out infinite;
-        }
-        .timeline-pulse-2 {
-          animation: timeline-pulse 1.5s ease-out infinite 0.3s;
-        }
-        @keyframes timeline-pulse {
-          0% {
-            transform: scale(1);
-            opacity: 0.5;
-          }
-          100% {
-            transform: scale(2.5);
-            opacity: 0;
-          }
-        }
-      `}</style>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .timeline-pulse-1 {
+              animation: timeline-pulse 1.5s ease-out infinite;
+            }
+            .timeline-pulse-2 {
+              animation: timeline-pulse 1.5s ease-out infinite 0.3s;
+            }
+            @keyframes timeline-pulse {
+              0% {
+                transform: scale(1);
+                opacity: 0.5;
+              }
+              100% {
+                transform: scale(2.5);
+                opacity: 0;
+              }
+            }
+          `,
+        }}
+      />
     </section>
   );
 }

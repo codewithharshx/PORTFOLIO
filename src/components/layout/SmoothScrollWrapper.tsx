@@ -2,58 +2,62 @@
 
 import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * Lenis Smooth Scroll Provider
- * Provides butter-smooth scrolling experience across the portfolio
+ * Provides butter-smooth, high-performance scrolling across the portfolio
  */
 export default function SmoothScrollWrapper({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
-  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis with butter-smooth settings
+    // Initialize Lenis with tuned ultra-smooth settings
     const lenis = new Lenis({
-      duration: 1.4, // Longer duration = smoother, more luxurious feel
-      easing: (t) => {
-        // Custom easing: slow start, smooth middle, gentle end
-        // This creates a more natural, premium feel
-        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-      },
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential momentum deceleration
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.8, // Slightly reduced for smoother feel
-      touchMultiplier: 1.5, // Good balance for touch devices
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.8,
       infinite: false,
       autoResize: true,
-      lerp: 0.08, // Linear interpolation - lower = smoother (0.1 is default)
-      syncTouch: false, // Better performance on touch
-      syncTouchLerp: 0.075, // Smooth touch interpolation
+      lerp: 0.1,
+      syncTouch: false,
     });
 
     lenisRef.current = lenis;
 
-    // High-performance animation frame loop
-    let lastTime = 0;
-    function raf(time: number) {
-      // Calculate delta for consistent timing
-      const _delta = time - lastTime;
-      lastTime = time;
-      
-      // Update Lenis with timestamp
-      lenis.raf(time);
-      
-      rafRef.current = requestAnimationFrame(raf);
-    }
+    // Synchronize Lenis scroll events with GSAP ScrollTrigger
+    const handleScroll = () => {
+      ScrollTrigger.update();
+    };
+    lenis.on('scroll', handleScroll);
 
-    rafRef.current = requestAnimationFrame(raf);
+    // Bind Lenis RAF loop to GSAP ticker for 60-120fps synchronized rendering
+    const updateTicker = (time: number) => {
+      lenis.raf(time * 1000);
+    };
 
-    // Expose lenis instance globally for other components
+    gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
+
+    // Expose lenis instance globally for components and modals
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).lenis = lenis;
 
-    // Handle anchor link clicks for smooth scroll to sections
+    // Refresh ScrollTrigger after initial layout render
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    // Handle anchor link clicks with smooth Lenis scroll
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]');
@@ -68,8 +72,8 @@ export default function SmoothScrollWrapper({ children }: { children: React.Reac
           if (targetElement) {
             lenis.scrollTo(targetElement, {
               offset: -80, // Account for fixed navbar
-              duration: 1.8, // Smooth scroll to anchor
-              easing: (t) => 1 - Math.pow(1 - t, 4), // Ease out quart
+              duration: 1.4,
+              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             });
           }
         }
@@ -78,9 +82,15 @@ export default function SmoothScrollWrapper({ children }: { children: React.Reac
 
     document.addEventListener('click', handleAnchorClick);
 
-    // Stop Lenis when modal/dialog is open
+    // Listen for modal lock events to stop background scroll
+    const handleModalOpen = () => lenis.stop();
+    const handleModalClose = () => lenis.start();
+
+    window.addEventListener('modal-opened', handleModalOpen);
+    window.addEventListener('modal-closed', handleModalClose);
+
+    // Escape key fallback to restart Lenis scroll
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't interfere with normal scrolling behavior
       if (e.key === 'Escape') {
         lenis.start();
       }
@@ -89,11 +99,13 @@ export default function SmoothScrollWrapper({ children }: { children: React.Reac
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      clearTimeout(timer);
       document.removeEventListener('click', handleAnchorClick);
       document.removeEventListener('keydown', handleKeyDown);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      window.removeEventListener('modal-opened', handleModalOpen);
+      window.removeEventListener('modal-closed', handleModalClose);
+      gsap.ticker.remove(updateTicker);
+      lenis.off('scroll', handleScroll);
       lenis.destroy();
       lenisRef.current = null;
     };

@@ -321,8 +321,8 @@ export default function Contact() {
         </motion.p>
 
         {/* Get in Touch Button */}
-        <Link href="/contact" passHref legacyBehavior>
-          <motion.a
+        <Link href="/contact">
+          <motion.div
             variants={buttonVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -349,7 +349,7 @@ export default function Contact() {
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
-          </motion.a>
+          </motion.div>
         </Link>
       </motion.div>
     </section>

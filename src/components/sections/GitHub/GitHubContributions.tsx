@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Github } from 'lucide-react';
 import { PERSONAL_INFO } from '@/lib/constants';
@@ -28,7 +28,7 @@ const headerContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     }
   }
 };
@@ -51,7 +51,7 @@ const titleContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.05,
+      staggerChildren: 0.04,
     }
   }
 };
@@ -88,8 +88,8 @@ const descriptionVariants = {
 const cardVariants = {
   hidden: { 
     opacity: 0, 
-    y: 40,
-    scale: 0.97
+    y: 30,
+    scale: 0.98
   },
   visible: {
     opacity: 1,
@@ -100,7 +100,7 @@ const cardVariants = {
       stiffness: 100,
       damping: 18,
       mass: 0.9,
-      delay: 0.15
+      delay: 0.1
     }
   }
 };
@@ -109,7 +109,7 @@ const gridContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.003,
+      staggerChildren: 0.002,
     }
   }
 };
@@ -118,7 +118,7 @@ const cellVariants = {
   hidden: { 
     scale: 0, 
     opacity: 0,
-    rotateY: -30
+    rotateY: -20
   },
   visible: {
     scale: 1,
@@ -126,8 +126,8 @@ const cellVariants = {
     rotateY: 0,
     transition: {
       type: 'spring' as const,
-      stiffness: 180,
-      damping: 14,
+      stiffness: 200,
+      damping: 15,
     }
   }
 };
@@ -172,10 +172,47 @@ const generateMockData = (): GitHubStats => {
   };
 };
 
+const getContributionLevel = (count: number): string => {
+  if (count === 0) return 'No contributions';
+  if (count < 4) return 'Low activity';
+  if (count < 7) return 'Moderate activity';
+  if (count < 10) return 'High activity';
+  return 'Very high activity';
+};
+
+// Memoized Contribution Cell for optimal 60 FPS rendering
+const ContributionCell = memo(function ContributionCell({ day }: { day: ContributionDay }) {
+  const formattedDate = useMemo(() => {
+    return new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }, [day.date]);
+
+  const levelStr = useMemo(() => getContributionLevel(day.contributionCount), [day.contributionCount]);
+
+  return (
+    <motion.div
+      variants={cellVariants}
+      whileHover={{ 
+        scale: 1.5, 
+        zIndex: 10,
+        transition: { duration: 0.18, ease: [0.16, 1, 0.3, 1] }
+      }}
+      className="w-[10px] h-[10px] xs:w-3 xs:h-3 rounded-[2px] xs:rounded-sm cursor-pointer relative group"
+      style={{ backgroundColor: day.color, willChange: 'transform' }}
+      title={`${day.contributionCount} contributions on ${day.date}`}
+    >
+      {/* Tooltip */}
+      <div className="hidden xs:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 xs:px-3 py-1.5 xs:py-2 rounded-md xs:rounded-lg bg-black/90 border border-white/20 text-[10px] xs:text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+        <div className="font-semibold">{day.contributionCount} contributions</div>
+        <div className="text-white/60">{formattedDate}</div>
+        <div className="text-white/40 text-[9px] xs:text-[10px] mt-0.5 xs:mt-1">{levelStr}</div>
+      </div>
+    </motion.div>
+  );
+});
+
 export default function GitHubContributions() {
   const [stats, setStats] = useState<GitHubStats | null>(null);
   const [loading, setLoading] = useState(true);
-  const [_error, _setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchGitHubContributions = async () => {
@@ -196,7 +233,6 @@ export default function GitHubContributions() {
         setLoading(false);
       } catch (err) {
         console.error('Error fetching GitHub contributions:', err);
-        // Fallback to mock data if API fails
         const mockData: GitHubStats = generateMockData();
         setStats(mockData);
         setLoading(false);
@@ -206,16 +242,8 @@ export default function GitHubContributions() {
     fetchGitHubContributions();
   }, []);
 
-  const getContributionLevel = (count: number): string => {
-    if (count === 0) return 'No contributions';
-    if (count < 4) return 'Low activity';
-    if (count < 7) return 'Moderate activity';
-    if (count < 10) return 'High activity';
-    return 'Very high activity';
-  };
-
-  const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const monthLabels = useMemo(() => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], []);
+  const dayLabels = useMemo(() => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], []);
 
   if (loading) {
     return (
@@ -232,20 +260,18 @@ export default function GitHubContributions() {
     );
   }
 
-  if (_error || !stats) {
+  if (!stats) {
     return null;
   }
 
   return (
     <section id="github" className="relative z-20 py-12 xs:py-16 sm:py-20 px-4 xs:px-5 sm:px-6 bg-[#0F0E0E] overflow-hidden">
-
-
       <div className="relative z-20 max-w-5xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-10%" }}
+          viewport={{ once: true, margin: "-5%" }}
           variants={headerContainerVariants}
           className="text-center mb-8 xs:mb-10 sm:mb-12"
         >
@@ -283,15 +309,16 @@ export default function GitHubContributions() {
           </motion.p>
         </motion.div>
 
-        {/* Contribution Heatmap */}
+        {/* Contribution Heatmap Card */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-10%" }}
+          viewport={{ once: true, margin: "-5%" }}
           variants={cardVariants}
           className="relative p-4 xs:p-5 sm:p-6 md:p-8 rounded-xl xs:rounded-2xl backdrop-blur-xl bg-white/[0.01] border border-white/[0.08] overflow-hidden shadow-2xl"
           style={{
             boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+            transform: 'translateZ(0)'
           }}
         >
           {/* Subtle glow effect */}
@@ -329,7 +356,6 @@ export default function GitHubContributions() {
                 {/* Month labels at top */}
                 <div className="flex gap-[3px] xs:gap-1 pl-8 xs:pl-10 sm:pl-[52px]">
                   {stats.weeks.map((week, weekIndex) => {
-                    // Get the first day of the week to determine month
                     const firstDay = new Date(week.contributionDays[0].date);
                     const month = firstDay.getMonth();
                     const isFirstWeekOfMonth = weekIndex === 0 || 
@@ -349,43 +375,26 @@ export default function GitHubContributions() {
 
                 {/* Grid container */}
                 <div className="flex gap-[3px] xs:gap-1">
-                {/* Day labels */}
-                <div className="flex flex-col gap-[3px] xs:gap-1 pr-1 xs:pr-1.5 sm:pr-2 justify-around text-[8px] xs:text-[10px] sm:text-xs text-white/40">
-                  {dayLabels.map((day, i) => (
-                    i % 2 === 1 && <div key={day} className="h-[10px] xs:h-3 flex items-center">{day}</div>
-                  ))}
-                </div>
+                  {/* Day labels */}
+                  <div className="flex flex-col gap-[3px] xs:gap-1 pr-1 xs:pr-1.5 sm:pr-2 justify-around text-[8px] xs:text-[10px] sm:text-xs text-white/40">
+                    {dayLabels.map((day, i) => (
+                      i % 2 === 1 && <div key={day} className="h-[10px] xs:h-3 flex items-center">{day}</div>
+                    ))}
+                  </div>
 
                   {/* Contribution grid */}
                   <motion.div 
                     variants={gridContainerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, margin: "-10%" }}
+                    viewport={{ once: true, margin: "-5%" }}
                     className="flex gap-[3px] xs:gap-1"
+                    style={{ transform: 'translateZ(0)' }}
                   >
                     {stats.weeks.map((week, weekIndex) => (
                       <div key={weekIndex} className="flex flex-col gap-[3px] xs:gap-1">
                         {week.contributionDays.map((day) => (
-                          <motion.div
-                            key={day.date}
-                            variants={cellVariants}
-                            whileHover={{ 
-                              scale: 1.5, 
-                              zIndex: 10,
-                              transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
-                            }}
-                            className="w-[10px] h-[10px] xs:w-3 xs:h-3 rounded-[2px] xs:rounded-sm cursor-pointer relative group"
-                            style={{ backgroundColor: day.color }}
-                            title={`${day.contributionCount} contributions on ${day.date}`}
-                          >
-                            {/* Tooltip - hidden on small mobile, show on hover for larger */}
-                            <div className="hidden xs:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 xs:px-3 py-1.5 xs:py-2 rounded-md xs:rounded-lg bg-black/90 border border-white/20 text-[10px] xs:text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
-                              <div className="font-semibold">{day.contributionCount} contributions</div>
-                              <div className="text-white/60">{new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
-                              <div className="text-white/40 text-[9px] xs:text-[10px] mt-0.5 xs:mt-1">{getContributionLevel(day.contributionCount)}</div>
-                            </div>
-                          </motion.div>
+                          <ContributionCell key={day.date} day={day} />
                         ))}
                       </div>
                     ))}
@@ -410,7 +419,6 @@ export default function GitHubContributions() {
                 rel="noopener noreferrer"
                 className="group glowing-border-btn-green px-4 xs:px-5 sm:px-6 py-2.5 xs:py-3 rounded-full font-medium text-xs xs:text-sm text-white/70 hover:text-white transition-all duration-300 inline-flex items-center gap-1.5 xs:gap-2 opacity-90 hover:opacity-100 cursor-pointer select-none"
               >
-                {/* Inner dark background mask */}
                 <div className="absolute inset-0 rounded-full bg-[#0F0E0E]/95 backdrop-blur-xl z-0 pointer-events-none transition-colors duration-300 group-hover:bg-[#0F0E0E]" />
 
                 <Github className="relative z-10 w-4 h-4 xs:w-[18px] xs:h-[18px] text-white/70 group-hover:text-white transition-colors" />

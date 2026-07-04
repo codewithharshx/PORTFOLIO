@@ -77,7 +77,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   if (isProjectPage) {
     return (
-      <main className="w-full min-h-screen relative" style={{ overflow: 'visible' }}>
+      <main className="w-full min-h-screen relative overflow-visible">
         {children}
       </main>
     );
@@ -88,10 +88,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       <MatrixRain />
       {!isContactPage && <Navbar />}
       <main 
-        className={`relative z-10 transition-opacity duration-300 ease-in-out ${
+        className={`relative z-10 transition-opacity duration-300 ease-in-out overflow-visible ${
           isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`} 
-        style={{ overflow: 'visible' }}
       >
         {children}
       </main>

@@ -45,10 +45,10 @@ const expertise: ExpertiseItem[] = [
 import { createContext, useContext } from 'react';
 
 interface BentoGlowContextType {
-  mousePosition: { x: number; y: number } | null;
+  registerCard: (cb: (pos: { x: number; y: number } | null) => void) => () => void;
 }
 
-const BentoGlowContext = createContext<BentoGlowContextType>({ mousePosition: null });
+const BentoGlowContext = createContext<BentoGlowContextType>({ registerCard: () => () => {} });
 
 export const BentoGlowGroup = memo(function BentoGlowGroup({
   children,
@@ -58,17 +58,23 @@ export const BentoGlowGroup = memo(function BentoGlowGroup({
   className?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
+  const subscribersRef = useRef<Set<(pos: { x: number; y: number } | null) => void>>(new Set());
   const rafRef = useRef<number | null>(null);
   const pendingPosition = useRef<{ x: number; y: number } | null>(null);
+
+  const registerCard = useCallback((cb: (pos: { x: number; y: number } | null) => void) => {
+    subscribersRef.current.add(cb);
+    return () => {
+      subscribersRef.current.delete(cb);
+    };
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     pendingPosition.current = { x: e.clientX, y: e.clientY };
     if (rafRef.current === null) {
       rafRef.current = requestAnimationFrame(() => {
-        if (pendingPosition.current) {
-          setMousePosition(pendingPosition.current);
-        }
+        const pos = pendingPosition.current;
+        subscribersRef.current.forEach((cb) => cb(pos));
         rafRef.current = null;
       });
     }
@@ -79,7 +85,7 @@ export const BentoGlowGroup = memo(function BentoGlowGroup({
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
-    setMousePosition(null);
+    subscribersRef.current.forEach((cb) => cb(null));
   }, []);
 
   useEffect(() => {
@@ -91,7 +97,7 @@ export const BentoGlowGroup = memo(function BentoGlowGroup({
   }, []);
 
   return (
-    <BentoGlowContext.Provider value={{ mousePosition }}>
+    <BentoGlowContext.Provider value={{ registerCard }}>
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
@@ -123,15 +129,14 @@ const BentoGlowCard = memo(function BentoGlowCard({
 }: BentoGlowCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
-  const [isActive, setIsActive] = useState(false);
   const cachedRect = useRef<DOMRect | null>(null);
   const rectCacheTime = useRef<number>(0);
 
-  const { mousePosition } = useContext(BentoGlowContext);
+  const { registerCard } = useContext(BentoGlowContext);
 
   const getRect = useCallback(() => {
     const now = Date.now();
-    if (!cachedRect.current || now - rectCacheTime.current > 100) {
+    if (!cachedRect.current || now - rectCacheTime.current > 150) {
       cachedRect.current = cardRef.current?.getBoundingClientRect() || null;
       rectCacheTime.current = now;
     }
@@ -141,36 +146,40 @@ const BentoGlowCard = memo(function BentoGlowCard({
   useEffect(() => {
     if (!cardRef.current || !glowRef.current) return;
 
-    if (!mousePosition) {
-      setIsActive(false);
-      return;
-    }
+    const unregister = registerCard((mousePosition) => {
+      if (!glowRef.current) return;
 
-    const rect = getRect();
-    if (!rect) {
-      setIsActive(false);
-      return;
-    }
+      if (!mousePosition) {
+        glowRef.current.style.opacity = '0';
+        return;
+      }
 
-    // Proximity threshold: glow lights up when mouse is near card boundary
-    const proximityThreshold = 100;
+      const rect = getRect();
+      if (!rect) {
+        glowRef.current.style.opacity = '0';
+        return;
+      }
 
-    const isNearOrInside =
-      mousePosition.x >= rect.left - proximityThreshold &&
-      mousePosition.x <= rect.right + proximityThreshold &&
-      mousePosition.y >= rect.top - proximityThreshold &&
-      mousePosition.y <= rect.bottom + proximityThreshold;
+      const proximityThreshold = 100;
+      const isNearOrInside =
+        mousePosition.x >= rect.left - proximityThreshold &&
+        mousePosition.x <= rect.right + proximityThreshold &&
+        mousePosition.y >= rect.top - proximityThreshold &&
+        mousePosition.y <= rect.bottom + proximityThreshold;
 
-    if (isNearOrInside) {
-      const x = mousePosition.x - rect.left;
-      const y = mousePosition.y - rect.top;
-      glowRef.current.style.setProperty('--glow-x', `${x}px`);
-      glowRef.current.style.setProperty('--glow-y', `${y}px`);
-      if (!isActive) setIsActive(true);
-    } else {
-      if (isActive) setIsActive(false);
-    }
-  }, [mousePosition, getRect, isActive]);
+      if (isNearOrInside) {
+        const x = mousePosition.x - rect.left;
+        const y = mousePosition.y - rect.top;
+        glowRef.current.style.setProperty('--glow-x', `${x}px`);
+        glowRef.current.style.setProperty('--glow-y', `${y}px`);
+        glowRef.current.style.opacity = '1';
+      } else {
+        glowRef.current.style.opacity = '0';
+      }
+    });
+
+    return unregister;
+  }, [registerCard, getRect]);
 
   useEffect(() => {
     const invalidateCache = () => {
@@ -202,7 +211,7 @@ const BentoGlowCard = memo(function BentoGlowCard({
         ref={glowRef}
         className="absolute inset-0 rounded-[30px] pointer-events-none overflow-hidden"
         style={{
-          opacity: isActive ? 1 : 0,
+          opacity: 0,
           transition: 'opacity 300ms',
           padding: '1px', // Thin border (1px instead of 2px)
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
@@ -357,21 +366,54 @@ export default function BentoGrid() {
         </div>
       </BentoCard>
 
-      {/* 4. Projects Showcase Card (1 col) */}
+      {/* 4. Projects Showcase Card (1 col) - Redesigned Multi-Card Stack */}
       <BentoCard
-        className="col-span-2 md:col-span-1 justify-between h-36 sm:h-38 md:h-40"
+        className="col-span-2 md:col-span-1 justify-between h-36 sm:h-38 md:h-40 group/project"
         onClick={() => handleNav('work')}
+        showArrow={true}
       >
-        <div className="flex items-center justify-center pt-1.5 flex-1">
-          <div className="relative w-28 h-16 sm:w-32 sm:h-18 rounded-xl overflow-hidden border border-white/10 shadow-lg bg-neutral-900/60 transition-transform duration-300 group-hover:scale-105">
+        {/* Center Interactive 3D Card Stack */}
+        <div className="relative w-full h-16 sm:h-18 pt-1 flex items-center justify-center pointer-events-none">
+          {/* Back Card Stack 2 */}
+          <div className="absolute w-20 h-12 sm:w-24 sm:h-14 rounded-lg overflow-hidden border border-white/10 shadow-lg bg-neutral-900 transition-all duration-500 ease-out -translate-x-3 -rotate-12 scale-85 opacity-40 group-hover/project:-translate-x-6 group-hover/project:-rotate-16 group-hover/project:opacity-70">
             <Image
-              src="/images/projects/project3.png"
-              alt="Project Showcase"
+              src={projects[1]?.image || "/images/projects/project2.png"}
+              alt="Project Preview 2"
               fill
-              className="object-cover object-top opacity-85 group-hover:opacity-100 transition-all duration-300"
+              className="object-cover object-top"
             />
           </div>
+
+          {/* Back Card Stack 1 */}
+          <div className="absolute w-22 h-13 sm:w-26 sm:h-15 rounded-lg overflow-hidden border border-white/15 shadow-xl bg-neutral-900 transition-all duration-500 ease-out translate-x-3 rotate-12 scale-90 opacity-60 group-hover/project:translate-x-6 group-hover/project:rotate-16 group-hover/project:opacity-85">
+            <Image
+              src={projects[2]?.image || "/images/projects/project3.png"}
+              alt="Project Preview 3"
+              fill
+              className="object-cover object-top"
+            />
+          </div>
+
+          {/* Front Primary Card */}
+          <div className="relative w-24 h-14 sm:w-28 sm:h-16 rounded-xl overflow-hidden border border-white/20 shadow-[0_10px_24px_rgba(0,0,0,0.6)] bg-neutral-950 z-10 transition-all duration-500 ease-out group-hover/project:scale-105 group-hover/project:-translate-y-1">
+            <Image
+              src={projects[0]?.image || "/images/projects/project1.png"}
+              alt="Featured Project Showcase"
+              fill
+              className="object-cover object-top opacity-90 group-hover/project:opacity-100 transition-opacity duration-300"
+            />
+            {/* Glossy overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-white/10" />
+            <div className="absolute bottom-1 left-1.5 right-1.5 flex items-center justify-between">
+              <span className="text-[7.5px] font-mono font-bold text-white/90 truncate max-w-[70px]">
+                {projects[0]?.title || "WebCraft"}
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#30D158]" />
+            </div>
+          </div>
         </div>
+
+        {/* Bottom Text Label (Matching Visitor Stats Card) */}
         <div className="pr-10 pt-1">
           <span className="text-[10px] font-mono font-medium tracking-[0.15em] text-white/30 uppercase block">
             Showcase
@@ -472,16 +514,33 @@ export default function BentoGrid() {
         </div>
       </BentoCard>
 
-      {/* 7. Profiles / Socials Card (1 col) */}
+      {/* 7. Profiles / Socials Card (1 col) - Redesigned Unique Social Hub */}
       <BentoCard
-        className="col-span-2 md:col-span-1 justify-between h-36 sm:h-38 md:h-40"
+        className="col-span-2 md:col-span-1 justify-between h-36 sm:h-38 md:h-40 group/socials"
         onClick={() => handleNav('contact')}
+        showArrow={true}
       >
-        <div className="flex items-center justify-center gap-3 pt-1.5 flex-1">
+        {/* Top Interactive Brand Buttons Row */}
+        <div className="flex items-center justify-center gap-2.5 sm:gap-3 pt-2 flex-1 z-10">
           {[
-            { icon: Github, href: gitHubUrl },
-            { icon: Linkedin, href: linkedInUrl },
-            { icon: Instagram, href: instagramUrl },
+            { 
+              name: 'GitHub', 
+              icon: Github, 
+              href: gitHubUrl,
+              hoverStyles: 'hover:bg-white/10 hover:border-white/20 hover:text-white hover:shadow-[0_0_16px_rgba(255,255,255,0.25)]' 
+            },
+            { 
+              name: 'LinkedIn', 
+              icon: Linkedin, 
+              href: linkedInUrl,
+              hoverStyles: 'hover:bg-[#0A84FF]/15 hover:border-[#0A84FF]/30 hover:text-[#0A84FF] hover:shadow-[0_0_16px_rgba(10,132,255,0.35)]' 
+            },
+            { 
+              name: 'Instagram', 
+              icon: Instagram, 
+              href: instagramUrl,
+              hoverStyles: 'hover:bg-[#FF2D55]/15 hover:border-[#FF2D55]/30 hover:text-[#FF2D55] hover:shadow-[0_0_16px_rgba(255,45,85,0.35)]' 
+            },
           ].map((social, idx) => {
             const Icon = social.icon;
             return (
@@ -491,19 +550,22 @@ export default function BentoGrid() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/5 bg-neutral-900/60 flex items-center justify-center text-white/50 hover:text-white hover:bg-neutral-950 transition-all duration-300"
+                title={social.name}
+                className={`w-10 h-10 sm:w-11 sm:h-11 rounded-2xl border border-white/[0.08] bg-white/[0.02] flex items-center justify-center text-white/50 transition-all duration-300 active:scale-95 ${social.hoverStyles}`}
                 style={{
-                  boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.02)',
+                  boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.03)',
                 }}
               >
-                <Icon className="w-5 h-5" />
+                <Icon className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover/socials:scale-105" />
               </a>
             );
           })}
         </div>
-        <div className="pr-10">
+
+        {/* Bottom Text Label */}
+        <div className="pr-10 pt-1 z-10">
           <span className="text-[10px] font-mono font-medium tracking-[0.15em] text-white/30 uppercase block">
-            Stay with me
+            Stay Connected
           </span>
           <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mt-0.5">
             Profiles

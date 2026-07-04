@@ -19,7 +19,7 @@ export default function Hero() {
     if (!heroRef.current || !heroInnerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Animate the Hero content as we scroll down to About
+      // Animate the Hero content as we scroll down to About (Exact original blur + scale + Y transition)
       gsap.fromTo(
         heroInnerRef.current,
         {
@@ -208,7 +208,7 @@ export default function Hero() {
           }}
         />
 
-        <div ref={heroInnerRef} className="absolute inset-0 w-full h-full">
+        <div ref={heroInnerRef} className="absolute inset-0 w-full h-full" style={{ willChange: 'transform, opacity, filter' }}>
           <HeroStrips />
           <HeroBackground />
 

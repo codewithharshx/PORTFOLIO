@@ -104,6 +104,9 @@ const socialBentoData: SocialBentoItem[] = [
   },
 ];
 
+// Static array helper to avoid recreation on every render
+const STRAP_DOTS = Array.from({ length: 6 });
+
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -210,7 +213,7 @@ export default function ContactPage() {
         {/* TOP SECTION: Giant heavy scrolling headings moving in opposite directions */}
         <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-16 py-6 bg-[#0F0E0E] border-y border-white/[0.04] overflow-hidden select-none pointer-events-none z-20 flex flex-col gap-5">
           {/* Row 1: Scroll Left */}
-          <div className="flex whitespace-nowrap animate-marquee" style={{ animationDuration: '13s' }}>
+          <div className="flex whitespace-nowrap animate-marquee" style={{ animationDuration: '13s', transform: 'translateZ(0)', willChange: 'transform' }}>
             <span className="text-[8.5vw] font-black tracking-[-0.03em] uppercase text-white/[0.08] mx-4 leading-none font-jakarta">
               LET&apos;S BUILD SOMETHING • AVAILABLE FOR ROLES • FULL STACK & AI •
             </span>
@@ -222,7 +225,7 @@ export default function ContactPage() {
             </span>
           </div>
           {/* Row 2: Scroll Right */}
-          <div className="flex whitespace-nowrap animate-marquee-reverse" style={{ animationDuration: '13s' }}>
+          <div className="flex whitespace-nowrap animate-marquee-reverse" style={{ animationDuration: '13s', transform: 'translateZ(0)', willChange: 'transform' }}>
             <span className="text-[8.5vw] font-black tracking-[-0.03em] uppercase text-white/[0.08] mx-4 leading-none font-jakarta">
               CODE & INTELLIGENCE • CREATIVE EXPERIENCES • INNOVATIVE SOLUTIONS •
             </span>
@@ -244,7 +247,7 @@ export default function ContactPage() {
             {/* Lanyard Strap (Fabric Ribbon) */}
             <div className="absolute top-[-300px] bottom-[320px] w-4 bg-[#141313] border-x border-white/5 shadow-inner z-0 pointer-events-none flex flex-col items-center py-4 gap-12">
               {/* Repeating logo pattern on strap */}
-              {[...Array(6)].map((_, i) => (
+              {STRAP_DOTS.map((_, i) => (
                 <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/20" />
               ))}
             </div>

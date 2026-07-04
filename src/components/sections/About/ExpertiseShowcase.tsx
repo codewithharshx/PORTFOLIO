@@ -544,7 +544,7 @@ export default function ExpertiseShowcase() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-10%" }}
+          viewport={{ once: true, margin: "-10%" }}
           variants={headerContainerVariants}
           className="text-center mb-10 xs:mb-12 sm:mb-14 md:mb-16"
         >
@@ -581,7 +581,7 @@ export default function ExpertiseShowcase() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-10%" }}
+          viewport={{ once: true, margin: "-10%" }}
           variants={cardContainerVariants}
           className="grid grid-cols-1 lg:grid-cols-[280px_1fr] xl:grid-cols-[320px_1fr] gap-4 xs:gap-5 sm:gap-6 lg:gap-8 items-stretch"
         >

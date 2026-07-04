@@ -96,7 +96,7 @@ export default function HeroContent() {
   const springX = useSpring(buttonMouseX, { stiffness: 200, damping: 20, mass: 0.5 });
   const springY = useSpring(buttonMouseY, { stiffness: 200, damping: 20, mass: 0.5 });
 
-  const handleButtonMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleButtonMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -127,7 +127,7 @@ export default function HeroContent() {
       `radial-gradient(circle 90px at ${x * 100}% ${y * 100}%, rgba(255, 106, 28, 0.25), transparent)`
   );
 
-  // Spotlight mouse track effect
+  // Spotlight mouse track effect with cached rect and rAF throttling
   useEffect(() => {
     // Initialize blobs off-screen
     gsap.set(blobsRef.current, { x: -1000, y: -1000 });
@@ -135,53 +135,71 @@ export default function HeroContent() {
     gsap.set(revealLayerRef.current, { opacity: 0 });
 
     let mouseTimeout: NodeJS.Timeout;
+    let rAFId: number | null = null;
+    let cachedRect: DOMRect | null = null;
+
+    const updateRect = () => {
+      if (textWrapperRef.current) {
+        cachedRect = textWrapperRef.current.getBoundingClientRect();
+      }
+    };
+
+    updateRect();
+    window.addEventListener('resize', updateRect, { passive: true });
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!textWrapperRef.current) return;
+      if (rAFId) return;
 
-      const rect = textWrapperRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      rAFId = requestAnimationFrame(() => {
+        rAFId = null;
+        if (!textWrapperRef.current) return;
+        if (!cachedRect) updateRect();
 
-      // Update custom CSS variables for the soft background gradient circle
-      textWrapperRef.current.style.setProperty('--mouse-x', `${x}px`);
-      textWrapperRef.current.style.setProperty('--mouse-y', `${y}px`);
+        const rect = cachedRect || textWrapperRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-      // Snap spotlight blobs instantly to cursor coordinates if it was invisible
-      if (!isSpotlightVisible.current) {
-        gsap.set(blobsRef.current, { x: x, y: y });
-        isSpotlightVisible.current = true;
-      }
+        // Update custom CSS variables for the soft background gradient circle
+        textWrapperRef.current.style.setProperty('--mouse-x', `${x}px`);
+        textWrapperRef.current.style.setProperty('--mouse-y', `${y}px`);
 
-      // Fade in spotlight quickly
-      gsap.to(revealLayerRef.current, {
-        opacity: 1,
-        duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto',
-      });
+        // Snap spotlight blobs instantly to cursor coordinates if it was invisible
+        if (!isSpotlightVisible.current) {
+          gsap.set(blobsRef.current, { x: x, y: y });
+          isSpotlightVisible.current = true;
+        }
 
-      gsap.to(blobsRef.current, {
-        x: x,
-        y: y,
-        duration: 1.2,
-        stagger: 0.05,
-        ease: 'power2.out',
-        overwrite: 'auto',
-      });
-
-      // Clear previous timeout and start a new one to disappear within 2 seconds
-      clearTimeout(mouseTimeout);
-      mouseTimeout = setTimeout(() => {
+        // Fade in spotlight quickly
         gsap.to(revealLayerRef.current, {
-          opacity: 0,
-          duration: 1.5, // 1.5s fade-out + 0.5s delay = 2s total disappearance time
-          ease: 'power2.inOut',
-          onComplete: () => {
-            isSpotlightVisible.current = false;
-          },
+          opacity: 1,
+          duration: 0.3,
+          ease: 'power2.out',
+          overwrite: 'auto',
         });
-      }, 500); // 500ms delay of inactivity before starting fade out
+
+        // Exact original GSAP fluid trailing animation
+        gsap.to(blobsRef.current, {
+          x: x,
+          y: y,
+          duration: 1.2,
+          stagger: 0.05,
+          ease: 'power2.out',
+          overwrite: 'auto',
+        });
+
+        // Clear previous timeout and start a new one to disappear within 2 seconds
+        clearTimeout(mouseTimeout);
+        mouseTimeout = setTimeout(() => {
+          gsap.to(revealLayerRef.current, {
+            opacity: 0,
+            duration: 1.5,
+            ease: 'power2.inOut',
+            onComplete: () => {
+              isSpotlightVisible.current = false;
+            },
+          });
+        }, 500);
+      });
     };
 
     const handleMouseLeave = () => {
@@ -197,9 +215,8 @@ export default function HeroContent() {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-    // Attach mouseleave to the wrapper container for cleaner UX
     const wrapper = textWrapperRef.current;
     if (wrapper) {
       wrapper.addEventListener('mouseleave', handleMouseLeave);
@@ -207,10 +224,12 @@ export default function HeroContent() {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', updateRect);
       if (wrapper) {
         wrapper.removeEventListener('mouseleave', handleMouseLeave);
       }
       clearTimeout(mouseTimeout);
+      if (rAFId) cancelAnimationFrame(rAFId);
     };
   }, []);
 
@@ -386,8 +405,8 @@ export default function HeroContent() {
           className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0 mt-8 sm:mt-10 md:mt-12 z-30 ${isIntroComplete ? 'hero-btn-animated' : 'opacity-0'}`}
           aria-label="Primary navigation - View portfolio or contact Rameshwar Bhagwat"
         >
-          <Link href={isReveal ? '' : '/resume'} passHref legacyBehavior>
-            <motion.a
+          <Link href={isReveal ? '#' : '/resume'}>
+            <motion.div
               className={`group px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 inline-flex items-center gap-2 sm:gap-3 opacity-90 hover:opacity-100 cursor-pointer ${isReveal
                   ? 'bg-white text-black border border-black/80'
                   : 'glowing-border-btn text-white'
@@ -435,7 +454,7 @@ export default function HeroContent() {
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
-          </motion.a>
+          </motion.div>
         </Link>
       </motion.nav>
       </motion.div>
@@ -479,6 +498,8 @@ export default function HeroContent() {
           WebkitMask: 'url(#fluid-mask)',
           pointerEvents: 'none',
           backgroundColor: '#ffffff',
+          willChange: 'opacity',
+          contain: 'layout paint',
         }}
       >
         <div className="w-full max-w-[1400px] h-full mx-auto px-4 sm:px-6 md:px-8 text-center">

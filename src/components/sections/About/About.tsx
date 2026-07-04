@@ -38,20 +38,20 @@ export default function About() {
       tl.fromTo(
         '.about-badge',
         { opacity: 0, scale: 0.7, y: 25 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.65, ease: 'back.out(1.5)' }
+        { opacity: 1, scale: 1, y: 0, duration: 0.65, ease: 'back.out(1.5)', willChange: 'transform, opacity' }
       );
 
       tl.fromTo(
         '.about-title',
         { opacity: 0, y: 55, clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' },
-        { opacity: 1, y: 0, clipPath: 'polygon(0 0%, 100% 0%, 100% 100%, 0 100%)', duration: 0.95, ease: 'power4.out' },
+        { opacity: 1, y: 0, clipPath: 'polygon(0 0%, 100% 0%, 100% 100%, 0 100%)', duration: 0.95, ease: 'power4.out', willChange: 'transform, opacity, clip-path' },
         '-=0.45'
       );
 
       tl.fromTo(
         '.about-subtitle',
         { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', willChange: 'transform, opacity' },
         '-=0.6'
       );
 
@@ -65,9 +65,10 @@ export default function About() {
           y: 0,
           rotateX: 0,
           duration: 0.75,
-          stagger: 0.1,
+          stagger: 0.08,
           ease: 'power3.out',
-          clearProps: 'transform,perspective,rotateX' // Essential: releases transforms so Framer Motion spring hovers work cleanly
+          willChange: 'transform, opacity',
+          clearProps: 'transform,perspective,rotateX,willChange' // Essential: releases transforms so Framer Motion spring hovers work cleanly
         },
         '-=0.55'
       );
@@ -135,7 +136,7 @@ export default function About() {
         {/* Card 1: Sticky About Bento Grid (centered vertically in viewport) */}
         <div
           ref={cardRef}
-          className={`${isScrollingDown ? 'lg:sticky' : 'relative'} z-10 px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 w-full lg:h-screen lg:flex lg:flex-col lg:justify-center pt-8 pb-16 lg:pt-0 lg:pb-0`}
+          className="lg:sticky z-10 px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 w-full lg:h-screen lg:flex lg:flex-col lg:justify-center pt-8 pb-16 lg:pt-0 lg:pb-0"
           style={{ top: '0px' }}
         >
           <Container>

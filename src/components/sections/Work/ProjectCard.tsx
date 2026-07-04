@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { Github, Info } from 'lucide-react';
+import { Github, Info, ArrowRight } from 'lucide-react';
 import { Project } from './work.data';
 import { useState, memo, useCallback, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -94,16 +94,11 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
   const [isHovered, setIsHovered] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'info' | 'error' } | null>(null);
 
-  // Auto-hide toast notifications after 2 seconds
-  useEffect(() => {
-    if (toast) {
-      const timer = setTimeout(() => setToast(null), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [toast]);
-
   const handleMouseEnter = useCallback(() => setIsHovered(true), []);
-  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+    setToast(null); // Dismiss info popup when cursor leaves card
+  }, []);
 
   const handleLiveClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -132,30 +127,33 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
   const TechIcon = techInfo?.icon || SiReact;
   const brandColor = `rgb(${project.color})`;
 
-  // Card hover shadow style using project brand colors (mimics iOS ambient glow)
-  const hoverShadow = useMemo(() => {
-    return isHovered 
-      ? `0 20px 40px -15px rgba(${project.color}, 0.25), 0 1px 1px rgba(255, 255, 255, 0.08) inset`
-      : '0 4px 12px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(255, 255, 255, 0.03) inset';
-  }, [isHovered, project.color]);
+  const handleInfoClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setToast({
+      message: `${project.tagline} — ${project.description}`,
+      type: 'info'
+    });
+  }, [project.tagline, project.description]);
 
   return (
     <motion.article
-      className="group relative overflow-hidden bg-white/[0.01] backdrop-blur-xl border border-white/[0.08] hover:border-white/[0.15] rounded-[28px] flex flex-col h-full transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] cursor-pointer"
+      className="group relative overflow-hidden bg-[#141416]/75 backdrop-blur-2xl border border-white/[0.08] hover:border-white/[0.18] rounded-[32px] flex flex-col h-full transition-all duration-300 cursor-pointer"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => router.push(`/projects/${project.id}`)}
-      whileHover={{ y: -8, scale: 1.015 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      style={{
-        boxShadow: hoverShadow,
+      whileHover={{ y: -6 }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      style={{ 
+        willChange: 'transform',
+        boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 12px 36px -8px rgba(0, 0, 0, 0.5)'
       }}
       itemScope
       itemType="https://schema.org/SoftwareApplication"
     >
-      {/* Padded iOS Preview Image */}
-      <div className="p-3 pb-0 select-none">
-        <div className="relative aspect-[1.6] rounded-2xl overflow-hidden bg-neutral-950 border border-white/5">
+      {/* Padded iOS Preview Screen */}
+      <div className="p-3.5 pb-0 select-none">
+        <div className="relative aspect-[1.65] rounded-[22px] overflow-hidden bg-[#0A0A0C] border border-white/[0.08] shadow-inner">
           {/* Main preview screenshot */}
           <Image
             src={project.image}
@@ -176,78 +174,50 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
             />
           </div>
           {/* Inner dark overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
         </div>
       </div>
 
-      {/* Card Info Section */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      {/* iOS Card Content Body */}
+      <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
         <div>
-          {/* iOS App Store styled Title block */}
-          <div className="flex items-start gap-3">
-            {/* Squircle App Icon */}
-            <div 
-              className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center transition-all duration-300"
-              style={{
-                background: `rgba(${project.color}, 0.1)`,
-                border: `1.5px solid rgba(${project.color}, 0.25)`,
-                boxShadow: isHovered ? `0 0 15px rgba(${project.color}, 0.2)` : 'none'
-              }}
-            >
-              <TechIcon 
-                size={22} 
-                style={{ color: techInfo?.color || '#FFFFFF' }} 
-              />
-            </div>
-            {/* Title / Tagline */}
-            <div className="min-w-0 flex-1 flex justify-between items-start">
-              <div className="min-w-0 flex-1">
-                <span className="block text-[10px] tracking-wider text-white/40 uppercase font-bold font-outfit">
-                  {project.tagline.split('for')[0].trim()}
-                </span>
-                <h3 
-                  className="text-lg sm:text-xl font-bold tracking-tight font-outfit truncate transition-colors duration-300 mt-0.5"
-                  style={{
-                    color: isHovered ? brandColor : '#FFFFFF'
-                  }}
-                  itemProp="name"
-                >
-                  {project.title}
-                </h3>
-              </div>
-              <motion.div
-                animate={{ opacity: isHovered ? 1 : 0.3, x: isHovered ? 2 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="text-white/40 flex-shrink-0 mt-2.5 ml-2"
+          {/* Title block */}
+          <div className="flex items-start justify-between gap-3 mb-2.5">
+            <div className="min-w-0 flex-1">
+              <span className="block text-[10px] font-bold font-mono tracking-widest bg-gradient-to-r from-[#FF8C00] to-[#F43F5E] bg-clip-text text-transparent uppercase mb-0.5">
+                {project.tagline.split('for')[0].trim()}
+              </span>
+              <h3 
+                className="text-lg sm:text-xl font-bold tracking-tight font-jakarta text-white truncate transition-colors duration-300"
+                itemProp="name"
               >
-                <Info size={14} style={{ color: isHovered ? brandColor : 'rgba(255,255,255,0.4)' }} />
-              </motion.div>
+                {project.title}
+              </h3>
             </div>
+
+            {/* iOS Info Interactive Button */}
+            <motion.button
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleInfoClick}
+              className="w-8 h-8 rounded-full bg-white/[0.06] hover:bg-[#FF8C00]/20 hover:border-[#FF8C00]/40 border border-white/[0.1] flex items-center justify-center flex-shrink-0 text-white/60 hover:text-[#FF8C00] transition-all duration-200 cursor-pointer shadow-sm"
+              aria-label={`View quick details for ${project.title}`}
+              title="Quick Project Overview"
+            >
+              <Info size={14} />
+            </motion.button>
           </div>
 
           {/* Description */}
           <p 
-            className="text-white/60 text-xs sm:text-sm font-outfit mt-3 leading-relaxed line-clamp-3 mb-3"
+            className="text-white/60 text-xs sm:text-[13px] font-outfit leading-relaxed line-clamp-2 mb-4"
             itemProp="description"
           >
             {project.description}
           </p>
 
-          {/* Core Features List */}
-          <ul className="space-y-1 mb-3.5 mt-2">
-            {project.features.slice(0, 3).map((feat, idx) => (
-              <li key={idx} className="flex items-center gap-2 text-[11px] sm:text-xs text-white/55 font-outfit">
-                <span 
-                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: brandColor }}
-                />
-                <span className="line-clamp-1">{feat}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Tech Badges */}
-          <div className="flex flex-wrap gap-1.5 mb-3.5">
+          {/* iOS Frosted Tech Badges */}
+          <div className="flex flex-wrap gap-1.5 mb-5">
             {project.techStack.map((tech, idx) => {
               const config = techConfig[tech];
               const Icon = config?.icon;
@@ -256,11 +226,11 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
               return (
                 <span 
                   key={idx} 
-                  className="inline-flex items-center gap-1 px-2 py-0.5 text-[9.5px] rounded-full bg-white/[0.03] border border-white/[0.06] text-white/55 font-outfit font-semibold transition-all duration-300 hover:bg-white/[0.06] hover:border-white/[0.12] hover:text-white/80"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] rounded-full bg-white/[0.04] border border-white/[0.06] text-white/70 font-outfit font-semibold transition-all duration-200 hover:bg-white/[0.08] hover:text-white"
                 >
                   {Icon && (
                     <Icon 
-                      size={10.5} 
+                      size={11} 
                       style={{ color: iconColor }}
                       className="flex-shrink-0"
                     />
@@ -272,75 +242,75 @@ const ProjectCard = memo(function ProjectCard({ project, index }: ProjectCardPro
           </div>
         </div>
 
-        {/* Action Footer */}
+        {/* iOS Action Footer */}
         <div>
-          <div className="w-full h-px bg-white/5 mb-3" />
-          <nav className="flex items-center gap-3" aria-label="Project actions">
-            {/* iOS Live App Button */}
+          <div className="w-full h-px bg-white/[0.06] mb-3.5" />
+          <nav className="flex items-center gap-2.5" aria-label="Project actions">
+            {/* Orange to Red Gradient Live App Button */}
             <motion.button
-              whileTap={{ scale: 0.96 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleLiveClick}
-              className="flex-1 text-white font-bold font-outfit text-xs py-2 rounded-full transition-all duration-300 select-none text-center cursor-pointer hover:brightness-110"
-              style={{
-                backgroundColor: brandColor,
-                boxShadow: `0 4px 14px rgba(${project.color}, 0.3)`,
-              }}
+              className="flex-1 bg-gradient-to-r from-[#FF8C00] to-[#F43F5E] hover:opacity-90 active:scale-95 text-white font-bold font-outfit text-xs py-2 px-4 rounded-full transition-all duration-200 select-none text-center cursor-pointer shadow-[0_4px_16px_rgba(244,63,94,0.35)]"
             >
               Live App
             </motion.button>
-            {/* Code button (GitHub) */}
+
+            {/* iOS Secondary Frosted Code Button */}
             <motion.button
-              whileTap={{ scale: 0.96 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleGithubClick}
-              className="flex-1 border border-white/10 hover:bg-white/5 hover:border-white/20 text-white font-semibold font-outfit text-xs py-2 rounded-full transition-all flex items-center justify-center gap-1.5 select-none cursor-pointer"
+              className="flex-1 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.08] text-white/90 font-semibold font-outfit text-xs py-2 px-4 rounded-full transition-all duration-200 flex items-center justify-center gap-1.5 select-none cursor-pointer"
             >
-              <Github size={12} className="text-white/80" />
+              <Github size={13} className="text-white/80" />
               <span>Source</span>
             </motion.button>
           </nav>
         </div>
       </div>
 
-      {/* iOS-style Inner Card Alert Overlay */}
+      {/* iOS-style Inner Card Alert Sheet Overlay */}
       <AnimatePresence>
         {toast && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 flex flex-col items-center justify-center p-6 bg-black/90 backdrop-blur-md rounded-[28px]"
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center p-6 bg-[#0E0D0F] rounded-[32px] shadow-2xl"
             onClick={(e) => {
               e.stopPropagation();
-              setToast(null); // Allow click-to-dismiss
+              router.push(`/projects/${project.id}`);
             }}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 10 }}
+              initial={{ scale: 0.9, opacity: 0, y: 12 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 10 }}
+              exit={{ scale: 0.9, opacity: 0, y: 12 }}
               transition={{ type: 'spring', stiffness: 450, damping: 25 }}
-              className="flex flex-col items-center text-center max-w-[85%] select-none pointer-events-none"
+              className="flex flex-col items-center text-center max-w-[90%] select-none"
             >
               {/* App Icon Glow */}
               <div 
-                className="w-11 h-11 rounded-full flex items-center justify-center mb-3"
-                style={{ 
-                  background: `rgba(${project.color}, 0.15)`,
-                  border: `1px solid rgba(${project.color}, 0.3)`
-                }}
+                className="w-12 h-12 rounded-full flex items-center justify-center mb-3 bg-gradient-to-r from-[#FF8C00]/20 to-[#F43F5E]/20 border border-[#F43F5E]/40"
               >
-                <Info size={18} style={{ color: brandColor }} />
+                <Info size={20} className="text-[#FF8C00]" />
               </div>
-              <h4 className="text-sm font-bold text-white mb-1 font-outfit">
-                Project Update
+              <h4 className="text-base font-bold text-white mb-1.5 font-jakarta">
+                {project.title}
               </h4>
-              <p className="text-[11px] sm:text-xs text-white/70 leading-relaxed font-outfit">
+              <p className="text-xs text-white/75 leading-relaxed font-outfit mb-5">
                 {toast.message}
               </p>
               
-              <span className="text-[9px] text-white/30 mt-4 font-outfit">
-                Closing shortly...
-              </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  router.push(`/projects/${project.id}`);
+                }}
+                className="group/btn px-5 py-2 rounded-full bg-gradient-to-r from-[#FF8C00] to-[#F43F5E] hover:opacity-90 text-xs font-bold text-white transition-all duration-200 cursor-pointer shadow-[0_4px_16px_rgba(244,63,94,0.35)] flex items-center gap-1.5 active:scale-95"
+              >
+                <span>View Case Study</span>
+                <ArrowRight size={13} className="group-hover/btn:translate-x-0.5 transition-transform" />
+              </button>
             </motion.div>
           </motion.div>
         )}

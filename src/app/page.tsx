@@ -81,27 +81,15 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Optimize scroll performance with passive listeners
-    const optimizeScroll = () => {
-      document.documentElement.style.scrollBehavior = 'smooth';
-    };
-    
-    optimizeScroll();
-    
-    // Debounced scroll handler for performance
-    let scrollTimeout: NodeJS.Timeout;
+    // Sync GSAP ScrollTrigger updates on scroll
     const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        // Scroll ended - can perform any cleanup if needed
-      }, 150);
+      ScrollTrigger.update();
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
     };
   }, []);
 

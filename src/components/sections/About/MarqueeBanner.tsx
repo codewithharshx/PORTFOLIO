@@ -32,22 +32,24 @@ const PORTFOLIO_BACKGROUND = '#0F0E0E';
 const topRowRepeated = [...topRowItems, ...topRowItems, ...topRowItems];
 const bottomRowRepeated = [...bottomRowItems, ...bottomRowItems, ...bottomRowItems];
 
-// Animation variants - defined outside component for stability
+// Animation variants - smooth intro without horizontal viewport jumps
 const stripVariants = {
   hidden: (direction: 'left' | 'right') => ({
-    x: direction === 'right' ? '100vw' : '-100vw',
+    x: direction === 'right' ? 80 : -80,
     opacity: 0,
+    scale: 0.96,
   }),
   visible: {
-    x: '0%',
+    x: 0,
     opacity: 1,
+    scale: 1,
   },
 };
 
-// Simplified transition (no blur animation)
+// Smooth cubic-bezier spring transition
 const stripTransition = (delay: number) => ({
-  duration: 0.8,
-  ease: [0.25, 0.46, 0.45, 0.94] as const,
+  duration: 1.0,
+  ease: [0.16, 1, 0.3, 1] as const,
   delay,
 });
 
@@ -85,7 +87,7 @@ const MarqueeRow = memo(function MarqueeRow({
     <div className="flex overflow-hidden whitespace-nowrap">
       <div
         className={direction === 'left' ? 'marquee-scroll-left' : 'marquee-scroll-right'}
-        style={{ '--marquee-duration': `${duration}s` } as React.CSSProperties}
+        style={{ '--marquee-duration': `${duration}s`, transform: 'translateZ(0)' } as React.CSSProperties}
       >
         {items.map((item, i) => (
           <span key={i} className="inline-flex items-center">
@@ -104,7 +106,7 @@ const MarqueeRow = memo(function MarqueeRow({
 
 export default function MarqueeBanner() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
   return (
     <section
@@ -116,9 +118,7 @@ export default function MarqueeBanner() {
         isolation: 'isolate',
       }}
     >
-
-
-      {/* Noise texture overlay - static, no animation */}
+      {/* Noise texture overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.015]"
         style={{
@@ -149,7 +149,7 @@ export default function MarqueeBanner() {
         {/* Strip 1 — Primary (slides from right) */}
         <motion.div
           className="marquee-strip absolute left-0 right-0 z-[2]"
-          style={{ top: '50%', translateY: '-50%', rotate: -5 }}
+          style={{ top: '50%', translateY: '-50%', rotate: -5, willChange: 'transform, opacity' }}
           variants={stripVariants}
           custom="right"
           initial="hidden"
@@ -164,7 +164,7 @@ export default function MarqueeBanner() {
         {/* Strip 2 — Secondary (slides from left) */}
         <motion.div
           className="marquee-strip absolute left-0 right-0 z-[1]"
-          style={{ top: '50%', translateY: '-50%', rotate: 5 }}
+          style={{ top: '50%', translateY: '-50%', rotate: 5, willChange: 'transform, opacity' }}
           variants={stripVariants}
           custom="left"
           initial="hidden"

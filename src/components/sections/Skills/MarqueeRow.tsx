@@ -69,18 +69,6 @@ const SkillCard = memo(function SkillCard({ skill, index, onHover, isHovered }: 
     transition: 'opacity 0.3s ease, transform 0.3s ease',
   }), [isHovered, skill.color]);
 
-  const pulseRingStyle1 = useMemo(() => ({
-    border: `2px solid ${skill.color}`,
-    animation: isHovered ? 'skill-pulse-1 1s ease-out infinite' : 'none',
-    opacity: isHovered ? 1 : 0,
-  }), [isHovered, skill.color]);
-
-  const pulseRingStyle2 = useMemo(() => ({
-    border: `1px solid ${skill.color}`,
-    animation: isHovered ? 'skill-pulse-2 1s ease-out infinite 0.3s' : 'none',
-    opacity: isHovered ? 1 : 0,
-  }), [isHovered, skill.color]);
-
   return (
     <div
       onMouseEnter={() => onHover(index)}
@@ -102,19 +90,12 @@ const SkillCard = memo(function SkillCard({ skill, index, onHover, isHovered }: 
       >
         {/* Icon container with glow */}
         <div className="relative" style={glowStyle}>
-          {/* Pulsing rings - CSS animation */}
-          <div
-            className="absolute inset-0 rounded-full pointer-events-none"
-            style={pulseRingStyle1}
-          />
-          <div
-            className="absolute inset-0 rounded-full pointer-events-none"
-            style={pulseRingStyle2}
-          />
-
           <Icon
             className="text-4xl sm:text-5xl"
-            style={{ color: skill.color }}
+            style={{ 
+              color: skill.color,
+              transition: 'color 0.3s ease',
+            }}
           />
         </div>
 

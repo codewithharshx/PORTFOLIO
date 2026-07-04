@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   SiReact, SiNextdotjs, SiTypescript,
@@ -9,7 +9,7 @@ import {
 import GlowCard, { GlowCardGroup } from '@/components/ui/GlowCard';
 
 // --- Asterisk Circular Accent Badge ---
-function AsteriskBadge({ className = "w-4 h-4" }: { className?: string }) {
+const AsteriskBadge = memo(function AsteriskBadge({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <div className={`rounded-full bg-[#C2EF3A] flex items-center justify-center text-[#0F0E0E] flex-shrink-0 ${className}`}>
       <svg className="w-[50%] h-[50%]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round">
@@ -17,10 +17,10 @@ function AsteriskBadge({ className = "w-4 h-4" }: { className?: string }) {
       </svg>
     </div>
   );
-}
+});
 
 // --- Growth Bar Chart Component ---
-function ActivityBarChart() {
+const ActivityBarChart = memo(function ActivityBarChart() {
   const bars = [
     { height: 35 }, { height: 50 }, { height: 40 }, { height: 65 }, 
     { height: 55 }, { height: 80 }, { height: 70 }, { height: 90 }, 
@@ -40,12 +40,12 @@ function ActivityBarChart() {
           <div key={idx} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
             <div className="w-full bg-[#1C1A1A] rounded-full h-full overflow-hidden flex items-end">
               <motion.div 
-                className="w-full bg-gradient-to-t from-[#C2EF3A]/40 to-[#C2EF3A] rounded-full"
+                className="w-full bg-gradient-to-t from-[#C2EF3A]/40 to-[#C2EF3A] rounded-full shadow-[0_0_6px_rgba(194,239,58,0.3)]"
                 initial={{ height: 0 }}
                 whileInView={{ height: `${bar.height}%` }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: idx * 0.03, ease: "easeOut" }}
-                style={{ filter: 'drop-shadow(0 0 3px rgba(194, 239, 58, 0.3))' }}
+                transition={{ duration: 0.9, delay: idx * 0.025, ease: "easeOut" }}
+                style={{ willChange: 'height' }}
               />
             </div>
           </div>
@@ -60,10 +60,10 @@ function ActivityBarChart() {
       </div>
     </div>
   );
-}
+});
 
 // --- Dynamic Notification Island Component ---
-function NotificationIsland() {
+const NotificationIsland = memo(function NotificationIsland() {
   return (
     <div className="relative w-full h-24 bg-[#0E0D0D] border border-white/[0.03] rounded-2xl flex items-center justify-center overflow-hidden shadow-inner mb-4">
       {/* Background wireframe lines */}
@@ -79,6 +79,7 @@ function NotificationIsland() {
         viewport={{ once: true }}
         transition={{ type: "spring", stiffness: 100, damping: 15 }}
         className="relative z-10 w-[85%] max-w-[210px] bg-[#121111] border border-white/[0.06] rounded-2xl p-2.5 flex items-center gap-2.5 shadow-lg"
+        style={{ willChange: 'transform, opacity' }}
       >
         {/* Cloud/Wind circle badge */}
         <div className="w-8 h-8 rounded-full bg-[#C2EF3A]/10 border border-[#C2EF3A]/20 flex items-center justify-center text-[#C2EF3A] flex-shrink-0">
@@ -99,10 +100,10 @@ function NotificationIsland() {
       </motion.div>
     </div>
   );
-}
+});
 
 // --- Scalable Line Chart Component ---
-function SmoothLineChart() {
+const SmoothLineChart = memo(function SmoothLineChart() {
   return (
     <div className="relative w-full h-24 bg-[#0E0D0D] border border-white/[0.03] rounded-2xl overflow-hidden p-4 flex flex-col justify-between shadow-inner mb-4">
       {/* Grid lines background */}
@@ -144,7 +145,7 @@ function SmoothLineChart() {
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{ duration: 1.3, ease: "easeInOut" }}
           />
         </svg>
 
@@ -160,18 +161,18 @@ function SmoothLineChart() {
       </div>
     </div>
   );
-}
+});
 
 // --- Tool Badges Cluster Component ---
-function ToolBadgeCloud() {
-  const tools = [
+const ToolBadgeCloud = memo(function ToolBadgeCloud() {
+  const tools = useMemo(() => [
     { icon: SiNextdotjs, color: '#FFFFFF', top: '10%', left: '10%' },
     { icon: SiReact, color: '#61DAFB', top: '5%', left: '42%' },
     { icon: SiTypescript, color: '#3178C6', top: '15%', left: '72%' },
     { icon: SiOpenai, color: '#10A37F', top: '50%', left: '15%' },
     { icon: SiPostgresql, color: '#4169E1', top: '60%', left: '48%' },
     { icon: SiPrisma, color: '#5A67D8', top: '45%', left: '78%' },
-  ];
+  ], []);
 
   return (
     <div className="relative w-44 h-24 flex-shrink-0 select-none mt-2 md:mt-0">
@@ -180,25 +181,26 @@ function ToolBadgeCloud() {
       {tools.map((tool, idx) => {
         const IconComponent = tool.icon;
         return (
-          <motion.div
+          <div
             key={idx}
             className="absolute w-9 h-9 rounded-full border border-white/5 bg-[#171616] flex items-center justify-center shadow-lg hover:border-white/15 hover:scale-110 transition-all duration-300"
             style={{ 
               top: tool.top, 
               left: tool.left,
-              boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.02)'
+              boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.02)',
+              willChange: 'transform'
             }}
           >
             <IconComponent className="w-4.5 h-4.5" style={{ color: tool.color }} />
-          </motion.div>
+          </div>
         );
       })}
     </div>
   );
-}
+});
 
 // --- Study Tracker Visual Component ---
-function TrackerVisual() {
+const TrackerVisual = memo(function TrackerVisual() {
   return (
     <div className="relative w-44 h-24 flex-shrink-0 flex items-center justify-between select-none mt-2 md:mt-0 bg-[#0E0D0D] border border-white/[0.03] rounded-2xl p-3 shadow-inner">
       {/* Task list mockup */}
@@ -247,7 +249,7 @@ function TrackerVisual() {
       </div>
     </div>
   );
-}
+});
 
 export default function ActivityMetrics() {
   const [visitorCount, setVisitorCount] = useState(0);

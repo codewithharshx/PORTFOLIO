@@ -87,7 +87,7 @@ export default function ParticleBackground() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Batch shadow operations
+      // Batch shadow operations - exact original rendering
       particlesRef.current.forEach((particle) => {
         particle.y += particle.speedY;
         particle.x += particle.speedX;
@@ -104,7 +104,6 @@ export default function ParticleBackground() {
         if (particle.x < -10) particle.x = width + 10;
         if (particle.x > width + 10) particle.x = -10;
 
-        // Optimized shadow rendering
         ctx.shadowBlur = 15;
         ctx.shadowColor = `rgba(255, 255, 255, ${particle.opacity * 0.8})`;
         ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;

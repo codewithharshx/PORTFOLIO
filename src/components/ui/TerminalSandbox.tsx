@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, X } from 'lucide-react';
+import { Terminal, X, Sparkles, Command, ShieldAlert, Zap } from 'lucide-react';
 
 interface LogLine {
   type: 'input' | 'output' | 'error' | 'system';
@@ -12,14 +12,14 @@ interface LogLine {
 type ThemeName = 'matrix' | 'amber' | 'dracula' | 'terminal';
 
 interface ThemeConfig {
-  primaryColor: string; // text color code
-  accentColor: string;  // highlight color code
-  secondaryColor: string; // secondary text code
-  promptColor: string;  // prompt prompt text color
-  borderColor: string;  // border color
-  glowColor: string;    // text shadow glow
-  windowBg: string;     // window background color
-  pulseClass: string;   // dot pulse class
+  primaryColor: string;
+  accentColor: string;
+  secondaryColor: string;
+  promptColor: string;
+  borderColor: string;
+  glowColor: string;
+  windowBg: string;
+  pulseClass: string;
 }
 
 const THEME_CONFIGS: Record<ThemeName, ThemeConfig> = {
@@ -28,19 +28,19 @@ const THEME_CONFIGS: Record<ThemeName, ThemeConfig> = {
     accentColor: 'text-[#00f0ff]',
     secondaryColor: 'text-white/60',
     promptColor: 'text-[#39d353]',
-    borderColor: 'border-[#39d353]/25',
+    borderColor: 'border-[#39d353]/30',
     glowColor: 'rgba(57, 211, 83, 0.4)',
-    windowBg: 'rgba(20, 20, 22, 0.85)',
-    pulseClass: 'bg-green-500',
+    windowBg: 'rgba(12, 11, 15, 0.88)',
+    pulseClass: 'bg-[#39d353]',
   },
   amber: {
     primaryColor: 'text-[#ffb000]',
     accentColor: 'text-[#ffcc00]',
     secondaryColor: 'text-[#ffb000]/60',
     promptColor: 'text-[#ffb000]',
-    borderColor: 'border-[#ffb000]/25',
+    borderColor: 'border-[#ffb000]/30',
     glowColor: 'rgba(255, 176, 0, 0.4)',
-    windowBg: 'rgba(22, 16, 8, 0.9)',
+    windowBg: 'rgba(20, 15, 10, 0.90)',
     pulseClass: 'bg-amber-500',
   },
   dracula: {
@@ -48,9 +48,9 @@ const THEME_CONFIGS: Record<ThemeName, ThemeConfig> = {
     accentColor: 'text-[#bd93f9]',
     secondaryColor: 'text-white/60',
     promptColor: 'text-[#50fa7b]',
-    borderColor: 'border-[#bd93f9]/25',
+    borderColor: 'border-[#bd93f9]/30',
     glowColor: 'rgba(189, 147, 249, 0.4)',
-    windowBg: 'rgba(25, 25, 35, 0.9)',
+    windowBg: 'rgba(18, 16, 26, 0.90)',
     pulseClass: 'bg-pink-500',
   },
   terminal: {
@@ -58,18 +58,20 @@ const THEME_CONFIGS: Record<ThemeName, ThemeConfig> = {
     accentColor: 'text-[#00f0ff]',
     secondaryColor: 'text-white/50',
     promptColor: 'text-[#00f0ff]',
-    borderColor: 'border-white/15',
-    glowColor: 'rgba(255, 255, 255, 0.2)',
-    windowBg: 'rgba(15, 15, 15, 0.9)',
+    borderColor: 'border-white/20',
+    glowColor: 'rgba(255, 255, 255, 0.25)',
+    windowBg: 'rgba(15, 14, 18, 0.90)',
     pulseClass: 'bg-blue-500',
   },
 };
+
+const QUICK_COMMANDS = ['help', 'hack', 'matrix', 'projects', 'skills', 'about', 'neofetch', 'clear'];
 
 const COMMAND_LIST = [
   'help', 'about', 'skills', 'projects', 'git log', 'visitor', 'matrix', 'clear',
   'theme matrix', 'theme amber', 'theme dracula', 'theme terminal',
   'go hero', 'go about', 'go skills', 'go projects', 'go github', 'go contact',
-  'neofetch', 'hack', 'weather', 'sudo'
+  'neofetch', 'hack', 'weather', 'sudo', 'quote'
 ];
 
 export default function TerminalSandbox() {
@@ -81,7 +83,8 @@ export default function TerminalSandbox() {
   const [logs, setLogs] = useState<LogLine[]>([]);
   const [suggestion, setSuggestion] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  
+  const [isHacking, setIsHacking] = useState(false);
+
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -89,22 +92,24 @@ export default function TerminalSandbox() {
 
   // Generate ASCII welcome banner
   const getBanner = useCallback((): React.ReactNode => (
-    <div className={`${activeTheme.primaryColor} font-mono text-[9px] leading-3 sm:text-[11px] sm:leading-4 mb-3 select-none opacity-90`}>
-      <pre className="whitespace-pre overflow-x-auto scrollbar-none">
-{`██████╗  █████╗ ███╗   ███╗     ██████╗██╗     ██╗
+    <div className="space-y-2 select-none">
+      <div className={`${activeTheme.primaryColor} font-mono text-[9px] leading-3 sm:text-[11px] sm:leading-4 opacity-95`}>
+        <pre className="whitespace-pre overflow-x-auto scrollbar-none font-bold">
+          {`██████╗  █████╗ ███╗   ███╗     ██████╗██╗     ██╗
 ██╔══██╗██╔══██╗████╗ ████║    ██╔════╝██║     ██║
 ██████╔╝███████║██╔████╔██║    ██║     ██║     ██║
 ██╔══██╗██╔══██║██║╚██╔╝██║    ██║     ██║     ██║
 ██║  ██║██║  ██║██║ ╚═╝ ██║    ╚██████╗███████╗██║
 ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚═════╝╚══════╝╚═╝`}
-      </pre>
-      <div className="mt-3 text-white/50 text-[10px] sm:text-xs font-semibold leading-relaxed">
-        RAMESHWAR CLI [Version 1.0.0] - Interactive Sandbox Shell.
-        <br />
-        Type <span className={`${activeTheme.accentColor} font-bold`}>help</span> to view available system commands.
+        </pre>
+      </div>
+      <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-semibold">
+        <span>RAMESHWAR CLI v2.4</span>
+        <span>•</span>
+        <span className="text-[#30D158] font-mono">ONLINE</span>
       </div>
     </div>
-  ), [activeTheme.primaryColor, activeTheme.accentColor]);
+  ), [activeTheme.primaryColor]);
 
   // Initial welcome message
   useEffect(() => {
@@ -131,12 +136,13 @@ export default function TerminalSandbox() {
   // Lock scroll when open
   useEffect(() => {
     if (isOpen) {
+      window.dispatchEvent(new CustomEvent('modal-opened'));
       const originalStyle = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-      // Auto focus input
       setTimeout(() => inputRef.current?.focus(), 150);
       return () => {
         document.body.style.overflow = originalStyle;
+        window.dispatchEvent(new CustomEvent('modal-closed'));
       };
     }
   }, [isOpen]);
@@ -148,12 +154,11 @@ export default function TerminalSandbox() {
     }
   }, [logs, isOpen]);
 
-  // Focus helper
   const focusInput = () => {
     inputRef.current?.focus();
   };
 
-  // Autocomplete suggestion logic (ZSH Style)
+  // Autocomplete suggestion logic
   useEffect(() => {
     if (!input.trim()) {
       setSuggestion('');
@@ -167,7 +172,6 @@ export default function TerminalSandbox() {
     }
   }, [input]);
 
-  // Handle key triggers (Arrow keys, tab, enter)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Tab') {
       e.preventDefault();
@@ -180,14 +184,12 @@ export default function TerminalSandbox() {
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (history.length === 0) return;
-      
       const newIndex = historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
       setHistoryIndex(newIndex);
       setInput(history[newIndex]);
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       if (historyIndex === -1) return;
-      
       if (historyIndex === history.length - 1) {
         setHistoryIndex(-1);
         setInput('');
@@ -199,23 +201,21 @@ export default function TerminalSandbox() {
     }
   };
 
-  // Scroll navigation helper
   const navigateToSection = (sectionId: string, label: string) => {
     setLogs(prev => [
       ...prev,
-      { type: 'system', text: `Navigating to ${label} section...` }
+      { type: 'system', text: `🚀 Navigating to ${label} section...` }
     ]);
     setIsOpen(false);
-    
-    // Convert projects -> work mapping
+
     const targetId = sectionId === 'projects' ? 'work' : sectionId;
-    
+
     setTimeout(() => {
       const target = document.getElementById(targetId);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
-      
+
       if (sectionId === 'contact') {
         setTimeout(() => {
           window.dispatchEvent(new CustomEvent('open-contact-form'));
@@ -224,17 +224,16 @@ export default function TerminalSandbox() {
     }, 250);
   };
 
-  // Run matching actions
   const executeCommand = async (cmdString: string) => {
     const trimmedCmd = cmdString.trim();
-    if (!trimmedCmd) return;
+    if (!trimmedCmd || isHacking) return;
 
     const newLogs = [...logs, { type: 'input' as const, text: trimmedCmd }];
     setLogs(newLogs);
     setInput('');
     setSuggestion('');
     setHistoryIndex(-1);
-    setHistory(prev => [...prev.filter(h => h !== trimmedCmd), trimmedCmd]); // Move to end of history
+    setHistory(prev => [...prev.filter(h => h !== trimmedCmd), trimmedCmd]);
 
     const cmd = trimmedCmd.toLowerCase();
 
@@ -244,15 +243,12 @@ export default function TerminalSandbox() {
     }
 
     setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 150));
 
-    // Timeout helper to give realistic feel
-    await new Promise(resolve => setTimeout(resolve, 200));
-
-    // Handle 'go <section>' and 'go to <section>'
     if (cmd.startsWith('go ') || cmd.startsWith('go to ')) {
       const target = cmd.replace('go to ', '').replace('go ', '').trim();
       const validSections = ['hero', 'about', 'skills', 'projects', 'github', 'contact'];
-      
+
       if (validSections.includes(target)) {
         navigateToSection(target, target.toUpperCase());
         setIsLoading(false);
@@ -260,7 +256,6 @@ export default function TerminalSandbox() {
       }
     }
 
-    // Direct section commands (about, skills, projects, github, contact)
     const directNavigationCmds: Record<string, string> = {
       hero: 'hero',
       github: 'github',
@@ -271,12 +266,10 @@ export default function TerminalSandbox() {
       return;
     }
 
-    // Theme changer command
     if (cmd.startsWith('theme ')) {
       const themeChoice = cmd.replace('theme ', '').trim() as ThemeName;
       if (THEME_CONFIGS[themeChoice]) {
         setCurrentTheme(themeChoice);
-        // Logs update automatically due to welcome banner refresh
         setIsLoading(false);
         return;
       } else {
@@ -296,38 +289,21 @@ export default function TerminalSandbox() {
           {
             type: 'output',
             text: (
-              <div className="font-mono text-[11px] sm:text-xs text-white/80 py-1 border-y border-white/5 my-1.5 space-y-3 pl-1 sm:pl-2">
-                <div>
-                  <p className={`${activeTheme.accentColor} font-bold mb-1 select-none`}>[ SYSTEM COMMANDS ]</p>
-                  <div className="space-y-1 pl-2">
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">about</span> - Read profile bio details</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">skills</span> - Display technical stack expertise</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">projects</span> - View featured open-source work</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">git log</span> - Pull live git commit history</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">visitor</span> - Fetch Upstash visitor stats chart</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">neofetch</span> - Show retro system information dashboard</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">weather</span> - Display Yeola weather ASCII forecast</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">clear</span> - Clear terminal session logs</p>
-                  </div>
-                </div>
-                <div>
-                  <p className={`${activeTheme.accentColor} font-bold mb-1 select-none`}>[ PAGE NAVIGATION ]</p>
-                  <div className="space-y-1 pl-2">
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">go hero</span> - Scroll smoothly to top intro banner</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">go about</span> - Scroll smoothly to biography info block</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">go skills</span> - Scroll smoothly to skills marquee track</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">go projects</span> - Scroll smoothly to featured portfolios section</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">go github</span> - Scroll smoothly to open source grid tracker</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">go contact</span> - Navigate down and open contact email form</p>
-                  </div>
-                </div>
-                <div>
-                  <p className={`${activeTheme.accentColor} font-bold mb-1 select-none`}>[ VISUAL MODES & THEMES ]</p>
-                  <div className="space-y-1 pl-2">
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">theme [name]</span> - Switch themes (<span className="text-white/40 italic">matrix | amber | dracula | terminal</span>)</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">matrix</span> - Toggle fullscreen Katakana rain overlay</p>
-                    <p><span className="text-white font-bold inline-block w-24 sm:w-28">hack</span> - Run automated decryption animation sequence</p>
-                  </div>
+              <div className="font-mono text-[11px] sm:text-xs text-white/80 py-1 space-y-2">
+                <p className="text-[#30D158] font-bold text-xs uppercase tracking-wider">⚡ AVAILABLE COMMANDS</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-white/70">
+                  <div><span className="text-white font-bold inline-block w-20">about</span> <span className="text-white/40">Profile bio & background</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">skills</span> <span className="text-white/40">Tech stack & tools</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">projects</span> <span className="text-white/40">Featured apps showcase</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">git log</span> <span className="text-white/40">Recent commit activity</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">visitor</span> <span className="text-white/40">Live visitor analytics</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">neofetch</span> <span className="text-white/40">System info dashboard</span></div>
+                  <div><span className="text-[#39d353] font-bold inline-block w-20">hack</span> <span className="text-white/40">Cyberpunk hack simulator</span></div>
+                  <div><span className="text-[#00f0ff] font-bold inline-block w-20">matrix</span> <span className="text-white/40">Katakana digital rain</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">weather</span> <span className="text-white/40">Yeola weather report</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">quote</span> <span className="text-white/40">Developer inspiration</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">theme</span> <span className="text-white/40">matrix|amber|dracula</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">clear</span> <span className="text-white/40">Clear console logs</span></div>
                 </div>
               </div>
             )
@@ -342,11 +318,10 @@ export default function TerminalSandbox() {
             type: 'output',
             text: (
               <div className="space-y-1 text-white/80 py-0.5 text-xs sm:text-sm">
-                <p><span className="text-pink-500 font-bold">Name:</span> Rameshwar Bhagwat</p>
-                <p><span className="text-pink-500 font-bold">Title:</span> Full Stack & AI Developer</p>
-                <p><span className="text-pink-500 font-bold">Location:</span> Yeola, Maharashtra, India (IST)</p>
-                <p><span className="text-pink-500 font-bold">Bio:</span> Creative software engineer shipping clean, high-performance web systems and AI tools. Dedicated to beautiful interfaces and robust database backends.</p>
-                <p className="text-[10px] text-white/30 italic">Type &apos;go about&apos; to navigate directly to this section on the page.</p>
+                <p><span className="text-[#FF8C00] font-bold">Name:</span> Rameshwar Bhagwat</p>
+                <p><span className="text-[#FF8C00] font-bold">Title:</span> Full Stack & AI Developer</p>
+                <p><span className="text-[#FF8C00] font-bold">Location:</span> Yeola, Maharashtra, India (IST)</p>
+                <p><span className="text-[#FF8C00] font-bold">Bio:</span> Creative engineer building high-performance web systems and AI integrations.</p>
               </div>
             )
           }
@@ -369,10 +344,9 @@ export default function TerminalSandbox() {
                   <p className="pl-3">Node.js, Express, Python, MongoDB, PostgreSQL, Upstash Redis</p>
                 </div>
                 <div>
-                  <p className={`${activeTheme.accentColor} font-bold`}>Creative Graphics:</p>
-                  <p className="pl-3">Three.js, React Three Fiber (R3F), GLSL Custom Shaders</p>
+                  <p className={`${activeTheme.accentColor} font-bold`}>Creative Graphics & AI:</p>
+                  <p className="pl-3">Three.js, R3F, OpenAI APIs, Vector Embeddings</p>
                 </div>
-                <p className="text-[10px] text-white/30 italic pt-1">Type &apos;go skills&apos; to navigate directly to this section on the page.</p>
               </div>
             )
           }
@@ -386,15 +360,18 @@ export default function TerminalSandbox() {
             type: 'output',
             text: (
               <div className="space-y-2 py-0.5 text-xs">
-                <div className="border-l border-orange-500 pl-2">
+                <div className="border-l-2 border-[#FF8C00] pl-2.5">
                   <h4 className="text-white font-bold">1. WebCraft</h4>
-                  <p className="text-white/60 text-[11px]">High-performance Next.js site builder with modular design and SEO readiness.</p>
+                  <p className="text-white/60 text-[11px]">High-performance Next.js site builder with SEO-ready architecture.</p>
                 </div>
-                <div className="border-l border-pink-500 pl-2">
+                <div className="border-l-2 border-[#30D158] pl-2.5">
                   <h4 className="text-white font-bold">2. Safecoast</h4>
-                  <p className="text-white/60 text-[11px]">Geospatial risk assessment platform with real-time mapping integrations.</p>
+                  <p className="text-white/60 text-[11px]">Geospatial risk assessment platform with real-time mapping.</p>
                 </div>
-                <p className="text-[10px] text-white/30 italic pt-1">Type &apos;go projects&apos; to navigate directly to this section on the page.</p>
+                <div className="border-l-2 border-[#0A84FF] pl-2.5">
+                  <h4 className="text-white font-bold">3. Devory</h4>
+                  <p className="text-white/60 text-[11px]">SaaS workflow task management interface with instant chat.</p>
+                </div>
               </div>
             )
           }
@@ -405,17 +382,17 @@ export default function TerminalSandbox() {
         try {
           const res = await fetch('/api/github-commits');
           const commits = await res.json();
-          
+
           if (Array.isArray(commits)) {
             setLogs(prev => [
               ...prev,
               {
                 type: 'output',
                 text: (
-                  <div className="space-y-1.5 py-0.5 font-mono text-[11px] sm:text-xs max-h-48 overflow-y-auto pr-1">
+                  <div className="space-y-1.5 py-0.5 font-mono text-[11px] max-h-48 overflow-y-auto pr-1">
                     <p className={`${activeTheme.primaryColor} font-bold`}>Latest git commits activity:</p>
                     {commits.map((c, i) => (
-                      <div key={i} className="pl-2 border-l border-white/10 py-0.5 hover:bg-white/[0.01]">
+                      <div key={i} className="pl-2 border-l border-white/10 py-0.5">
                         <div className="flex justify-between items-center text-[10px]">
                           <span className="text-yellow-400 font-bold hover:underline">
                             <a href={c.url} target="_blank" rel="noopener noreferrer">{c.sha}</a>
@@ -423,7 +400,6 @@ export default function TerminalSandbox() {
                           <span className="text-white/40">{c.date}</span>
                         </div>
                         <p className="text-white/80">{c.message}</p>
-                        <p className="text-pink-500 text-[10px]">repo: {c.repo}</p>
                       </div>
                     ))}
                   </div>
@@ -445,7 +421,7 @@ export default function TerminalSandbox() {
         try {
           const res = await fetch('/api/visitors');
           const stats = await res.json();
-          
+
           if (stats && typeof stats.uniqueVisitors === 'number') {
             setLogs(prev => [
               ...prev,
@@ -454,7 +430,7 @@ export default function TerminalSandbox() {
                 text: (
                   <div className="py-1 text-[10px] sm:text-xs font-mono text-white/90">
                     <pre className="text-emerald-400 leading-none overflow-x-auto">
-{`   ┌──────────────────────────────────────────────┐
+                      {`   ┌──────────────────────────────────────────────┐
    │             VISITOR STATISTICS               │
    ├──────────────────────┬───────────────────────┤
    │ Unique Visitors      │ ${stats.uniqueVisitors.toLocaleString().padEnd(21)} │
@@ -491,8 +467,8 @@ export default function TerminalSandbox() {
             type: 'output',
             text: (
               <div className="flex flex-col sm:flex-row gap-4 py-1 text-xs font-mono">
-                <pre className={`${activeTheme.primaryColor} leading-3 select-none text-[10px] sm:text-xs`}>
-{`        .---.
+                <pre className={`${activeTheme.primaryColor} leading-3 select-none text-[10px] sm:text-xs font-bold`}>
+                  {`        .---.
        /     \\
        \\_.._/
        /  o o \\
@@ -501,14 +477,11 @@ export default function TerminalSandbox() {
         \\___/`}
                 </pre>
                 <div className="space-y-0.5 text-white/80">
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>OS:</span> RameshwarOS v1.0.0</p>
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>Host:</span> Rameshwar Portfolio Web Application</p>
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>Kernel:</span> React 19.2 + Next.js 16.1 (Turbopack)</p>
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>Shell:</span> zsh-sandbox (TerminalSandbox)</p>
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>Uptime:</span> 100% (Loaded {todayStr})</p>
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>Location:</span> Yeola, Maharashtra, India</p>
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>CPU:</span> Javascript V8 Scripting Engine</p>
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>Database:</span> Upstash Redis (Serverless)</p>
+                  <p><span className={`${activeTheme.accentColor} font-bold`}>OS:</span> RameshwarOS v2.4 (iOS Hybrid)</p>
+                  <p><span className={`${activeTheme.accentColor} font-bold`}>Host:</span> Portfolio Web Console</p>
+                  <p><span className={`${activeTheme.accentColor} font-bold`}>Kernel:</span> React 19 + Next.js 16 (Turbopack)</p>
+                  <p><span className={`${activeTheme.accentColor} font-bold`}>Shell:</span> zsh-sandbox v2.4</p>
+                  <p><span className={`${activeTheme.accentColor} font-bold`}>Uptime:</span> 100% ({todayStr})</p>
                 </div>
               </div>
             )
@@ -523,15 +496,29 @@ export default function TerminalSandbox() {
           {
             type: 'output',
             text: (
-              <div className="py-1 text-xs font-mono text-white/70">
-                <p className="text-emerald-400 font-bold mb-1">WEATHER REPORT: Yeola, Maharashtra, India</p>
+              <div className="py-1 text-xs font-mono text-white/80">
+                <p className="text-emerald-400 font-bold mb-1">WEATHER: Yeola, Maharashtra, India</p>
                 <pre className="leading-tight text-[11px]">
-{`    \\   /      Today:   ☀️  Clear Sky (28°C / 82.4°F)
+                  {`    \\   /      Today:   ☀️  Clear Sky (28°C / 82.4°F)
      .-.       Mon:     🌤️  Light Clouds (29°C)
   ― (   ) ―    Tue:     ☀️  Sunny (31°C)
-     \`-\`       Wed:     ⛈️  Scattered Showers (26°C)
-    /   \\      Wind:    12 km/h ENE | Humidity: 42%`}
+     \`-\`       Humidity: 42% | Wind: 12 km/h ENE`}
                 </pre>
+              </div>
+            )
+          }
+        ]);
+        break;
+
+      case 'quote':
+        setLogs(prev => [
+          ...prev,
+          {
+            type: 'output',
+            text: (
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-xs italic text-white/90 my-1">
+                &ldquo;Simplicity is prerequisite for reliability. First, make it work. Then, make it beautiful. Then, make it fast.&rdquo;
+                <span className="block text-right font-mono text-[10px] text-[#FF8C00] mt-1 not-italic">&mdash; Edsger W. Dijkstra</span>
               </div>
             )
           }
@@ -543,50 +530,91 @@ export default function TerminalSandbox() {
       case 'sudo clear':
         setLogs(prev => [
           ...prev,
-          { type: 'error', text: 'guest is not in the sudoers file. This incident will be reported.' }
+          { type: 'error', text: '🔒 guest is not in the sudoers file. This incident will be reported to Rameshwar.' }
         ]);
         break;
 
+      // Realistic Cyberpunk Hacking Animation Sequence
       case 'hack': {
-        setIsLoading(false); // handle loading manually for animation
-        const steps = [
-          { text: 'Initializing decryption protocol on port 8080...', type: 'system' as const },
-          { text: 'Bypassing security firewall defense matrix...', type: 'system' as const },
-          { text: 'Cracking security hash key handshake... [30%]', type: 'system' as const },
-          { text: 'Cracking security hash key handshake... [75%]', type: 'system' as const },
-          { text: 'Cracking security hash key handshake... [100%] Success!', type: 'system' as const },
-          { text: 'Downloading developer records data stream...', type: 'system' as const },
-          { text: 'ACCESS CONFIRMED: Profile data unlocked successfully!', type: 'system' as const },
-          { 
-            text: (
-              <pre className="text-[#39d353] font-bold text-[10px] leading-none mt-2 select-none overflow-x-auto">
-{` +--------------------------------------------+
- |          [ CREDENTIALS DECRYPTED ]         |
- |   Name   : Rameshwar Bhagwat               |
- |   Role   : Full Stack & AI Developer       |
- |   Skill  : Master of React/Next/TypeScript |
- |   Status : Available for Projects!         |
- +--------------------------------------------+`}
-              </pre>
-            ), 
-            type: 'output' as const 
-          }
+        setIsLoading(false);
+        setIsHacking(true);
+
+        const hexLines = [
+          '0x7F4A9B2C 41 53 43 49 49 20 48 41 43 4B 49 4E 47',
+          '0x8E123C0F 53 45 43 55 52 49 54 59 20 42 59 50 41',
+          '0x9C8811AA 43 4C 49 45 4E 54 20 4F 56 45 52 52 49',
         ];
 
-        for (let i = 0; i < steps.length; i++) {
-          await new Promise(resolve => setTimeout(resolve, i === 0 ? 100 : i === 5 ? 600 : 300));
-          setLogs(prev => [...prev, { type: steps[i].type, text: steps[i].text }]);
+        setLogs(prev => [
+          ...prev,
+          { type: 'system', text: '⚡ INITIALIZING CYBERPUNK DECRYPTION ENGINE...' }
+        ]);
+
+        await new Promise(r => setTimeout(r, 200));
+
+        for (const line of hexLines) {
+          setLogs(prev => [...prev, { type: 'system', text: <span className="text-[#39d353]/60 text-[10px] font-mono">{line}</span> }]);
+          await new Promise(r => setTimeout(r, 120));
         }
+
+        const hackSteps = [
+          { text: '🔓 [PASS 1/4] Intercepting SSL handshake token...', type: 'system' as const },
+          { text: '🛡️ [PASS 2/4] Bypassing cloud security gatekeeper...', type: 'system' as const },
+          { text: '🔑 [PASS 3/4] Decrypting RSA 4096-bit private key...', type: 'system' as const },
+          { text: '💾 [PASS 4/4] Extracting developer profile dossier...', type: 'system' as const },
+        ];
+
+        for (const step of hackSteps) {
+          await new Promise(r => setTimeout(r, 220));
+          setLogs(prev => [...prev, { type: step.type, text: step.text }]);
+        }
+
+        await new Promise(r => setTimeout(r, 250));
+
+        setLogs(prev => [
+          ...prev,
+          {
+            type: 'output',
+            text: (
+              <div className="p-3.5 rounded-2xl bg-[#39d353]/[0.06] border border-[#39d353]/30 shadow-[0_0_20px_rgba(57,211,83,0.15)] my-2 font-mono">
+                <div className="flex items-center gap-2 text-[#39d353] font-bold text-xs mb-2 border-b border-[#39d353]/20 pb-1.5">
+                  <Zap size={14} className="animate-pulse" />
+                  <span>DECRYPTION SUCCESSFUL — ACCESS GRANTED</span>
+                </div>
+                <div className="space-y-1 text-[11px] sm:text-xs text-white/90">
+                  <p><span className="text-[#39d353] font-bold">NAME:</span> Rameshwar Bhagwat</p>
+                  <p><span className="text-[#39d353] font-bold">ROLE:</span> Full Stack & AI Developer</p>
+                  <p><span className="text-[#39d353] font-bold">SPECIALTY:</span> React 19 • Next.js 16 • TypeScript • AI Systems</p>
+                  <p><span className="text-[#39d353] font-bold">STATUS:</span> Open for Software Engineering Roles & Freelance!</p>
+                </div>
+              </div>
+            )
+          }
+        ]);
+
+        setIsHacking(false);
         break;
       }
 
+      // Matrix Digital Rain Splash & Canvas Overlay
       case 'matrix':
         setLogs(prev => [
           ...prev,
-          { type: 'system', text: 'Overlay launched: matrix rain running...' }
+          {
+            type: 'output',
+            text: (
+              <div className="p-3 rounded-2xl bg-[#39d353]/[0.08] border border-[#39d353]/30 text-xs font-mono text-[#39d353] my-1 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Sparkles size={14} className="animate-spin" />
+                  <span className="font-bold">MATRIX KATAKANA RAIN PROTOCOL ENGAGED</span>
+                </div>
+                <span className="text-[10px] text-white/40">Press ESC to exit</span>
+              </div>
+            )
+          }
         ]);
         window.dispatchEvent(new CustomEvent('toggle-matrix-rain', { detail: { active: true } }));
-        setIsOpen(false); // Close modal to focus overlay
+        setIsOpen(false);
         break;
 
       case 'contact':
@@ -611,9 +639,9 @@ export default function TerminalSandbox() {
         className="fixed bottom-6 left-[64px] md:left-[80px] z-50 w-14 h-14 rounded-full flex items-center justify-center backdrop-blur-md border border-white/[0.15]"
         style={{
           background: 'rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
         }}
-        whileHover={{ scale: 1.08, borderColor: 'rgba(255, 255, 255, 0.25)' }}
+        whileHover={{ scale: 1.08, borderColor: 'rgba(255, 255, 255, 0.3)' }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, x: '-50%', y: 20 }}
         animate={{ opacity: isOpen ? 0 : 1, x: '-50%', y: isOpen ? 20 : 0, pointerEvents: isOpen ? 'none' : 'auto' }}
@@ -621,7 +649,6 @@ export default function TerminalSandbox() {
         aria-label="Open developer sandbox console"
       >
         <Terminal size={22} className="text-white/80" />
-        {/* Pulsing neon color accent ring matching active theme */}
         <motion.span
           className={`absolute inset-0 rounded-full border ${activeTheme.borderColor}`}
           animate={{ scale: [1, 1.4], opacity: [0.4, 0] }}
@@ -629,7 +656,7 @@ export default function TerminalSandbox() {
         />
       </motion.button>
 
-      {/* Floating CLI Overlay Window (iOS Glassmorphism Style) */}
+      {/* Floating CLI Overlay Window (iOS 18 Glassmorphism Style) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -638,36 +665,36 @@ export default function TerminalSandbox() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5"
           >
             {/* Backdrop blur click-to-exit */}
             <div
               onClick={() => setIsOpen(false)}
               className="absolute inset-0 z-10"
               style={{
-                background: 'rgba(0, 0, 0, 0.45)',
-                backdropFilter: 'blur(3px)',
-                WebkitBackdropFilter: 'blur(3px)',
+                background: 'rgba(0, 0, 0, 0.55)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
               }}
               aria-label="Close console"
             />
 
-            {/* iOS Styled Glassmorphic Terminal Card */}
+            {/* iOS 18 Glassmorphic Terminal Card Container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.94, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 20 }}
-              transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-              className={`relative z-20 w-full max-w-[620px] h-[550px] max-h-[calc(100vh-120px)] rounded-[24px] overflow-hidden flex flex-col backdrop-blur-xl border ${activeTheme.borderColor} shadow-2xl font-mono text-left select-text cursor-text`}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative z-20 w-full max-w-[650px] h-[560px] max-h-[calc(100vh-80px)] rounded-[32px] overflow-hidden flex flex-col backdrop-blur-2xl border ${activeTheme.borderColor} shadow-[0_32px_90px_rgba(0,0,0,0.85)] font-mono text-left select-text cursor-text`}
               style={{
                 background: activeTheme.windowBg,
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                boxShadow: '0 32px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
               }}
               onClick={focusInput}
             >
               {/* Scanline grid overlay */}
-              <div 
-                className="absolute inset-0 pointer-events-none z-30 mix-blend-overlay opacity-[0.06]" 
+              <div
+                className="absolute inset-0 pointer-events-none z-30 mix-blend-overlay opacity-[0.04]"
                 style={{
                   backgroundImage: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%)',
                   backgroundSize: '100% 4px',
@@ -677,35 +704,57 @@ export default function TerminalSandbox() {
               {/* iOS Styled Top Navigation Bar */}
               <div className="relative z-10 flex items-center justify-between px-5 py-4 border-b border-white/[0.08]">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white/[0.1] border border-white/[0.1]">
-                    <Terminal size={18} className="text-white/80" />
+                  {/* iOS Window Controls (Red, Yellow, Green Window Dots) */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="w-3.5 h-3.5 rounded-full bg-[#FF5F56] hover:opacity-80 transition-opacity flex items-center justify-center group"
+                      aria-label="Close modal"
+                    >
+                      <X size={8} className="text-black opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#FFBD2E] opacity-90" />
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#27C93F] opacity-90" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-white text-[15px] tracking-[-0.01em]">Developer Sandbox</h3>
-                    <div className="flex items-center gap-1.5">
-                      <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${activeTheme.pulseClass}`} />
-                      <span className="text-[11px] text-white/40">guest@rameshwarbhagwat.me (theme: {currentTheme})</span>
-                    </div>
+                  <div className="h-4 w-[1px] bg-white/10" />
+                  <div className="flex items-center gap-2">
+                    <Terminal size={15} className="text-white/70" />
+                    <span className="font-bold text-white text-xs sm:text-sm tracking-tight font-jakarta">Sandbox Terminal</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[9px] font-medium bg-white/[0.08] rounded-md text-white/30 border border-white/[0.08]">
-                    ESC
-                  </kbd>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/10 text-white/50">
+                    theme: {currentTheme}
+                  </span>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-white/[0.06] hover:bg-white/[0.1] transition-colors border border-white/[0.06]"
+                    className="w-7 h-7 rounded-full flex items-center justify-center bg-white/[0.06] hover:bg-white/[0.12] transition-colors border border-white/[0.08]"
                     aria-label="Close terminal"
                   >
-                    <X size={15} className="text-white/50" />
+                    <X size={14} className="text-white/60" />
                   </button>
                 </div>
               </div>
 
+              {/* Quick Tap Command Chips (Tap to Run) */}
+              <div className="px-5 py-2.5 border-b border-white/[0.06] bg-white/[0.01] flex items-center gap-1.5 overflow-x-auto scrollbar-none z-10">
+                <span className="text-[9px] font-mono text-white/30 uppercase tracking-wider flex-shrink-0 mr-1">Tap:</span>
+                {QUICK_COMMANDS.map((qCmd) => (
+                  <button
+                    key={qCmd}
+                    onClick={() => executeCommand(qCmd)}
+                    disabled={isHacking}
+                    className="px-2.5 py-1 rounded-lg border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/[0.16] text-[10px] font-mono text-white/70 hover:text-white transition-all flex-shrink-0 active:scale-95 cursor-pointer disabled:opacity-50"
+                  >
+                    {qCmd}
+                  </button>
+                ))}
+              </div>
+
               {/* Output Scroll Area */}
-              <div 
-                className="flex-1 overflow-y-auto p-5 space-y-3.5 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10"
+              <div
+                className="flex-1 overflow-y-auto p-5 space-y-3 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10"
                 data-lenis-prevent
               >
                 {logs.map((log, index) => (
@@ -720,14 +769,14 @@ export default function TerminalSandbox() {
                       <div className="text-white/80 pl-2 sm:pl-3">{log.text}</div>
                     )}
                     {log.type === 'error' && (
-                      <div className="text-red-500 pl-2 sm:pl-3 font-semibold">{log.text}</div>
+                      <div className="text-[#FF453A] pl-2 sm:pl-3 font-semibold">{log.text}</div>
                     )}
                     {log.type === 'system' && (
                       <div className="text-[#00f0ff] pl-1 font-semibold">{log.text}</div>
                     )}
                   </div>
                 ))}
-                
+
                 {isLoading && (
                   <div className="text-[#00f0ff] text-xs sm:text-sm flex items-center gap-2 pl-3">
                     <span className="w-3.5 h-3.5 border-2 border-[#00f0ff]/30 border-t-[#00f0ff] rounded-full animate-spin" />
@@ -739,7 +788,7 @@ export default function TerminalSandbox() {
               </div>
 
               {/* Input Panel Prompt */}
-              <div className="p-4 bg-white/[0.01] border-t border-white/[0.06]">
+              <div className="p-4 bg-white/[0.02] border-t border-white/[0.08]">
                 <div className="flex items-center">
                   <span className={`${activeTheme.promptColor} font-bold text-xs sm:text-sm mr-2 select-none`}>guest@rameshwar.me:~$</span>
                   <div className="relative flex-1 flex items-center">
@@ -749,22 +798,21 @@ export default function TerminalSandbox() {
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      className="w-full bg-transparent border-none outline-none text-white text-xs sm:text-sm font-mono caret-[#39d353] focus:ring-0 p-0"
+                      disabled={isHacking}
+                      className="w-full bg-transparent border-none outline-none text-white text-xs sm:text-sm font-mono caret-[#39d353] focus:ring-0 p-0 disabled:opacity-50"
                       autoComplete="off"
                       autoCorrect="off"
                       autoCapitalize="off"
                       spellCheck="false"
-                      placeholder="Type commands..."
+                      placeholder={isHacking ? "Hacking sequence active..." : "Type commands..."}
                     />
-                    {/* Autocomplete label shadow */}
                     {suggestion && (
                       <span className="absolute left-0 text-white/20 text-xs sm:text-sm pointer-events-none select-none" style={{ left: `${input.length * 8.4}px` }}>
                         {suggestion}
                       </span>
                     )}
                   </div>
-                  {/* Keyboard trigger shortcut help */}
-                  <span className="text-[10px] text-white/20 hidden xs:inline select-none pl-2">
+                  <span className="text-[10px] text-white/30 hidden xs:inline select-none pl-2">
                     press Tab
                   </span>
                 </div>
