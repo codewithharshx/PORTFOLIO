@@ -102,17 +102,27 @@ export default function Home() {
       {/* Cinematic Intro Screen — plays once per session, then unmounts */}
       {!isIntroComplete && <IntroScreen />}
 
-      {/* Hero Section - Always mounted (initializes during intro Phase 3) */}
-      <Hero />
+      {/* Page Content (Hero & Below Sections) — Smoothly fades in in 0.9s after intro completes */}
+      <div
+        className="w-full transition-opacity duration-900 ease-in-out"
+        style={{
+          opacity: isIntroComplete ? 1 : 0,
+          pointerEvents: isIntroComplete ? 'auto' : 'none',
+          transitionDuration: '0.9s',
+        }}
+      >
+        {/* Hero Section */}
+        <Hero />
 
-      {/* Below sections - Lazy loaded */}
-      <About />
-      <Skills />
-      <Work />
-      <ActivityMetrics />
-      <GitHubContributions />
-      <MarqueeBanner />
-      <Contact />
+        {/* Below sections - Lazy loaded */}
+        <About />
+        <Skills />
+        <Work />
+        <ActivityMetrics />
+        <GitHubContributions />
+        <MarqueeBanner />
+        <Contact />
+      </div>
     </div>
   );
 }

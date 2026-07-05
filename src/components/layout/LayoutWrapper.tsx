@@ -6,8 +6,8 @@ import Navbar from "@/components/layout/Navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 import Chatbot from "@/components/ui/Chatbot";
 import TerminalSandbox from "@/components/ui/TerminalSandbox";
-
 import MatrixRain from "@/components/ui/MatrixRain";
+import { useIntroAnimation } from '@/context/IntroAnimationContext';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -20,6 +20,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   const isProjectPage = pathname?.startsWith('/projects/');
   const isContactPage = pathname === '/contact';
   const [isFading, setIsFading] = useState(false);
+  const { isIntroComplete } = useIntroAnimation();
 
   useEffect(() => {
     const handleFadeTransition = async (e: Event) => {
@@ -85,7 +86,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   return (
     <>
-      <MatrixRain />
+      {isIntroComplete && <MatrixRain />}
       {!isContactPage && <Navbar />}
       <main 
         className={`relative z-10 transition-opacity duration-300 ease-in-out overflow-visible ${
@@ -94,9 +95,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       >
         {children}
       </main>
-      <Footer />
-      <Chatbot />
-      <TerminalSandbox />
+      {isIntroComplete && <Footer />}
+      {isIntroComplete && <Chatbot />}
+      {isIntroComplete && <TerminalSandbox />}
     </>
   );
 }

@@ -17,32 +17,25 @@ export function IntroAnimationProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
 
-  // Default to true (intro complete) — avoids SSR hydration mismatch.
-  // On the homepage, useEffect below will flip this to false if intro hasn't played yet.
-  const [isIntroComplete, setIsIntroComplete] = useState(true);
-
-  // SSR-safe: check sessionStorage only in useEffect (client-side)
-  useEffect(() => {
-    if (!isHomePage) {
-      setIsIntroComplete(true);
-      return;
+  // Initialize state: on homepage, start with false immediately on frame 0 to prevent Hero flash
+  const [isIntroComplete, setIsIntroComplete] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname !== '/';
     }
+    return !isHomePage;
+  });
 
-    // On homepage: check if intro has already played this session
-    const hasPlayed = sessionStorage.getItem('intro_played');
-    if (hasPlayed) {
-      setIsIntroComplete(true);
-    } else {
+  // Keep isIntroComplete in sync with route navigation
+  useEffect(() => {
+    if (isHomePage) {
       setIsIntroComplete(false);
+    } else {
+      setIsIntroComplete(true);
     }
   }, [isHomePage]);
 
   const completeIntro = useCallback(() => {
     setIsIntroComplete(true);
-    // Mark intro as played for this session
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('intro_played', '1');
-    }
   }, []);
 
   // If navigating away from home, ensure intro is complete
