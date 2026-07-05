@@ -408,8 +408,8 @@ export default function HeroContent() {
           <Link href={isReveal ? '#' : '/resume'}>
             <motion.div
               className={`group px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 inline-flex items-center gap-2 sm:gap-3 opacity-90 hover:opacity-100 cursor-pointer ${isReveal
-                  ? 'bg-white text-black border border-black/80'
-                  : 'glowing-border-btn text-white'
+                  ? 'glowing-border-btn-black text-black'
+                  : 'glowing-border-btn-white text-white'
                 }`}
               aria-label="View Rameshwar Bhagwat's Resume"
               onMouseMove={isReveal ? undefined : handleButtonMouseMove}
