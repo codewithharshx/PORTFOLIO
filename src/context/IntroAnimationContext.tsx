@@ -16,7 +16,7 @@ const IntroAnimationContext = createContext<IntroAnimationContextType>({
 export function IntroAnimationProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
-  const [isIntroComplete, setIsIntroComplete] = useState(!isHomePage);
+  const [isIntroComplete, setIsIntroComplete] = useState(true);
 
   const completeIntro = useCallback(() => {
     setIsIntroComplete(true);

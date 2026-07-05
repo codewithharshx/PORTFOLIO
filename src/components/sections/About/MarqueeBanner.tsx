@@ -32,13 +32,13 @@ const PORTFOLIO_BACKGROUND = '#0F0E0E';
 const topRowRepeated = [...topRowItems, ...topRowItems, ...topRowItems];
 const bottomRowRepeated = [...bottomRowItems, ...bottomRowItems, ...bottomRowItems];
 
-// Animation variants - smooth intro without horizontal viewport jumps
+// Animation variants - static placement without slide intro
 const stripVariants = {
-  hidden: (direction: 'left' | 'right') => ({
-    x: direction === 'right' ? 80 : -80,
-    opacity: 0,
-    scale: 0.96,
-  }),
+  hidden: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+  },
   visible: {
     x: 0,
     opacity: 1,

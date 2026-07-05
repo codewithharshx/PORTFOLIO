@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import HeroContent from './HeroContent';
 import HeroBackground from './HeroBackground';
-import HeroStrips from './HeroStrips';
 import StructuredData from '@/components/seo/StructuredData';
 import { PERSONAL_INFO, SITE_URL, SOCIAL_LINKS, SEO_KEYWORDS } from '@/lib/constants';
 import gsap from 'gsap';
@@ -209,7 +208,6 @@ export default function Hero() {
         />
 
         <div ref={heroInnerRef} className="absolute inset-0 w-full h-full" style={{ willChange: 'transform, opacity, filter' }}>
-          <HeroStrips />
           <HeroBackground />
 
           {/* Main content — uses SAME absolute inset-0 + flex center */}
