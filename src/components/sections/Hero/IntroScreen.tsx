@@ -142,38 +142,38 @@ export default function IntroScreen() {
       );
 
       // ═══════════════════════════════════════════════════════════
-      // PHASE 3 — Signature Hold & Cinematic Dissolve Exit (2.5s - 3.8s)
-      // 1. Brief hold for 0.25s (2.5s - 2.75s)
-      // 2. Signature atmospheric blur dissolve & lift (2.75s - 3.45s)
-      // 3. Seamless 0.9s overlay fade opening into Hero section (2.95s - 3.85s)
+      // PHASE 3 — Signature Hold & Explosive Scale Zoom Portal Exit
+      // 1. Brief hold for 0.2s (2.5s - 2.7s)
+      // 2. Signature text zooms extremely large towards viewer (scale: 1.0 -> 18.0)
+      //    with motion blur and opacity fade (2.7s - 3.55s)
+      // 3. Smooth overlay fade out revealing Hero section from within (2.85s - 3.7s)
       // ═══════════════════════════════════════════════════════════
 
-      // Atmospheric lift & blur dissolve on signature wrapper
+      // Dramatic explosive zoom of signature text past the camera
       tl.to(
         signatureWrapperRef.current,
         {
-          scale: 1.08,
-          y: -24,
+          scale: 18.0,
           opacity: 0,
-          filter: 'blur(12px)',
-          duration: 0.75,
-          ease: 'power3.inOut',
+          filter: 'blur(10px)',
+          duration: 0.85,
+          ease: 'power3.in',
         },
-        2.75
+        2.7
       );
 
-      // Smooth 0.9s overlay fade out to reveal Hero section
+      // Smooth overlay fade out to reveal Hero section emerging from center
       tl.to(
         overlayRef.current,
         {
           opacity: 0,
-          duration: 0.9,
+          duration: 0.85,
           ease: 'power3.inOut',
           onComplete: () => {
             completeIntro();
           },
         },
-        2.95
+        2.85
       );
     });
 
