@@ -10,8 +10,8 @@ const AboutHeader = memo(function AboutHeader() {
       <AboutDome />
 
       {/* Badge container */}
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] mb-4 text-[#38BDF8] text-xs font-semibold tracking-wider uppercase font-outfit about-badge opacity-0">
-        <div className="w-3.5 h-3.5 rounded-full bg-[#38BDF8] flex items-center justify-center text-[#0F0E0E] flex-shrink-0">
+      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] mb-4 text-[#ff6b3d] text-xs font-semibold tracking-wider uppercase font-outfit about-badge opacity-0">
+        <div className="w-3.5 h-3.5 rounded-full bg-[#ff6b3d] flex items-center justify-center text-[#0F0E0E] flex-shrink-0">
           <svg className="w-[50%] h-[50%]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round">
             <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19" />
           </svg>
@@ -40,10 +40,10 @@ const AboutHeader = memo(function AboutHeader() {
 
       {/* Subtitle */}
       <p
-        className="text-lg sm:text-xl md:text-2xl mt-4 max-w-2xl mx-auto about-subtitle opacity-0"
+        className="text-lg sm:text-xl md:text-2xl mt-4 max-w-2xl mx-auto about-subtitle opacity-0 italic"
         style={{
           fontFamily: 'var(--font-playfair), "Playfair Display", Georgia, serif',
-          color: 'rgba(255,255,255,0.7)',
+          color: 'rgba(255,255,255,0.95)',
         }}
       >
         Developer by day, problem solver by nature. Let&apos;s build something amazing together.

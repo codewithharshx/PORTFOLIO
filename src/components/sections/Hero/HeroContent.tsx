@@ -264,14 +264,17 @@ export default function HeroContent() {
 
         {/* Main Graphic Heading Block */}
         <h1
-          className="w-full flex flex-col items-center leading-[0.92] select-none text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[7.5vw] xl:text-[8vw]"
+          className="w-full flex flex-col items-center leading-[0.92] select-none text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[7.5vw] xl:text-[8vw] font-black subpixel-antialiased"
           style={{
-            fontFamily: 'var(--font-outfit), sans-serif',
-            fontWeight: 900,
-            letterSpacing: '-0.04em',
+            fontFamily: 'var(--font-plus-jakarta-sans), sans-serif',
+            fontWeight: 800,
+            letterSpacing: '-0.045em',
             color: isReveal ? '#000000' : '#ffffff',
             textShadow: isReveal ? 'none' : '0 0 12px rgba(255, 255, 255, 0.25)',
-            transition: 'color 0.3s ease, text-shadow 0.3s ease',
+            WebkitTextStroke: isReveal ? 'none' : '2.2px rgba(255, 255, 255, 0.9)',
+            WebkitMaskImage: 'linear-gradient(to bottom, #fff calc(100% - 8px), transparent 100%)',
+            maskImage: 'linear-gradient(to bottom, #fff calc(100% - 8px), transparent 100%)',
+            transition: 'color 0.3s ease, text-shadow 0.3s ease, -webkit-text-stroke 0.3s ease',
           }}
           aria-label="AI & Web Software Developer Rameshwar Bhagwat"
         >

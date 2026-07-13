@@ -41,6 +41,7 @@ const playfairDisplay = Playfair_Display({
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
+  weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: 'swap',
   preload: true,
