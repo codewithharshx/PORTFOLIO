@@ -5,6 +5,7 @@ import Container from '@/components/layout/Container';
 import AboutHeader from './AboutHeader';
 import TimelineStrip from './TimelineStrip';
 import ExpertiseShowcase from './ExpertiseShowcase';
+import CertificationsShowcase from './CertificationsShowcase';
 import BentoGrid from './BentoGrid';
 import { PERSONAL_INFO } from '@/lib/constants';
 import gsap from 'gsap';
@@ -36,9 +37,25 @@ export default function About() {
 
       // Choreographed header entrance animation
       tl.fromTo(
+        '.about-dome',
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out', willChange: 'transform, opacity' }
+      );
+
+      tl.fromTo(
+        '.about-dome-glow-line',
+        { strokeDashoffset: 1000 },
+        { strokeDashoffset: 0, duration: 1.25, ease: 'power2.out', willChange: 'stroke-dashoffset' },
+        '<'
+      );
+
+
+
+      tl.fromTo(
         '.about-badge',
         { opacity: 0, scale: 0.7, y: 25 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.65, ease: 'back.out(1.5)', willChange: 'transform, opacity' }
+        { opacity: 1, scale: 1, y: 0, duration: 0.65, ease: 'back.out(1.5)', willChange: 'transform, opacity' },
+        '-=0.6'
       );
 
       tl.fromTo(
@@ -128,7 +145,7 @@ export default function About() {
       </div>
 
       {/* About Section Header (scrolls normally above the bento grid) */}
-      <div className="pt-24 sm:pt-32 md:pt-40 pb-6 sm:pb-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 w-full">
+      <div className="pt-0 pb-4 sm:pb-8 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 w-full">
         <AboutHeader />
       </div>
 
@@ -195,9 +212,16 @@ export default function About() {
 
         {/* Card 2: Expertise Showcase sliding above Card 1 */}
         <div
-          className="relative z-20 bg-[#0F0E0E] rounded-t-[32px] md:rounded-t-[48px] lg:rounded-t-[64px] border-t border-white/15 shadow-[0_-12px_48px_rgba(0,0,0,0.9)]"
+          className="relative z-20 bg-[#0F0E0E] rounded-t-[32px] md:rounded-t-[48px] lg:rounded-t-[64px] border-t border-white/15 shadow-[0_-24px_48px_rgba(0,0,0,0.8)] overflow-hidden"
         >
           <ExpertiseShowcase />
+        </div>
+
+        {/* Card 2.5: Certifications Showcase sliding above/with Card 2 */}
+        <div
+          className="relative z-20 bg-[#0F0E0E] rounded-t-[32px] md:rounded-t-[48px] lg:rounded-t-[64px] border-t border-white/15 shadow-[0_-24px_48px_rgba(0,0,0,0.8)] overflow-hidden"
+        >
+          <CertificationsShowcase />
         </div>
 
         {/* Card 3: Timeline Strip */}

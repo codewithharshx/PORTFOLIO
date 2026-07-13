@@ -1,10 +1,14 @@
 'use client';
 
 import { memo } from 'react';
+import AboutDome from './AboutDome';
 
 const AboutHeader = memo(function AboutHeader() {
   return (
     <div className="text-center mb-12 md:mb-16 about-header-container">
+      {/* Visual Dome Crown just above heading */}
+      <AboutDome />
+
       {/* Badge container */}
       <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] mb-4 text-[#38BDF8] text-xs font-semibold tracking-wider uppercase font-outfit about-badge opacity-0">
         <div className="w-3.5 h-3.5 rounded-full bg-[#38BDF8] flex items-center justify-center text-[#0F0E0E] flex-shrink-0">
