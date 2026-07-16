@@ -179,18 +179,18 @@ export async function POST(request: Request) {
                       <table role="presentation" style="margin: 30px 0;">
                         <tr>
                           <td style="padding-right: 10px;">
-                            <a href="https://rameshwarbhagwat.me" style="display: inline-block; padding: 14px 24px; background: linear-gradient(135deg, #FF8C00 0%, #FF5F00 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">View Portfolio</a>
+                            <a href="https://harshwardhansathe.vercel.app" style="display: inline-block; padding: 14px 24px; background: linear-gradient(135deg, #FF8C00 0%, #FF5F00 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">View Portfolio</a>
                           </td>
                           <td>
-                            <a href="https://github.com/Rameshwar-bhagwat10" style="display: inline-block; padding: 14px 24px; background-color: #333; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">GitHub Profile</a>
+                            <a href="https://github.com/codewithharshx" style="display: inline-block; padding: 14px 24px; background-color: #333; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">GitHub Profile</a>
                           </td>
                         </tr>
                       </table>
                       
                       <p style="margin: 30px 0 0; color: #666; font-size: 16px; line-height: 1.6;">
                         Best regards,<br>
-                        <strong style="color: #333;">Rameshwar Bhagwat</strong><br>
-                        <span style="color: #999; font-size: 14px;">Full Stack Developer</span>
+                        <strong style="color: #333;">Harshwardhan Ramdas Sathe</strong><br>
+                        <span style="color: #999; font-size: 14px;">AI & DS Engineer | MERN Developer</span>
                       </p>
                     </td>
                   </tr>
@@ -200,9 +200,9 @@ export async function POST(request: Request) {
                     <td style="padding: 30px; background-color: #f8f9fa; text-align: center; border-top: 1px solid #e0e0e0;">
                       <p style="margin: 0 0 10px; color: #666; font-size: 14px; font-weight: 600;">Connect with me</p>
                       <p style="margin: 0; color: #999; font-size: 12px;">
-                        <a href="mailto:rameshwarbhagwat019@gmail.com" style="color: #FF8C00; text-decoration: none; margin: 0 10px;">Email</a> |
-                        <a href="https://www.linkedin.com/in/rameshwar-bhagwat" style="color: #FF8C00; text-decoration: none; margin: 0 10px;">LinkedIn</a> |
-                        <a href="https://github.com/Rameshwar-bhagwat10" style="color: #FF8C00; text-decoration: none; margin: 0 10px;">GitHub</a>
+                        <a href="mailto:harshwardhansathe1@gmail.com" style="color: #FF8C00; text-decoration: none; margin: 0 10px;">Email</a> |
+                        <a href="https://www.linkedin.com/in/harshwardhan-sathe-774945332/" style="color: #FF8C00; text-decoration: none; margin: 0 10px;">LinkedIn</a> |
+                        <a href="https://github.com/codewithharshx" style="color: #FF8C00; text-decoration: none; margin: 0 10px;">GitHub</a>
                       </p>
                       <p style="margin: 15px 0 0; color: #999; font-size: 11px;">
                         This is an automated response. Please do not reply to this email.
@@ -228,7 +228,7 @@ export async function POST(request: Request) {
 
     // Send auto-reply to the sender
     await transporter.sendMail({
-      from: `"Rameshwar Bhagwat" <${EMAIL_USER}>`,
+      from: `"Harshwardhan Sathe" <${EMAIL_USER}>`,
       to: email,
       subject: `Thank you for contacting me - ${subject}`,
       html: autoReplyHTML,

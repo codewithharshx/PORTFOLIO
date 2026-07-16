@@ -20,16 +20,17 @@ export default function StructuredData() {
     },
     "sameAs": SOCIAL_LINKS.map(link => link.url),
     "knowsAbout": [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
+      "React.js",
       "Node.js",
-      "Full Stack Development",
-      "Web Development",
-      "Frontend Development",
-      "Backend Development",
+      "Express.js",
+      "MongoDB",
       "MERN Stack",
+      "Python",
+      "Machine Learning",
+      "Data Science",
+      "REST APIs",
+      "Google OAuth",
+      "Razorpay",
       "UI/UX Design"
     ],
     "hasOccupation": {
@@ -39,18 +40,23 @@ export default function StructuredData() {
         "@type": "City",
         "name": `${PERSONAL_INFO.location.city}, ${PERSONAL_INFO.location.state}, ${PERSONAL_INFO.location.country}`
       },
-      "skills": "React, Next.js, TypeScript, Node.js, JavaScript, AI Integration, Machine Learning APIs"
+      "skills": "React.js, Node.js, Express.js, MongoDB, MERN Stack, Python, Machine Learning, Data Science"
     },
     "subjectOf": [
       {
         "@type": "CreativeWork",
-        "name": "WebCraft",
-        "description": "A modern website solution focused on performance, business growth, and SEO-ready architecture."
+        "name": "Mane Bazar",
+        "description": "Full Stack Grocery E-Commerce Platform built with MERN stack, Razorpay, and Google OAuth."
       },
       {
         "@type": "CreativeWork",
-        "name": "Safecoast",
-        "description": "A coastal hazard intelligence platform focused on monitoring and risk awareness."
+        "name": "Personal Finance AI Advisor",
+        "description": "AI-powered financial assistant using Python and Machine Learning to track spending and recommend budgets."
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Jewellery Shop Management System",
+        "description": "Complete inventory and billing platform with role-based access control built with React and Node.js."
       }
     ]
   };
@@ -80,15 +86,15 @@ export default function StructuredData() {
   const professionalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": `${PERSONAL_INFO.name} - Web Development Services`,
-    "description": "Professional full stack and AI-focused web development services specializing in React, Next.js, and intelligent product experiences",
+    "name": `${PERSONAL_INFO.name} - Web & AI Development Services`,
+    "description": "Professional MERN stack development and Python-based AI/ML engineering services by Harshwardhan Ramdas Sathe",
     "provider": {
       "@type": "Person",
       "name": PERSONAL_INFO.name
     },
-    "areaServed": "Worldwide",
-    "serviceType": "Full Stack & AI Development",
-    "keywords": "Rameshwar Bhagwat, Full Stack & AI Developer, WebCraft, Safecoast"
+    "areaServed": "India",
+    "serviceType": "Full Stack MERN & AI Development",
+    "keywords": "Harshwardhan Sathe, AI & Data Science Engineer, MERN Developer, Mane Bazar, Personal Finance AI Advisor"
   };
 
   const webpageSchema = {
@@ -119,8 +125,8 @@ export default function StructuredData() {
         "position": 1,
         "item": {
           "@type": "CreativeWork",
-          "name": "WebCraft",
-          "description": "Modern business website solution with performance and SEO-ready architecture."
+          "name": "Mane Bazar",
+          "description": "Full Stack Grocery E-Commerce Platform."
         }
       },
       {
@@ -128,8 +134,17 @@ export default function StructuredData() {
         "position": 2,
         "item": {
           "@type": "CreativeWork",
-          "name": "Safecoast",
-          "description": "Coastal hazard intelligence platform focused on monitoring and risk awareness."
+          "name": "Personal Finance AI Advisor",
+          "description": "AI-Powered Financial Assistant & Budget Planner."
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Jewellery Shop Management System",
+          "description": "Complete Inventory & Billing Platform."
         }
       }
     ]

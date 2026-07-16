@@ -1,69 +1,69 @@
-export const SITE_NAME = 'Rameshwar Bhagwat - Full Stack & AI Developer';
-export const SITE_URL = 'https://rameshwarbhagwat.me';
-export const SITE_DESCRIPTION = 'Rameshwar Bhagwat is a Full Stack & AI Developer specializing in React, Next.js, TypeScript, Node.js, and AI-powered web applications. Explore featured projects like WebCraft, Safecoast, and AI ML Progress Tracker, focused on modern, scalable, and intelligent digital products.';
+export const SITE_NAME = 'Harshwardhan Sathe - AI & Data Science Engineer | MERN Developer';
+export const SITE_URL = 'https://harshwardhansathe.vercel.app';
+export const SITE_DESCRIPTION = 'Harshwardhan Ramdas Sathe is a B.Tech AI & Data Science student and MERN Stack Developer specializing in building intelligent software, scalable web applications, and AI-powered solutions. Explore featured projects like Mane Bazar, Personal Finance AI Advisor, and Jewellery Shop Management System.';
 
 // SEO Keywords - Optimized for search ranking
 export const SEO_KEYWORDS = [
-  'Rameshwar Bhagwat',
-  'Rameshwar Bhagwat portfolio',
-  'Rameshwar Bhagwat AI Developer',
-  'Rameshwar Bhagwat Full Stack Developer',
-  'Full Stack & AI Developer',
+  'Harshwardhan Sathe',
+  'Harshwardhan Ramdas Sathe',
+  'Harshwardhan Sathe portfolio',
+  'Harshwardhan Sathe AI Developer',
+  'Harshwardhan Sathe MERN Developer',
+  'AI & Data Science Engineer',
   'AI Developer India',
   'AI Engineer portfolio',
-  'React Next.js Developer',
-  'TypeScript Developer',
-  'AI-powered web applications',
-  'Generative AI integration',
-  'WebCraft',
-  'Safecoast',
-  'AI ML Progress Tracker',
-  'WebCraft project',
-  'Safecoast project',
-  'AI ML Progress Tracker project',
-  'Next.js portfolio',
   'MERN Stack Developer',
+  'Python Developer India',
+  'Full Stack Developer Maharashtra',
+  'Mane Bazar',
+  'Personal Finance AI Advisor',
+  'Jewellery Shop Management System',
+  'ADCET Ashta',
+  'Annasaheb Dange College',
+  'React Developer India',
+  'MongoDB Developer',
   'JavaScript Developer India',
-  'Hire AI Developer',
-  'Hire Full Stack Developer',
+  'Machine Learning Student',
+  'Data Science Portfolio',
+  'Future AI Engineer',
 ];
 
 // Personal Information - SEO Optimized
 export const PERSONAL_INFO = {
-  name: 'Rameshwar Bhagwat',
-  firstName: 'Rameshwar',
-  lastName: 'Bhagwat',
-  jobTitle: 'Full Stack & AI Developer',
+  name: 'Harshwardhan Ramdas Sathe',
+  firstName: 'Harshwardhan',
+  lastName: 'Sathe',
+  jobTitle: 'AI & Data Science Engineer | MERN Developer',
   alternateJobTitles: [
-    'Full Stack Developer',
+    'Full Stack MERN Developer',
+    'Python Developer',
     'AI Engineer',
+    'Machine Learning Engineer',
     'React Developer',
-    'Next.js Developer',
     'Software Engineer',
-    'Web Developer',
   ],
-  email: 'rameshwarbhagwat019@gmail.com',
-  phone: '+91-9699245170',
+  email: 'harshwardhansathe1@gmail.com',
+  phone: '+91 8879970396',
   location: {
-    city: 'Yeola',
+    city: 'Thane',
     state: 'Maharashtra',
     country: 'India',
     countryCode: 'IN',
   },
   image: '/images/profile/profile.jpeg',
-  bio: 'Rameshwar Bhagwat is a Full Stack & AI Developer with expertise in React, Next.js, TypeScript, Node.js, and Python. Specializing in building scalable web applications and AI-powered solutions, with featured projects including WebCraft, Safecoast, and AI ML Progress Tracker.',
-  shortBio: 'Full Stack & AI Developer specializing in React, Next.js, TypeScript, and AI-powered web applications.',
+  bio: 'Harshwardhan Ramdas Sathe is a B.Tech AI & Data Science student at ADCET Ashta and MERN Stack Developer passionate about building intelligent software, scalable web applications, and AI-powered solutions. Department Leader at Training & Placement Cell with featured projects including Mane Bazar grocery platform, Personal Finance AI Advisor, and Jewellery Shop Management System.',
+  shortBio: 'AI & Data Science Engineer and MERN Developer specializing in React, Node.js, Python, and AI-powered web applications.',
   expertise: [
-    'Full Stack Development',
-    'AI & Machine Learning Integration',
-    'React & Next.js Development',
-    'TypeScript & JavaScript',
-    'Node.js & Python Backend',
-    'Database Design & Optimization',
-    'Cloud Architecture (AWS, GCP)',
-    'SaaS Platform Development',
-    'API Design & Development',
-    'Performance Optimization',
+    'Full Stack MERN Development',
+    'Artificial Intelligence & Machine Learning',
+    'React.js & Next.js Development',
+    'Python Programming & Data Analysis',
+    'Node.js & Express.js Backend',
+    'MongoDB Database Design',
+    'REST API Development',
+    'Computer Vision',
+    'JWT Authentication & Google OAuth',
+    'Responsive Web Development',
   ],
 };
 
@@ -76,7 +76,7 @@ export const NAV_LINKS = [
 ];
 
 export const SOCIAL_LINKS = [
-  { name: 'GitHub', url: 'https://github.com/Rameshwar-bhagwat10' },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rameshwar-bhagwat-888540328' },
-  { name: 'Instagram', url: 'https://www.instagram.com/imram111_/' },
+  { name: 'GitHub', url: 'https://github.com/codewithharshx' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/harshwardhan-sathe-774945332/' },
+  { name: 'Instagram', url: 'https://www.instagram.com/harsh_r_s_11' },
 ];

@@ -1,3 +1,5 @@
+import { PERSONAL_INFO } from '@/lib/constants';
+
 export default function ContactInfo() {
   const labelStyle = {
     fontFamily: 'var(--font-instrument), Georgia, serif',
@@ -11,15 +13,17 @@ export default function ContactInfo() {
     <div className="space-y-6 text-left">
       <div>
         <h3 style={labelStyle} className="mb-1">Email</h3>
-        <p className="text-white/60 text-lg">rameshwarbhagwat019@gmail.com</p>
+        <p className="text-white/60 text-lg">{PERSONAL_INFO.email}</p>
       </div>
       <div>
         <h3 style={labelStyle} className="mb-1">Phone</h3>
-        <p className="text-white/60 text-lg">+91 9699245170</p>
+        <p className="text-white/60 text-lg">{PERSONAL_INFO.phone}</p>
       </div>
       <div>
         <h3 style={labelStyle} className="mb-1">Location</h3>
-        <p className="text-white/60 text-lg">Yeola, Maharashtra, India</p>
+        <p className="text-white/60 text-lg">
+          {PERSONAL_INFO.location.city}, {PERSONAL_INFO.location.state}, {PERSONAL_INFO.location.country}
+        </p>
       </div>
     </div>
   );

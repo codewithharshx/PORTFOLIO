@@ -44,116 +44,117 @@ interface Certificate {
 }
 
 const ALL_CERTIFICATIONS: Certificate[] = [
+
   {
-    id: 'openai-buildthon',
-    title: 'OpenAI Buildthon 2026 Certificate of Achievement',
-    issuer: 'OpenAI Developer Network',
-    date: 'February 2026',
+    id: 'gdg-solution-challenge-2025',
+    title: 'GDG Solution Challenge Certificate of Participation',
+    issuer: 'Google Developer Groups (GDG)',
+    date: 'March 2025',
+    year: '2025',
+    serial: 'ID: 2025H2S01GSC–P20352',
+    image: '/certifications/solution-challenge-2025.jpg',
+    credentialId: '2025H2S01GSC-P20352',
+    verifyUrl: 'https://hack2skill.com',
+    skills: ['Google Technologies', 'Problem Solving', 'Social Impact', 'App Development', 'Team Collaboration'],
+    description: 'Participated in the GDG on Campus Solution Challenge, demonstrating technical dedication to building solutions that create positive social impact using modern tech.',
+    takeaways: [
+      'Designed and developed a software solution addressing one of the United Nations Sustainable Development Goals.',
+      'Leveraged Google developer technologies to build a functional prototype with scalable architecture.',
+      'Collaborated with peers to validate user requirements and iterate on product design.'
+    ],
+    color: 'from-red-500/20 to-orange-500/5',
+    accentHex: '#ea4335',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(234,67,53,0.07)]',
+    tagClasses: 'text-[#ff988f] bg-[#ea4335]/14',
+    badgeTextColor: 'text-[#ffb2aa]',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" strokeWidth="0" className="w-[17px] h-[17px]">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+      </svg>
+    ),
+  },
+  {
+    id: 'wlug-metamorphosis-2025',
+    title: 'WLUG Metamorphosis 2K25 Certificate of Participation',
+    issuer: 'Walchand Linux Users Group (WLUG)',
+    date: 'January 2025',
+    year: '2025',
+    serial: 'NO. WLUG–2025–MET',
+    image: '/certifications/metamorphosis-2025.jpg',
+    credentialId: 'WLUG-METAMORPHOSIS-2025',
+    verifyUrl: 'https://wlug.org.in',
+    skills: ['Docker', 'Kubernetes', 'Linux Administration', 'Containerization', 'DevOps Fundamentals'],
+    description: 'Participated in the international mega-event METAMORPHOSIS 2K25 hosted by Walchand Linux Users Group, with a prime focus on Docker, Kubernetes, and Linux systems.',
+    takeaways: [
+      'Acquired hands-on experience in containerizing applications and environment configuration with Docker.',
+      'Learned orchestration principles, cluster management, and application scaling with Kubernetes.',
+      'Explored Linux container runtimes, namespace isolation, and secure deployment configurations.'
+    ],
+    color: 'from-purple-500/20 to-indigo-500/5',
+    accentHex: '#a855f7',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(168,85,247,0.07)]',
+    tagClasses: 'text-[#e9d5ff] bg-[#a855f7]/14',
+    badgeTextColor: 'text-[#f3e8ff]',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+    ),
+  },
+  {
+    id: 'rtc-techutsav-2026',
+    title: 'Anant Nirmal Techutsav 2K26 Certificate of Participation',
+    issuer: 'Rajgad Technical Campus (RTC)',
+    date: 'April 7, 2026',
     year: '2026',
-    serial: 'NO. AI–2026–014',
-    image: '/certifications/OpenAI Buildthon Certificate.jpeg',
-    credentialId: 'OPENAI-BUILD2026-RAMESHWAR',
-    verifyUrl: 'https://openai.com',
-    skills: ['GPT-4o API', 'Assistants API', 'Function Calling', 'RAG Architectures', 'Vector Databases', 'Prompt Engineering'],
-    description: 'Awarded for conceptualizing, building, and deploying cutting-edge AI integrations and multi-agent assistant pipelines during the annual OpenAI developer buildathon.',
+    serial: 'NO. RTC–2026–TECH',
+    image: '/certifications/techutsav-2026.jpg',
+    credentialId: 'RTC-TECHUTSAV-2K26',
+    verifyUrl: 'http://www.rajgad.edu.in',
+    skills: ['Project Competition', 'Presentation Skills', 'Engineering Principles', 'Problem Solving'],
+    description: 'Participated in the "ANANT NIRMAL TECHUTSAV 2K26" State Level Project Competition organized by Innovation Cell & IQAC Cell of Rajgad Technical Campus.',
     takeaways: [
-      'Architected highly responsive custom RAG workflows utilizing advanced context window strategies.',
-      'Configured complex function calling sequences allowing LLMs to interact with third-party tools natively.',
-      'Optimized token consumption and prompt template latency for real-time production AI agents.'
+      'Showcased and defended a technical project before an expert panel of evaluators.',
+      'Competed with projects from across the state, gaining insights into diverse engineering solutions.',
+      'Demonstrated strong presentation, analytical reasoning, and software engineering capabilities.'
     ],
-    color: 'from-emerald-500/20 to-teal-500/5',
-    accentHex: '#8c6eff',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(140,110,255,0.06)]',
-    tagClasses: 'text-[#b9a8ff] bg-[#8c6eff]/14',
-    badgeTextColor: 'text-[#c6b8ff]',
+    color: 'from-amber-500/20 to-orange-500/5',
+    accentHex: '#d97706',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(217,119,6,0.07)]',
+    tagClasses: 'text-[#fef3c7] bg-[#d97706]/14',
+    badgeTextColor: 'text-[#fffbeb]',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
-        <circle cx="12" cy="6" r="2.1"/><circle cx="6" cy="17" r="2.1"/><circle cx="18" cy="17" r="2.1"/>
-        <path d="M12 8.1V13M12 13L7.6 15.4M12 13l4.4 2.4"/>
+        <path d="M12 4L2 9l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
       </svg>
     ),
   },
   {
-    id: 'developing-ai-solutions',
-    title: 'Developing AI Solutions on Microsoft Azure',
-    issuer: 'Microsoft Corporation',
-    date: 'November 2025',
-    year: '2025',
-    serial: 'NO. AZ–2025–208',
-    image: '/certifications/Developing AI solution.jpg',
-    credentialId: 'AZ-102-AI-SERVICES-RAMESHWAR',
-    verifyUrl: 'https://learn.microsoft.com/en-us/users/rameshwarbhagwat/',
-    skills: ['Azure Cognitive Services', 'Azure OpenAI Service', 'Azure AI Search', 'Semantic Ranking', 'LangChain', 'Python SDK'],
-    description: 'Demonstrated professional expertise in engineering enterprise-grade cloud AI workloads, cognitive search, speech/vision integrations, and custom foundation model deployment on Microsoft Azure Cloud.',
+    id: 'nptel-sustainability-2026',
+    title: 'NPTEL Online Certification - Education for Sustainable Development',
+    issuer: 'IIT Kharagpur (NPTEL)',
+    date: 'Jan-Apr 2026',
+    year: '2026',
+    serial: 'Roll No: NPTEL26HS58S1352000551',
+    image: '/certifications/nptel-sustainability.png',
+    credentialId: 'NPTEL26HS58S1352000551',
+    verifyUrl: 'https://nptel.ac.in/noc',
+    skills: ['Sustainable Development', 'Environmental Awareness', 'Social Responsibility', 'Education Policy'],
+    description: 'Awarded Elite status for successfully completing the NPTEL Online Certification course on Education for Sustainable Development, run by Indian Institute of Technology, Kharagpur.',
     takeaways: [
-      'Implemented Cognitive Search indexes with custom skillsets and semantic ranking strategies.',
-      'Deployed fine-tuned models in Azure OpenAI Studio with robust endpoints and security layers.',
-      'Integrated conversational bots and automated translator services into full-stack web applications.'
+      'Mastered core concepts of sustainable development goals, environmental policies, and educational integrations.',
+      'Scored 25/25 on online assignments and demonstrated strong performance in the proctored national exam.',
+      'Achieved Elite status certification with a consolidated score of 75%.'
     ],
-    color: 'from-blue-500/20 to-indigo-500/5',
-    accentHex: '#05a6f0',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(5,166,240,0.07)]',
-    tagClasses: 'text-[#8fd0ff] bg-[#05a6f0]/14',
-    badgeTextColor: 'text-[#9fdcff]',
-    icon: (
-      <svg viewBox="0 0 24 24" width="16" height="16" className="w-[16px] h-[16px]">
-        <rect x="2" y="2" width="8.5" height="8.5" fill="#05a6f0"/>
-        <rect x="13.5" y="2" width="8.5" height="8.5" fill="#81bc06"/>
-        <rect x="2" y="13.5" width="8.5" height="8.5" fill="#ffba08"/>
-        <rect x="13.5" y="13.5" width="8.5" height="8.5" fill="#f35325"/>
-      </svg>
-    ),
-  },
-  {
-    id: 'fundamentals-ml',
-    title: 'Fundamentals of Machine Learning',
-    issuer: 'Google Cloud / Kaggle Academy',
-    date: 'June 2025',
-    year: '2025',
-    serial: 'NO. ML–2025–041',
-    image: '/certifications/Fundamentals of Machine.jpg',
-    credentialId: 'ML-KAGGLE-GL-892742',
-    verifyUrl: 'https://kaggle.com',
-    skills: ['Supervised Learning', 'Neural Networks', 'Python', 'Pandas & NumPy', 'Data Preprocessing', 'Model Metrics'],
-    description: 'A deep-dive technical certification covering statistical machine learning models, training pipelines, gradient descent optimization, neural network architectures, and precision metrics evaluation.',
-    takeaways: [
-      'Built and evaluated classifiers, regression models, and decision tree ensembles from scratch.',
-      'Developed data pipelines utilizing advanced scaling, missing data imputation, and feature engineering.',
-      'Configured early stopping, learning rate schedules, and cross-validation to prevent model overfitting.'
-    ],
-    color: 'from-orange-500/20 to-red-500/5',
-    accentHex: '#ff6b3d',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,107,61,0.08)]',
-    tagClasses: 'text-[#ffb088] bg-[#ff6b3d]/14',
-    badgeTextColor: 'text-[#ffb088]',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
-        <path d="M6 20h12M9 4h6M10 4v6.5L5.5 18a1.2 1.2 0 0 0 1 1.8h11a1.2 1.2 0 0 0 1-1.8L14 10.5V4"/>
-      </svg>
-    ),
-  },
-  {
-    id: 'nptel-iit-madras',
-    title: 'Elite NPTEL Online Certification',
-    issuer: 'Indian Institute of Technology, Madras (IITM)',
-    date: 'April 2025',
-    year: '2025',
-    serial: 'NO. NP–2025–097',
-    image: '/certifications/nptel certificate_page-0001.jpg',
-    credentialId: 'NPTEL25CS1029472-RAM',
-    verifyUrl: 'https://nptel.ac.in',
-    skills: ['Advanced Algorithms', 'Data Structures', 'C++ Programming', 'Complexity Analysis', 'Time Space Tradeoffs'],
-    description: 'Achieved prestigious elite status in advanced computer science, object-oriented design, algorithms engineering, and complex data structures curricula run by IIT Madras.',
-    takeaways: [
-      'Mastered complexity analysis (Big-O notation), recursion, dynamic programming, and greedy algorithms.',
-      'Designed custom graphs, trees, hashing tables, and search structures in optimized C++ code.',
-      'Acquired top-tier national percentile rating for elite analytical and algorithmic problem-solving.'
-    ],
-    color: 'from-amber-500/20 to-yellow-500/5',
-    accentHex: '#ffc56e',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,197,110,0.07)]',
-    tagClasses: 'text-[#ffcf8f] bg-[#ffc56e]/14',
-    badgeTextColor: 'text-[#ffcf8f]',
+    color: 'from-blue-500/20 to-teal-500/5',
+    accentHex: '#1e3a8a',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(30,58,138,0.07)]',
+    tagClasses: 'text-[#93c5fd] bg-[#1e3a8a]/14',
+    badgeTextColor: 'text-[#bfdbfe]',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
         <path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11.5V17c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-5.5"/>
@@ -162,7 +163,7 @@ const ALL_CERTIFICATIONS: Certificate[] = [
   },
 ];
 
-const ISSUERS = ['All', 'OpenAI', 'Microsoft', 'Google Cloud', 'IIT Madras'];
+const ISSUERS = ['All', 'Google', 'IIT', 'WLUG', 'RTC'];
 
 function StaggerCard({ children, index }: { children: React.ReactNode; index: number }) {
   const ref = useRef(null);
@@ -281,11 +282,15 @@ export default function CertificationsContent() {
             {/* Premium Stats Bento Card */}
             <div className="grid grid-cols-2 gap-3 p-5 rounded-3xl border border-white/[0.05] bg-gradient-to-br from-[#121214] to-[#0A0A0A] backdrop-blur-md shadow-2xl">
               <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.03]">
-                <span className="block text-2xl font-black text-white font-mono leading-none">04</span>
+                <span className="block text-2xl font-black text-white font-mono leading-none">
+                  {ALL_CERTIFICATIONS.length.toString().padStart(2, '0')}
+                </span>
                 <span className="text-[9px] text-white/35 font-mono uppercase tracking-wider block mt-1.5">Certifications</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.03]">
-                <span className="block text-2xl font-black text-white font-mono leading-none">04</span>
+                <span className="block text-2xl font-black text-white font-mono leading-none">
+                  {new Set(ALL_CERTIFICATIONS.map(c => c.issuer)).size.toString().padStart(2, '0')}
+                </span>
                 <span className="text-[9px] text-white/35 font-mono uppercase tracking-wider block mt-1.5">Platforms</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.03]">

@@ -95,16 +95,16 @@ export default function TerminalSandbox() {
     <div className="space-y-2 select-none">
       <div className={`${activeTheme.primaryColor} font-mono text-[9px] leading-3 sm:text-[11px] sm:leading-4 opacity-95`}>
         <pre className="whitespace-pre overflow-x-auto scrollbar-none font-bold">
-          {`██████╗  █████╗ ███╗   ███╗     ██████╗██╗     ██╗
-██╔══██╗██╔══██╗████╗ ████║    ██╔════╝██║     ██║
-██████╔╝███████║██╔████╔██║    ██║     ██║     ██║
-██╔══██╗██╔══██║██║╚██╔╝██║    ██║     ██║     ██║
-██║  ██║██║  ██║██║ ╚═╝ ██║    ╚██████╗███████╗██║
-╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚═════╝╚══════╝╚═╝`}
+          {`██╗  ██╗ █████╗ ██████╗ ███████╗██╗  ██╗     ██████╗██╗     ██╗
+██║  ██║██╔══██╗██╔══██╗██╔════╝██║  ██║    ██╔════╝██║     ██║
+███████║███████║██████╔╝███████╗███████║    ██║     ██║     ██║
+██╔══██║██╔══██║██╔══██╗╚════██║██╔══██║    ██║     ██║     ██║
+██║  ██║██║  ██║██║  ██║███████║██║  ██║    ╚██████╗███████╗██║
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝     ╚═════╝╚══════╝╚═╝`}
         </pre>
       </div>
       <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-semibold">
-        <span>RAMESHWAR CLI v2.4</span>
+        <span>HARSH CLI v2.4</span>
         <span>•</span>
         <span className="text-[#30D158] font-mono">ONLINE</span>
       </div>
@@ -318,10 +318,10 @@ export default function TerminalSandbox() {
             type: 'output',
             text: (
               <div className="space-y-1 text-white/80 py-0.5 text-xs sm:text-sm">
-                <p><span className="text-[#FF8C00] font-bold">Name:</span> Rameshwar Bhagwat</p>
-                <p><span className="text-[#FF8C00] font-bold">Title:</span> Full Stack & AI Developer</p>
-                <p><span className="text-[#FF8C00] font-bold">Location:</span> Yeola, Maharashtra, India (IST)</p>
-                <p><span className="text-[#FF8C00] font-bold">Bio:</span> Creative engineer building high-performance web systems and AI integrations.</p>
+                <p><span className="text-[#FF8C00] font-bold">Name:</span> Harshwardhan Ramdas Sathe</p>
+                <p><span className="text-[#FF8C00] font-bold">Title:</span> AI & DS Engineer | MERN Developer</p>
+                <p><span className="text-[#FF8C00] font-bold">Location:</span> Thane, Maharashtra, India (IST)</p>
+                <p><span className="text-[#FF8C00] font-bold">Bio:</span> B.Tech AI & DS student and MERN developer building intelligent web solutions.</p>
               </div>
             )
           }
@@ -477,7 +477,7 @@ export default function TerminalSandbox() {
         \\___/`}
                 </pre>
                 <div className="space-y-0.5 text-white/80">
-                  <p><span className={`${activeTheme.accentColor} font-bold`}>OS:</span> RameshwarOS v2.4 (iOS Hybrid)</p>
+                  <p><span className={`${activeTheme.accentColor} font-bold`}>OS:</span> HarshOS v2.4 (iOS Hybrid)</p>
                   <p><span className={`${activeTheme.accentColor} font-bold`}>Host:</span> Portfolio Web Console</p>
                   <p><span className={`${activeTheme.accentColor} font-bold`}>Kernel:</span> React 19 + Next.js 16 (Turbopack)</p>
                   <p><span className={`${activeTheme.accentColor} font-bold`}>Shell:</span> zsh-sandbox v2.4</p>
@@ -530,7 +530,7 @@ export default function TerminalSandbox() {
       case 'sudo clear':
         setLogs(prev => [
           ...prev,
-          { type: 'error', text: '🔒 guest is not in the sudoers file. This incident will be reported to Rameshwar.' }
+          { type: 'error', text: '🔒 guest is not in the sudoers file. This incident will be reported to Harsh.' }
         ]);
         break;
 
@@ -582,10 +582,10 @@ export default function TerminalSandbox() {
                   <span>DECRYPTION SUCCESSFUL — ACCESS GRANTED</span>
                 </div>
                 <div className="space-y-1 text-[11px] sm:text-xs text-white/90">
-                  <p><span className="text-[#39d353] font-bold">NAME:</span> Rameshwar Bhagwat</p>
-                  <p><span className="text-[#39d353] font-bold">ROLE:</span> Full Stack & AI Developer</p>
-                  <p><span className="text-[#39d353] font-bold">SPECIALTY:</span> React 19 • Next.js 16 • TypeScript • AI Systems</p>
-                  <p><span className="text-[#39d353] font-bold">STATUS:</span> Open for Software Engineering Roles & Freelance!</p>
+                  <p><span className="text-[#39d353] font-bold">NAME:</span> Harshwardhan Ramdas Sathe</p>
+                  <p><span className="text-[#39d353] font-bold">ROLE:</span> AI & DS Engineer | MERN Developer</p>
+                  <p><span className="text-[#39d353] font-bold">SPECIALTY:</span> React.js • Node.js • Python • Machine Learning</p>
+                  <p><span className="text-[#39d353] font-bold">STATUS:</span> Open for Internships, Freelance, &amp; Full-time opportunities!</p>
                 </div>
               </div>
             )
@@ -761,7 +761,7 @@ export default function TerminalSandbox() {
                   <div key={index} className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap break-all">
                     {log.type === 'input' && (
                       <div className="flex items-start">
-                        <span className={`${activeTheme.promptColor} font-bold mr-2 select-none`}>guest@rameshwar.me:~$</span>
+                        <span className={`${activeTheme.promptColor} font-bold mr-2 select-none`}>guest@harshwardhan.me:~$</span>
                         <span className="text-white font-medium">{log.text}</span>
                       </div>
                     )}
@@ -790,7 +790,7 @@ export default function TerminalSandbox() {
               {/* Input Panel Prompt */}
               <div className="p-4 bg-white/[0.02] border-t border-white/[0.08]">
                 <div className="flex items-center">
-                  <span className={`${activeTheme.promptColor} font-bold text-xs sm:text-sm mr-2 select-none`}>guest@rameshwar.me:~$</span>
+                  <span className={`${activeTheme.promptColor} font-bold text-xs sm:text-sm mr-2 select-none`}>guest@harshwardhan.me:~$</span>
                   <div className="relative flex-1 flex items-center">
                     <input
                       ref={inputRef}

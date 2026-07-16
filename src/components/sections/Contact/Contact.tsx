@@ -112,8 +112,8 @@ export default function Contact() {
       />
 
       {/* SEO Microdata */}
-      <meta itemProp="name" content="Contact Rameshwar Bhagwat - Full Stack Developer" />
-      <meta itemProp="description" content="Get in touch with Rameshwar Bhagwat for full-time opportunities, freelance projects, or collaboration. Available for web development, React, Next.js, and full-stack development projects." />
+      <meta itemProp="name" content="Contact Harshwardhan Sathe - AI & Data Science Engineer | MERN Developer" />
+      <meta itemProp="description" content="Get in touch with Harshwardhan Sathe for Software Engineering internships, collaborative projects, or full-stack MERN development. Available for AI & Data Science projects and web development opportunities." />
       <meta itemProp="url" content={`${SITE_URL}#contact`} />
 
       {/* Contact Information Schema */}
@@ -133,13 +133,13 @@ export default function Contact() {
 
       {/* Hidden SEO Content */}
       <div className="sr-only">
-        <h2>Contact Rameshwar Bhagwat - Full Stack Developer</h2>
+        <h2>Contact Harshwardhan Ramdas Sathe - AI & MERN Developer</h2>
         
         <h3>Get in Touch</h3>
         <p>
-          Rameshwar Bhagwat is available for full-time roles, freelance projects, and consulting opportunities. 
-          With expertise in React, Next.js, TypeScript, Node.js, and modern web development, 
-          he helps startups and enterprises build scalable, high-performance web applications.
+          Harshwardhan Ramdas Sathe is available for internships, full-time roles, freelance projects, and consulting opportunities. 
+          With expertise in React.js, Node.js, Python, MongoDB, and modern web development, 
+          he helps build scalable, high-performance web applications and AI-powered solutions.
         </p>
 
         <h3>Contact Information</h3>

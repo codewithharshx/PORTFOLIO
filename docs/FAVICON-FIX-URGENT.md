@@ -85,13 +85,13 @@ public/
    - Or use Incognito mode
 
 4. **Test favicon:**
-   - Visit: https://rameshwarbhagwat.me
+   - Visit: https://harshwardhansathe.vercel.app
    - Check browser tab for favicon
-   - Test: https://rameshwarbhagwat.me/favicon.ico (should load)
+   - Test: https://harshwardhansathe.vercel.app/favicon.ico (should load)
 
 5. **Verify with tools:**
    - https://realfavicongenerator.net/favicon_checker
-   - Enter: rameshwarbhagwat.me
+   - Enter: harshwardhansathe.vercel.app
    - Should show all green checkmarks
 
 ---
@@ -114,7 +114,7 @@ After fixing favicon:
 
 1. **Google Search Console:**
    - Go to: https://search.google.com/search-console
-   - Select property: rameshwarbhagwat.me
+   - Select property: harshwardhansathe.vercel.app
    - URL Inspection → Enter homepage URL
    - Click "Request Indexing"
 
@@ -134,8 +134,8 @@ After fixing favicon:
 ## 🆘 If Still Not Working
 
 1. **Check file accessibility:**
-   - https://rameshwarbhagwat.me/favicon.ico
-   - https://rameshwarbhagwat.me/favicon-32x32.png
+   - https://harshwardhansathe.vercel.app/favicon.ico
+   - https://harshwardhansathe.vercel.app/favicon-32x32.png
    - All should return 200 OK
 
 2. **Check file sizes:**

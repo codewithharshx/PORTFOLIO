@@ -70,7 +70,7 @@ const outfit = Outfit({
   preload: true,
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rameshwarbhagwat.me';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://harshwardhansathe.vercel.app';
 
 export const metadata: Metadata = generateSEO();
 
@@ -82,63 +82,57 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Rameshwar Bhagwat",
+    "name": "Harshwardhan Ramdas Sathe",
     "url": siteUrl,
     "image": `${siteUrl}/images/profile/profile.jpeg`,
-    "jobTitle": "Full Stack & AI Developer",
-    "description": "Rameshwar Bhagwat is a Full Stack & AI Developer building AI-powered web applications, with featured projects WebCraft and Safecoast.",
-    "email": "rameshwarbhagwat019@gmail.com",
-    "telephone": "+91-9699245170",
+    "jobTitle": "AI & Data Science Engineer | MERN Developer",
+    "description": "Harshwardhan Sathe is a B.Tech AI & Data Science student and MERN Stack Developer at ADCET Ashta, building AI-powered solutions and full-stack web applications.",
+    "email": "harshwardhansathe1@gmail.com",
+    "telephone": "+91-8879970396",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Yeola",
+      "addressLocality": "Thane",
       "addressRegion": "Maharashtra",
       "addressCountry": "IN"
     },
     "sameAs": [
-      "https://github.com/Rameshwar-bhagwat10",
-      "https://www.linkedin.com/in/rameshwar-bhagwat-888540328",
-      "https://twitter.com/imram111_"
+      "https://github.com/codewithharshx",
+      "https://www.linkedin.com/in/harshwardhan-sathe-774945332/",
+      "https://www.instagram.com/harsh_r_s_11"
     ],
     "knowsAbout": [
-      "Full Stack Development",
       "Artificial Intelligence",
+      "Data Science",
       "Machine Learning",
-      "React",
-      "Next.js",
-      "TypeScript",
+      "Full Stack MERN Development",
+      "React.js",
       "Node.js",
       "Python",
-      "SaaS Development",
-      "MERN Stack",
-      "RESTful API Design",
-      "Database Optimization",
-      "DevOps & CI/CD"
+      "MongoDB",
+      "Computer Vision",
+      "REST API Development",
+      "JWT Authentication",
+      "Google OAuth"
     ],
     "alumniOf": {
       "@type": "EducationalOrganization",
-      "name": "B.Tech IT"
+      "name": "Annasaheb Dange College of Engineering & Technology (ADCET), Ashta"
     },
     "subjectOf": [
       {
         "@type": "CreativeWork",
-        "name": "WebCraft",
-        "description": "Website builder for modern businesses with SEO-ready architecture and performance-first engineering.",
+        "name": "Mane Bazar",
+        "description": "Full Stack Grocery E-Commerce Platform inspired by Blinkit and Zepto, built with MERN stack and Razorpay.",
       },
       {
         "@type": "CreativeWork",
-        "name": "Library Management System",
-        "description": "Full-stack relational catalog database built with Node.js and Express.js using strict transaction safety safeguards.",
+        "name": "Personal Finance AI Advisor",
+        "description": "AI-powered financial assistant using Python and Machine Learning to analyze spending habits and improve budgeting.",
       },
       {
         "@type": "CreativeWork",
-        "name": "Safecoast",
-        "description": "Coastal hazard intelligence platform focused on real-time monitoring and risk awareness.",
-      },
-      {
-        "@type": "CreativeWork",
-        "name": "Devory",
-        "description": "Premium workflow task management SaaS interface featuring custom real-time messaging structures.",
+        "name": "Jewellery Shop Management System",
+        "description": "Complete inventory and billing platform with role-based access control built with React and Node.js.",
       }
     ]
   };
@@ -146,12 +140,12 @@ export default function RootLayout({
   const websiteStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Rameshwar Bhagwat Portfolio",
+    "name": "Harshwardhan Sathe Portfolio",
     "url": siteUrl,
-    "description": "Portfolio of Rameshwar Bhagwat showcasing full stack and AI-powered web projects, including WebCraft and Safecoast.",
+    "description": "Portfolio of Harshwardhan Ramdas Sathe showcasing AI & Data Science projects and MERN stack web applications.",
     "author": {
       "@type": "Person",
-      "name": "Rameshwar Bhagwat"
+      "name": "Harshwardhan Ramdas Sathe"
     },
     "potentialAction": {
       "@type": "SearchAction",

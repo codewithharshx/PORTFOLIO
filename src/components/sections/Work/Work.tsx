@@ -225,19 +225,19 @@ export default function Work() {
 
       <div className="relative z-20">
       {/* SEO Microdata */}
-      <meta itemProp="name" content="Featured Projects - Rameshwar Bhagwat Portfolio" />
+      <meta itemProp="name" content="Featured Projects - Harshwardhan Sathe Portfolio" />
       <meta
         itemProp="description"
-        content="Showcase of full-stack and AI-focused web development projects including WebCraft, Safecoast, and AI ML Progress Tracker, built with React, Next.js, TypeScript, and modern scalable architecture."
+        content="Showcase of full-stack MERN and AI-focused development projects by Harshwardhan Sathe, including Mane Bazar grocery platform, Personal Finance AI Advisor, and Jewellery Shop Management System."
       />
-      <meta itemProp="author" content="Rameshwar Bhagwat" />
+      <meta itemProp="author" content="Harshwardhan Ramdas Sathe" />
 
       {/* Hidden SEO Content */}
       <div className="sr-only">
-        <h2>Featured Projects Portfolio - Full Stack & AI Web Development</h2>
+        <h2>Featured Projects Portfolio - Full Stack MERN & AI Development</h2>
         <p>
-          Explore a curated collection of production-ready applications built by Rameshwar
-          Bhagwat, highlighting modern full stack engineering and AI-focused product development.
+          Explore a curated collection of production-ready applications built by Harshwardhan
+          Sathe, highlighting modern full stack MERN engineering and AI-focused product development.
         </p>
         <h3>Project Highlights</h3>
         <ul>

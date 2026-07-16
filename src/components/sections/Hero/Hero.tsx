@@ -73,16 +73,16 @@ export default function Hero() {
       >
         {/* ─── Primary Schema.org Person Microdata ─── */}
         <meta itemProp="name" content={PERSONAL_INFO.name} />
-        <meta itemProp="givenName" content="Rameshwar" />
-        <meta itemProp="familyName" content="Bhagwat" />
-        <meta itemProp="jobTitle" content="Full Stack & AI Developer" />
-        <meta itemProp="description" content={`${PERSONAL_INFO.name} is a Full Stack & AI Developer specializing in React, Next.js, TypeScript, Node.js, Python, and AI-powered product engineering. Featured projects include WebCraft, Safecoast, and AI ML Progress Tracker.`} />
+        <meta itemProp="givenName" content="Harshwardhan" />
+        <meta itemProp="familyName" content="Sathe" />
+        <meta itemProp="jobTitle" content="AI & Data Science Engineer | MERN Developer" />
+        <meta itemProp="description" content={`${PERSONAL_INFO.name} is an AI & Data Science Engineer and MERN Stack Developer specializing in React, Node.js, Python, MongoDB, and Machine Learning. Featured projects include Mane Bazar, Personal Finance AI Advisor, and Jewellery Shop Management System.`} />
         <meta itemProp="url" content={SITE_URL} />
         <meta itemProp="email" content={PERSONAL_INFO.email} />
         <meta itemProp="telephone" content={PERSONAL_INFO.phone} />
         <meta itemProp="image" content={`${SITE_URL}${PERSONAL_INFO.image}`} />
-        <meta itemProp="knowsAbout" content="Full Stack Development, AI Engineering, React, Next.js, TypeScript, Node.js, Python, Machine Learning, Web Development, SaaS Development" />
-        <meta itemProp="hasOccupation" content="Full Stack Developer" />
+        <meta itemProp="knowsAbout" content="Full Stack MERN Development, AI Engineering, React.js, Node.js, Python, Machine Learning, MongoDB, Data Science, REST APIs" />
+        <meta itemProp="hasOccupation" content="AI & Data Science Engineer | MERN Developer" />
 
         {/* Social Links for Schema */}
         {SOCIAL_LINKS.map((link) => (
@@ -98,67 +98,53 @@ export default function Hero() {
 
         {/* ─── Hidden SEO Content for Search Engines ─── */}
         <div className="sr-only">
-          <h1>Rameshwar Bhagwat - Full Stack & AI Developer</h1>
+          <h1>Harshwardhan Ramdas Sathe - AI & Data Science Engineer | MERN Developer</h1>
 
-          <h2>About Rameshwar Bhagwat</h2>
+          <h2>About Harshwardhan Sathe</h2>
           <p>
-            Rameshwar Bhagwat is a highly skilled Full Stack & AI Developer based in {PERSONAL_INFO.location.city}, {PERSONAL_INFO.location.state}, {PERSONAL_INFO.location.country}.
-            With expertise in modern web technologies, Rameshwar Bhagwat specializes in building scalable, high-performance web applications and AI-powered platforms.
+            Harshwardhan Ramdas Sathe is a B.Tech AI & Data Science student at ADCET Ashta and MERN Stack Developer based in {PERSONAL_INFO.location.city}, {PERSONAL_INFO.location.state}, {PERSONAL_INFO.location.country}.
+            He specializes in building scalable full-stack web applications and AI-powered solutions using the MERN stack and Python.
           </p>
 
-          <h2>Rameshwar Bhagwat - Professional Skills</h2>
+          <h2>Harshwardhan Sathe - Professional Skills</h2>
           <p>
-            As a Full Stack Developer, Rameshwar Bhagwat is proficient in:
-          </p>
-          <ul>
-            <li>Frontend Development: React.js, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS</li>
-            <li>Backend Development: Node.js, Express.js, Python, FastAPI, REST APIs, GraphQL</li>
-            <li>Database Technologies: MongoDB, PostgreSQL, MySQL, Redis, Prisma ORM</li>
-            <li>AI & Machine Learning: TensorFlow, OpenAI, LangChain, AI Integration, ML APIs</li>
-            <li>Cloud & DevOps: AWS, Google Cloud, Docker, Kubernetes, CI/CD, Vercel</li>
-            <li>SaaS and AI Product Development: scalable architecture, performance optimization, and intelligent features</li>
-          </ul>
-
-          <h2>Featured Projects by Rameshwar Bhagwat</h2>
-          <ul>
-            <li>WebCraft - Modern website solution designed for business growth and technical SEO readiness</li>
-            <li>Safecoast - Coastal hazard intelligence platform focused on monitoring and risk awareness</li>
-          </ul>
-
-          <h2>Rameshwar Bhagwat - Services</h2>
-          <p>
-            Rameshwar Bhagwat offers professional services including:
+            As an AI & Data Science Engineer and MERN Developer, Harshwardhan Sathe is proficient in:
           </p>
           <ul>
-            <li>Full Stack Web Development by Rameshwar Bhagwat</li>
-            <li>AI-Powered Application Development by Rameshwar Bhagwat</li>
-            <li>SaaS Platform Development by Rameshwar Bhagwat</li>
-            <li>React & Next.js Development by Rameshwar Bhagwat</li>
-            <li>Custom Web Application Development by Rameshwar Bhagwat</li>
-            <li>API Development & Integration by Rameshwar Bhagwat</li>
-            <li>E-commerce Solutions by Rameshwar Bhagwat</li>
-            <li>Performance Optimization by Rameshwar Bhagwat</li>
+            <li>Frontend Development: React.js, Vite, HTML5, CSS3, Tailwind CSS, JavaScript</li>
+            <li>Backend Development: Node.js, Express.js, REST APIs, JWT Authentication</li>
+            <li>Database Technologies: MongoDB, MySQL, Mongoose</li>
+            <li>AI & Machine Learning: Python, Scikit-learn, Pandas, NumPy, Matplotlib, K-Means, Regression</li>
+            <li>Authentication & Payments: Google OAuth, JWT, Razorpay</li>
+            <li>Tools: Git, GitHub, VS Code, Postman, Power BI</li>
           </ul>
 
-          <h2>Why Choose Rameshwar Bhagwat?</h2>
-          <p>
-            Rameshwar Bhagwat combines technical expertise with creative problem-solving to deliver exceptional digital solutions.
-            Whether you need a Full Stack Developer for your startup, an AI Engineer to integrate machine learning capabilities,
-            or a Web Developer to build your next big project, Rameshwar Bhagwat has the skills and experience to bring your vision to life.
-          </p>
+          <h2>Featured Projects by Harshwardhan Sathe</h2>
+          <ul>
+            <li>Mane Bazar - Full Stack Grocery E-Commerce Platform with MERN stack, Razorpay, and Google OAuth</li>
+            <li>Personal Finance AI Advisor - Python & ML-powered financial assistant with Scikit-learn</li>
+            <li>Jewellery Shop Management System - RBAC-based inventory and billing platform</li>
+          </ul>
 
-          <h2>Contact Rameshwar Bhagwat</h2>
+          <h2>Harshwardhan Sathe - Experience & Leadership</h2>
+          <ul>
+            <li>Department Leader – AI & DS at Training & Placement Cell (TPC), ADCET Ashta</li>
+            <li>Python Internship at Prepgrad – Data Analysis and Power BI dashboards</li>
+            <li>Co-authored IEEE Conference Paper</li>
+            <li>Organized Codathon 2025, Discovery 2024 & 2025, Neuroverse 2025</li>
+          </ul>
+
+          <h2>Contact Harshwardhan Sathe</h2>
           <p>
-            Looking to hire a Full Stack Developer? Contact Rameshwar Bhagwat at {PERSONAL_INFO.email} or {PERSONAL_INFO.phone}.
-            Rameshwar Bhagwat is available for freelance projects, full-time opportunities, and consulting work.
+            Looking to connect? Contact Harshwardhan Sathe at {PERSONAL_INFO.email} or {PERSONAL_INFO.phone}.
+            Harshwardhan is available for internships, freelance projects, and entry-level opportunities.
           </p>
 
           <h3>Keywords</h3>
-          <p>{SEO_KEYWORDS.join(', ')}, Rameshwar Bhagwat Portfolio, Rameshwar Bhagwat Developer, Rameshwar Bhagwat Full Stack,
-          Rameshwar Bhagwat AI Developer, Rameshwar Bhagwat React Developer, Rameshwar Bhagwat Next.js Expert,
-          Hire Rameshwar Bhagwat, Rameshwar Bhagwat Web Developer, Rameshwar Bhagwat Software Engineer,
-          Best Full Stack Developer India, Top React Developer Maharashtra, AI Developer Yeola,
-          Rameshwar Bhagwat TypeScript, Rameshwar Bhagwat Node.js, Rameshwar Bhagwat Python Developer, WebCraft, Safecoast</p>
+          <p>{SEO_KEYWORDS.join(', ')}, Harshwardhan Sathe Portfolio, Harshwardhan Ramdas Sathe Developer,
+          AI Data Science Engineer India, MERN Stack Developer Maharashtra, Full Stack MERN Developer,
+          Harshwardhan Sathe React Developer, Harshwardhan Sathe Python Developer, ADCET Ashta,
+          Mane Bazar grocery app, Personal Finance AI Advisor, Jewellery Shop Management</p>
         </div>
 
         {/* ─── WebSite Schema for Search Appearance ─── */}
@@ -168,14 +154,14 @@ export default function Hero() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Rameshwar Bhagwat - Full Stack & AI Developer Portfolio",
-              "alternateName": ["Rameshwar Bhagwat", "Rameshwar Bhagwat Developer", "Rameshwar Bhagwat Portfolio"],
+              "name": "Harshwardhan Sathe - AI & Data Science Engineer Portfolio",
+              "alternateName": ["Harshwardhan Sathe", "Harshwardhan Ramdas Sathe", "Harshwardhan Sathe Portfolio"],
               "url": SITE_URL,
-              "description": "Official portfolio of Rameshwar Bhagwat, a Full Stack & AI Developer specializing in React, Next.js, TypeScript, and AI-powered web applications.",
+              "description": "Official portfolio of Harshwardhan Ramdas Sathe, an AI & Data Science Engineer and MERN Stack Developer specializing in React, Node.js, Python, and AI-powered applications.",
               "author": {
                 "@type": "Person",
-                "name": "Rameshwar Bhagwat",
-                "jobTitle": "Full Stack & AI Developer",
+                "name": "Harshwardhan Ramdas Sathe",
+                "jobTitle": "AI & Data Science Engineer | MERN Developer",
                 "url": SITE_URL
               },
               "potentialAction": {
@@ -194,15 +180,15 @@ export default function Hero() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              "name": "Rameshwar Bhagwat - Full Stack & AI Development Services",
-              "description": "Professional Full Stack Development, AI Engineering, and Web Development services by Rameshwar Bhagwat",
+              "name": "Harshwardhan Sathe - AI & MERN Development Services",
+              "description": "Professional Full Stack MERN Development and AI/ML Engineering services by Harshwardhan Ramdas Sathe",
               "provider": {
                 "@type": "Person",
-                "name": "Rameshwar Bhagwat",
-                "jobTitle": "Full Stack & AI Developer"
+                "name": "Harshwardhan Ramdas Sathe",
+                "jobTitle": "AI & Data Science Engineer | MERN Developer"
               },
-              "serviceType": ["Full Stack Development", "AI Engineering", "Web Development", "SaaS Development", "React Development", "Next.js Development"],
-              "areaServed": "Worldwide",
+              "serviceType": ["Full Stack MERN Development", "AI/ML Engineering", "Python Development", "REST API Development", "E-Commerce Development"],
+              "areaServed": "India",
               "url": SITE_URL
             })
           }}

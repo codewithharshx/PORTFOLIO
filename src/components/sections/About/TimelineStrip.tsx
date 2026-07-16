@@ -14,34 +14,34 @@ interface Milestone {
 
 const milestones: Milestone[] = [
   {
-    year: '2022',
-    title: 'The Curiosity Phase',
-    description: 'Discovered the world of web development. Started with HTML, CSS, and JavaScript fundamentals. Built my first static websites and fell in love with creating things for the web.',
+    year: '2023',
+    title: 'The Beginning',
+    description: 'Started B.Tech in Artificial Intelligence & Data Science at ADCET, Ashta. Discovered programming fundamentals and fell in love with building things with code. First steps into Python and web development.',
     icon: Code2,
   },
   {
     year: '2024',
-    title: 'Engineering Foundation',
-    description: 'Started B.Tech in Information Technology. Diving deep into data structures, algorithms, and software engineering principles. Building full-stack applications with React, Node.js, and databases.',
+    title: 'Building Foundations',
+    description: 'Strengthened programming fundamentals and web development skills. Dove deep into data structures, algorithms, and software engineering principles. Started building full-stack applications with React, Node.js, and MongoDB.',
     icon: GraduationCap,
   },
   {
     year: '2025',
-    title: 'Product Builder',
-    description: 'Launched ThinkVerse - a SaaS platform for structured idea management. Learned product development, user experience design, and the importance of shipping real products to real users.',
+    title: 'Real-World Experience',
+    description: 'Completed Python Internship at Prepgrad — worked on Data Analysis, Power BI dashboards, and educational materials. Built multiple full-stack projects including Mane Bazar (MERN grocery platform) and Personal Finance AI Advisor.',
     icon: Briefcase,
   },
   {
     year: '2026',
-    title: 'AI Development',
-    description: 'Currently building Devory, an AI-driven platform helping students showcase and manage their projects. Exploring machine learning, natural language processing, and intelligent automation.',
+    title: 'Leadership & AI Engineering',
+    description: 'Leading the AI & DS department at Training & Placement Cell (TPC). Coordinating placement drives, organizing recruitment events, and helping 100+ students with career development. Co-authored an IEEE Conference Paper.',
     icon: Award,
     isCurrent: true,
   },
   {
-    year: '2027',
-    title: 'Scaling Vision',
-    description: 'Aiming to master advanced AI/ML systems and production-grade engineering. Goal: Build technology that impacts millions and contribute to open-source communities.',
+    year: 'Future',
+    title: 'Scaling the Vision',
+    description: 'Aiming to become an AI Engineer capable of building products that positively impact millions. Goal: Master advanced AI/ML systems, contribute to open source, launch a technology startup, and lead engineering teams.',
     icon: Rocket,
   },
 ];

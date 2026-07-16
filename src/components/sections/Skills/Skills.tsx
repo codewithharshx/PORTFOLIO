@@ -125,17 +125,17 @@ export default function Skills() {
 
       <div className="relative z-20">
       {/* SEO Microdata */}
-      <meta itemProp="name" content="Technical Skills - Rameshwar Bhagwat" />
-      <meta itemProp="description" content="Comprehensive list of programming languages, frameworks, and technologies mastered by Rameshwar Bhagwat including React, Next.js, TypeScript, Node.js, Python, and modern web development tools." />
+      <meta itemProp="name" content="Technical Skills - Harshwardhan Ramdas Sathe" />
+      <meta itemProp="description" content="Comprehensive list of programming languages, frameworks, and technologies mastered by Harshwardhan Ramdas Sathe including React.js, Node.js, Python, MongoDB, and modern web development tools." />
       <meta itemProp="numberOfItems" content={skills.length.toString()} />
 
       {/* Hidden SEO Content */}
       <div className="sr-only">
         <h2>Technical Skills and Expertise</h2>
         <p>
-          Rameshwar Bhagwat is proficient in a wide range of modern web development technologies,
-          frameworks, and tools. With expertise spanning frontend, backend, databases, cloud services,
-          and DevOps, he delivers comprehensive full-stack solutions.
+          Harshwardhan Ramdas Sathe is proficient in a wide range of modern web development technologies,
+          frameworks, and tools. With expertise spanning full stack MERN development, Python, databases,
+          and Machine Learning, he delivers comprehensive software solutions.
         </p>
 
         <h3>Frontend Development Skills</h3>

@@ -2,12 +2,13 @@
 
 import { Github, Linkedin, Instagram, Mail, ArrowUp, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { SOCIAL_LINKS, PERSONAL_INFO } from '@/lib/constants';
 
 const socialLinks = [
-  { name: 'GitHub', url: 'https://github.com/Rameshwar-bhagwat10', icon: Github, color: '#FFFFFF' },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rameshwar-bhagwat-888540328', icon: Linkedin, color: '#0A66C2' },
-  { name: 'Instagram', url: 'https://www.instagram.com/imram111_/', icon: Instagram, color: '#E4405F' },
-  { name: 'Email', url: 'mailto:rameshwarbhagwat019@gmail.com', icon: Mail, color: '#30D158' },
+  { name: 'GitHub', url: SOCIAL_LINKS.find(l => l.name === 'GitHub')?.url || 'https://github.com/codewithharshx', icon: Github, color: '#FFFFFF' },
+  { name: 'LinkedIn', url: SOCIAL_LINKS.find(l => l.name === 'LinkedIn')?.url || 'https://www.linkedin.com/in/harshwardhan-sathe-774945332/', icon: Linkedin, color: '#0A66C2' },
+  { name: 'Instagram', url: SOCIAL_LINKS.find(l => l.name === 'Instagram')?.url || 'https://www.instagram.com/harsh_r_s_11', icon: Instagram, color: '#E4405F' },
+  { name: 'Email', url: `mailto:${PERSONAL_INFO.email}`, icon: Mail, color: '#30D158' },
 ];
 
 export default function Footer() {
@@ -52,8 +53,8 @@ export default function Footer() {
                   className="text-lg sm:text-xl font-medium tracking-tight select-none"
                   style={{ fontFamily: 'var(--font-instrument), Georgia, serif', textTransform: 'none' }}
                 >
-                  <span className="text-white">Rameshwar</span>{' '}
-                  <span className="text-white italic">Bhagwat</span>
+                  <span className="text-white">Harshwardhan</span>{' '}
+                  <span className="text-white italic">Sathe</span>
                 </span>
                 
                 {/* Available for Projects / Pulse indicator */}

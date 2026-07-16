@@ -16,8 +16,8 @@ const QUICK_RESPONSE_INTENTS: Record<string, string> = {
   // About
   'name': 'identity', 'your name': 'identity', 'what is your name': 'identity',
   'who am i talking to': 'identity',
-  'who are you': 'about', 'who is rameshwar': 'about', 'tell me about yourself': 'about',
-  'tell me about rameshwar': 'about', 'introduce yourself': 'about', 'what do you do': 'about',
+  'who are you': 'about', 'who is harshwardhan': 'about', 'who is harsh': 'about', 'tell me about yourself': 'about',
+  'tell me about harshwardhan': 'about', 'tell me about harsh': 'about', 'introduce yourself': 'about', 'what do you do': 'about',
 
   // Contact
   'email': 'contact', 'phone': 'contact', 'phone number': 'contact', 'contact': 'contact',
@@ -175,6 +175,7 @@ function detectIntent(message: string): string[] {
 
 // Generate response based on intents
 function generateResponse(intents: string[], message: string): string {
+  const { personal } = CHATBOT_CONTEXT;
   const responses: string[] = [];
   const lowerMessage = normalizeMessage(message);
 
@@ -195,7 +196,6 @@ function generateResponse(intents: string[], message: string): string {
       return RESPONSE_TEMPLATES.capabilities[0];
 
     case 'identity': {
-      const { personal } = CHATBOT_CONTEXT;
       responses.push(
         `My name is **${personal.name}**. I'm ${personal.name}'s AI assistant.\n\n` +
         `${personal.name} is a **${personal.jobTitle}** based in ${personal.location}.`
@@ -204,7 +204,7 @@ function generateResponse(intents: string[], message: string): string {
     }
 
     case 'about': {
-      const { personal, sections } = CHATBOT_CONTEXT;
+      const { sections } = CHATBOT_CONTEXT;
       responses.push(
         `**${personal.name}** is a ${personal.jobTitle} based in ${personal.location}.\n\n` +
         `${personal.bio}\n\n` +
@@ -224,13 +224,13 @@ function generateResponse(intents: string[], message: string): string {
       const aiSkills = skills.ai_ml.frameworks.slice(0, 4);
 
       responses.push(
-        `**Rameshwar's Tech Stack:**\n\n` +
+        `**${personal.name}'s Tech Stack:**\n\n` +
         `🎨 **Frontend:** ${frontendSkills.join(', ')}\n` +
         `⚙️ **Backend:** ${backendSkills.join(', ')}\n` +
         `🗄️ **Databases:** ${skills.databases.sql.slice(0, 2).concat(skills.databases.nosql.slice(0, 2)).join(', ')}\n` +
         `🤖 **AI/ML:** ${aiSkills.join(', ')}\n` +
         `☁️ **DevOps:** ${skills.devops.cloud.slice(0, 4).join(', ')}\n\n` +
-        `His favorite stack is **Next.js + TypeScript + Tailwind CSS + PostgreSQL**!\n\n` +
+        `His favorite stack is **MERN (MongoDB + Express + React + Node.js)**!\n\n` +
         `👉 **Quick Link:** [View All Skills](${sections.skills.link})`
       );
       break;
@@ -245,7 +245,7 @@ function generateResponse(intents: string[], message: string): string {
         `🎨 **Styling:** ${frontend.styling.join(', ')}\n` +
         `✨ **Animation:** ${frontend.animation.join(', ')}\n` +
         `📦 **State Management:** ${frontend.stateManagement.join(', ')}\n\n` +
-        `Rameshwar specializes in building responsive, performant, and beautiful user interfaces.`
+        `${personal.name} specializes in building responsive, performant, and beautiful user interfaces.`
       );
       break;
     }
@@ -271,7 +271,7 @@ function generateResponse(intents: string[], message: string): string {
         `📄 **NoSQL:** ${databases.nosql.join(', ')}\n` +
         `🔧 **ORMs:** ${databases.orm.join(', ')}\n` +
         `☁️ **Cloud DBs:** ${databases.cloud.join(', ')}\n\n` +
-        `Rameshwar designs efficient schemas, writes optimized queries, and handles database migrations.`
+        `${personal.name} designs efficient schemas, writes optimized queries, and handles database migrations.`
       );
       break;
     }
@@ -285,7 +285,7 @@ function generateResponse(intents: string[], message: string): string {
         `📊 **Tools:** ${ai_ml.tools.join(', ')}\n` +
         `🔌 **APIs:** ${ai_ml.apis.join(', ')}\n\n` +
         `**Specializations:** ${ai_ml.specializations.join(', ')}\n\n` +
-        `Rameshwar integrates AI capabilities into production applications, like this very chatbot!`
+        `${personal.name} integrates AI capabilities into production applications, like this very chatbot!`
       );
       break;
     }
@@ -319,7 +319,7 @@ function generateResponse(intents: string[], message: string): string {
         .join('\n');
 
       responses.push(
-        `**Rameshwar's Projects:**\n\n${projectList}\n\n` +
+        `**Projects:**\n\n${projectList}\n\n` +
         `Ask me about any specific project for more details!\n\n` +
         `👉 **Quick Link:** [View All Projects](${sections.projects.link})`
       );
@@ -403,20 +403,21 @@ function generateResponse(intents: string[], message: string): string {
         .join('\n\n');
 
       responses.push(
-        `**Rameshwar's Journey (${personal.yearsOfExperience} years)**\n\n` +
+        `**Journey (${personal.yearsOfExperience} years)**\n\n` +
         `${journeyText}\n\n` +
-        `From curiosity to building production applications - it's been an exciting ride!`
+        `From curiosity to building production MERN & AI applications - it's been an exciting ride!`
       );
       break;
     }
 
     case 'education': {
+      const { personal } = CHATBOT_CONTEXT;
       responses.push(
         `**Education:**\n\n` +
-        `🎓 **B.Tech in Information Technology** (Currently pursuing)\n\n` +
-        `Rameshwar started coding in 2022 and has been continuously learning and building since then. ` +
+        `🎓 **B.Tech in Artificial Intelligence & Data Science** (Currently pursuing)\n\n` +
+        `${personal.name} started coding in 2023 and has been continuously learning and building since then. ` +
         `He believes in learning by doing - every project teaches something new.\n\n` +
-        `**Self-Learning:** Online courses, documentation, open source, and building real projects.`
+        `**Self-Learning & Internships:** Annasaheb Dange College of Engineering & Technology (ADCET), Prepgrad Python internship, online courses, and building real projects.`
       );
       break;
     }
@@ -449,17 +450,17 @@ function generateResponse(intents: string[], message: string): string {
     case 'hire': {
       const { personal, sections } = CHATBOT_CONTEXT;
       const available = personal.availableForWork
-        ? "✅ **Yes, Rameshwar is currently available for work!**"
-        : "⏳ Rameshwar is currently busy with existing commitments.";
+        ? `✅ **Yes, ${personal.name} is currently available for work!**`
+        : `⏳ ${personal.name} is currently busy with existing commitments.`;
 
       responses.push(
-        `**Hire Rameshwar**\n\n` +
+        `**Hire ${personal.name}**\n\n` +
         `${available}\n\n` +
         `**Work Preferences:** ${personal.workPreference.join(', ')}\n\n` +
         `**How to hire:**\n` +
         `1. Go to the **Contact Section** to send a message\n` +
         `2. Or email directly at ${personal.email}\n` +
-        `3. Rameshwar responds within ${personal.responseTime}\n\n` +
+        `3. ${personal.name} responds within ${personal.responseTime}\n\n` +
         `👉 **Quick Link:** [Go to Contact Section](${sections.contact.link})\n\n` +
         `**Explore the Portfolio:**\n` +
         `• [View Projects](${sections.projects.link}) - See his work\n` +
@@ -504,7 +505,7 @@ function generateResponse(intents: string[], message: string): string {
         .join('\n');
 
       responses.push(
-        `**How Rameshwar Works:**\n\n` +
+        `**How ${personal.name} Works:**\n\n` +
         `${processText}\n\n` +
         `Clear communication and regular updates throughout the process!`
       );
@@ -530,21 +531,19 @@ function generateResponse(intents: string[], message: string): string {
     }
 
     case 'location': {
-      const { personal } = CHATBOT_CONTEXT;
       responses.push(
         `📍 **Location:** ${personal.location}\n` +
         `🌍 **Timezone:** ${personal.timezone}\n` +
         `🏠 **Work Style:** Remote-first\n\n` +
-        `Rameshwar works with clients worldwide and is flexible with timezones!`
+        `${personal.name} works with clients worldwide and is flexible with timezones!`
       );
       break;
     }
 
     case 'availability': {
-      const { personal } = CHATBOT_CONTEXT;
       responses.push(
         personal.availableForWork
-          ? `✅ **Currently Available!**\n\nRameshwar is open for:\n${personal.workPreference.map(w => `• ${w}`).join('\n')}\n\nReach out at ${personal.email} to discuss your project!`
+          ? `✅ **Currently Available!**\n\n${personal.name} is open for:\n${personal.workPreference.map(w => `• ${w}`).join('\n')}\n\nReach out at ${personal.email} to discuss your project!`
           : `⏳ Currently busy with existing commitments, but feel free to reach out for future opportunities at ${personal.email}`
       );
       break;
@@ -553,7 +552,7 @@ function generateResponse(intents: string[], message: string): string {
     case 'social': {
       const { social } = CHATBOT_CONTEXT;
       responses.push(
-        `**Connect with Rameshwar:**\n\n` +
+        `**Connect with ${personal.name}:**\n\n` +
         `🐙 **GitHub:** ${social.github}\n` +
         `💼 **LinkedIn:** ${social.linkedin}\n` +
         `🐦 **Twitter:** ${social.twitter}\n` +
@@ -571,18 +570,18 @@ function generateResponse(intents: string[], message: string): string {
       responses.push(
         `**Fun Fact:** ${randomFact}\n\n` +
         `**Interests:** ${interests}\n\n` +
-        `Outside of coding, Rameshwar loves exploring new technologies and building products that solve real problems!`
+        `Outside of coding, ${personal.name} loves exploring new technologies and building products that solve real problems!`
       );
       break;
     }
 
     case 'favorite': {
       responses.push(
-        `**Rameshwar's Favorites:**\n\n` +
-        `🛠️ **Stack:** Next.js + TypeScript + Tailwind CSS + PostgreSQL\n` +
-        `⚛️ **Framework:** Next.js (for its DX and performance)\n` +
-        `💅 **Styling:** Tailwind CSS (utility-first FTW!)\n` +
-        `🗄️ **Database:** PostgreSQL with Prisma\n` +
+        `**${personal.name}'s Favorites:**\n\n` +
+        `🛠️ **Stack:** MERN (MongoDB + Express + React + Node.js)\n` +
+        `⚛️ **Framework:** React.js + Vite\n` +
+        `💅 **Styling:** Tailwind CSS\n` +
+        `🗄️ **Database:** MongoDB / Mongoose\n` +
         `☁️ **Deployment:** Vercel\n` +
         `📝 **Editor:** VS Code\n\n` +
         `He loves tools that boost productivity without sacrificing flexibility!`
@@ -610,7 +609,7 @@ function generateResponse(intents: string[], message: string): string {
       if (lowerMessage.includes('?')) {
         return RESPONSE_TEMPLATES.unknown[Math.floor(Math.random() * RESPONSE_TEMPLATES.unknown.length)];
       }
-      return "I'm here to help! Try asking about Rameshwar's skills, projects, experience, or how to contact him.";
+      return `I'm here to help! Try asking about ${personal.name}'s skills, projects, experience, or how to contact him.`;
   }
 
   return responses.length > 0

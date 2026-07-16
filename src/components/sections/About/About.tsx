@@ -99,7 +99,7 @@ export default function About() {
       id="about"
       ref={aboutRef}
       className="relative z-20 w-full bg-[#0F0E0E] overflow-x-clip pb-12 rounded-t-[32px] md:rounded-t-[48px] lg:rounded-t-[64px] border-t border-white/15 shadow-[0_-24px_48px_rgba(0,0,0,0.8)]"
-      aria-label="About Rameshwar Bhagwat - Full Stack & AI Developer"
+      aria-label="About Harshwardhan Ramdas Sathe - AI & Data Science Engineer | MERN Developer"
       itemScope
       itemType="https://schema.org/Person"
     >
@@ -107,10 +107,10 @@ export default function About() {
       <meta itemProp="name" content={PERSONAL_INFO.name} />
       <meta itemProp="jobTitle" content={PERSONAL_INFO.jobTitle} />
       <meta itemProp="description" content={PERSONAL_INFO.bio} />
-      <meta itemProp="url" content="https://rameshwarbhagwat.me" />
+      <meta itemProp="url" content="https://harshwardhansathe.vercel.app" />
       <meta itemProp="email" content={PERSONAL_INFO.email} />
       <meta itemProp="telephone" content={PERSONAL_INFO.phone} />
-      <meta itemProp="image" content={`https://rameshwarbhagwat.me${PERSONAL_INFO.image}`} />
+      <meta itemProp="image" content={`https://harshwardhansathe.vercel.app${PERSONAL_INFO.image}`} />
 
       {/* Address Schema */}
       <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress" className="hidden">
@@ -120,28 +120,28 @@ export default function About() {
       </div>
 
       {/* Skills & Expertise */}
-      <meta itemProp="knowsAbout" content="React" />
-      <meta itemProp="knowsAbout" content="Next.js" />
-      <meta itemProp="knowsAbout" content="TypeScript" />
-      <meta itemProp="knowsAbout" content="JavaScript" />
+      <meta itemProp="knowsAbout" content="React.js" />
       <meta itemProp="knowsAbout" content="Node.js" />
-      <meta itemProp="knowsAbout" content="Full Stack Development" />
-      <meta itemProp="knowsAbout" content="Web Development" />
-      <meta itemProp="knowsAbout" content="MERN Stack" />
-      <meta itemProp="knowsAbout" content="RESTful API" />
-      <meta itemProp="knowsAbout" content="Database Design" />
+      <meta itemProp="knowsAbout" content="Python" />
+      <meta itemProp="knowsAbout" content="MongoDB" />
+      <meta itemProp="knowsAbout" content="Machine Learning" />
+      <meta itemProp="knowsAbout" content="Data Science" />
+      <meta itemProp="knowsAbout" content="Computer Vision" />
+      <meta itemProp="knowsAbout" content="Full Stack MERN Development" />
+      <meta itemProp="knowsAbout" content="REST API Design" />
+      <meta itemProp="knowsAbout" content="JWT Authentication" />
 
       {/* Occupation Schema */}
       <div itemProp="hasOccupation" itemScope itemType="https://schema.org/Occupation" className="hidden">
-        <meta itemProp="name" content="Full Stack Developer" />
-        <meta itemProp="occupationLocation" content="Yeola, Maharashtra, India" />
-        <meta itemProp="skills" content="React, Next.js, TypeScript, Node.js, JavaScript, MongoDB, Express.js" />
-        <meta itemProp="experienceRequirements" content="1+ years" />
+        <meta itemProp="name" content="AI & Data Science Engineer" />
+        <meta itemProp="occupationLocation" content="Thane, Maharashtra, India" />
+        <meta itemProp="skills" content="React.js, Node.js, Python, MongoDB, Express.js, Machine Learning, Data Analysis" />
+        <meta itemProp="experienceRequirements" content="B.Tech AI & DS Student" />
       </div>
 
       {/* Educational Background */}
       <div itemProp="alumniOf" itemScope itemType="https://schema.org/EducationalOrganization" className="hidden">
-        <meta itemProp="name" content="Computer Science" />
+        <meta itemProp="name" content="Annasaheb Dange College of Engineering & Technology (ADCET), Ashta" />
       </div>
 
       {/* About Section Header (scrolls normally above the bento grid) */}
@@ -159,44 +159,38 @@ export default function About() {
           <Container>
             {/* Hidden SEO Content */}
             <div className="sr-only">
-              <h2>About Rameshwar Bhagwat - Full Stack & AI Developer</h2>
+              <h2>About Harshwardhan Ramdas Sathe - AI & Data Science Engineer | MERN Developer</h2>
               <p>
-                Rameshwar Bhagwat is a Full Stack & AI Developer based in Yeola, Maharashtra, India,
-                specializing in React, Next.js, TypeScript, and modern web technologies.
-                With 1+ years of experience, Rameshwar Bhagwat builds scalable web applications and AI-driven products
-                like Devory and ThinkVerse. The Rameshwar Bhagwat portfolio showcases expertise in full-stack development,
-                machine learning integration, and SaaS platform development.
+                Harshwardhan Ramdas Sathe is a B.Tech AI & Data Science student and MERN Stack Developer
+                based in Thane, Maharashtra, India. Specializing in React, Node.js, Python, MongoDB, and AI-powered solutions.
+                With practical experience in full-stack MERN development, machine learning, and REST API design,
+                Harshwardhan builds scalable web applications like Mane Bazar (grocery e-commerce) and the Personal Finance AI Advisor.
+                Currently serving as Department Leader – AI & DS at the Training & Placement Cell (TPC) at ADCET Ashta.
               </p>
-              <h3>Rameshwar Bhagwat - Core Skills and Expertise</h3>
+              <h3>Harshwardhan Sathe - Core Skills and Expertise</h3>
               <ul>
-                <li>Full Stack Development with MERN Stack (MongoDB, Express.js, React, Node.js)</li>
-                <li>Frontend Development: React, Next.js, TypeScript, JavaScript, HTML5, CSS3</li>
+                <li>Full Stack MERN Development (MongoDB, Express.js, React, Node.js)</li>
+                <li>Frontend Development: React.js, Vite, Tailwind CSS, HTML5, CSS3</li>
                 <li>Backend Development: Node.js, Express.js, RESTful API Design</li>
-                <li>Database: MongoDB, PostgreSQL, MySQL, Database Optimization</li>
-                <li>Cloud Services: AWS, Azure, Google Cloud Platform</li>
-                <li>DevOps: Docker, CI/CD, Git, GitHub Actions</li>
-                <li>AI/ML Integration: TensorFlow, Python, Machine Learning APIs</li>
-                <li>System Design and Architecture</li>
+                <li>Database: MongoDB, Mongoose</li>
+                <li>Authentication: JWT, Google OAuth</li>
+                <li>AI & ML: Machine Learning, Data Analysis, Computer Vision</li>
+                <li>Python Programming & Data Science</li>
+                <li>Tools: Git, GitHub, VS Code, Postman, Power BI, npm</li>
               </ul>
-              <h3>Rameshwar Bhagwat - Professional Experience</h3>
+              <h3>Harshwardhan Sathe - Experience & Leadership</h3>
               <p>
-                Rameshwar Bhagwat has 1+ years of professional experience in web development, having worked on 7 projects
-                with happy clients. Notable projects by Rameshwar Bhagwat include Devory (AI-powered SaaS platform) and ThinkVerse (collaborative platform).
+                Harshwardhan Sathe is Department Leader – AI & DS at the Training & Placement Cell (TPC) since February 2026,
+                coordinating placement drives and helping 100+ students with career development.
+                Completed Python Internship at Prepgrad (Aug-Sep 2025), working on Data Analysis and Power BI dashboards.
+                Co-authored an IEEE Conference Paper and organized technical events including Codathon 2025, Discovery 2024 & 2025, and Neuroverse 2025.
               </p>
-              <h3>Achievements</h3>
-              <ul>
-                <li>Built scalable web applications serving thousands of users</li>
-                <li>Contributed to open-source projects</li>
-                <li>Technical blog writer sharing knowledge with the developer community</li>
-                <li>Mentored junior developers</li>
-                <li>IT Engineering background</li>
-              </ul>
-              <h3>Contact Rameshwar Bhagwat</h3>
+              <h3>Contact Harshwardhan Sathe</h3>
               <address>
-                <p>Location: Yeola, Maharashtra, India</p>
-                <p>Email: rameshwarbhagwat019@gmail.com</p>
-                <p>Phone: +91 9699245170</p>
-                <p>Rameshwar Bhagwat is open to remote opportunities worldwide</p>
+                <p>Location: Thane, Maharashtra, India</p>
+                <p>Email: harshwardhansathe1@gmail.com</p>
+                <p>Phone: +91 8879970396</p>
+                <p>College: ADCET Ashta (2023 - Present)</p>
               </address>
             </div>
 

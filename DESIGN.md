@@ -344,4 +344,4 @@ To apply this portfolio's design to any external React / Next.js / HTML project:
 ---
 
 > **Design System Version**: `1.0.0`  
-> **Maintainer**: Rameshwar Bhagwat (`Rameshwar-bhagwat10`)
+> **Maintainer**: Harshwardhan Ramdas Sathe (`codewithharshx`)

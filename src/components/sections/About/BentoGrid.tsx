@@ -296,7 +296,7 @@ export default function BentoGrid() {
             <div className="absolute inset-0 bg-[#0c0b0b]/15 pointer-events-none" />
             <Image
               src="/images/profile/profile.jpeg"
-              alt="Rameshwar Bhagwat"
+              alt="Harshwardhan Sathe"
               width={160}
               height={160}
               className="w-full h-full object-cover"
@@ -307,10 +307,10 @@ export default function BentoGrid() {
           {/* Bio text */}
           <div className="text-center sm:text-left flex flex-col justify-center flex-1">
             <span className="text-[10px] font-mono font-medium tracking-[0.15em] text-white/30 uppercase block mb-1">
-              A Full Stack Developer
+              AI & DS Engineer | MERN Developer
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight mb-2">
-              Rameshwar Bhagwat.
+              Harshwardhan Sathe.
             </h2>
             <p className="text-xs sm:text-sm text-white/50 leading-relaxed max-w-xs">
               I craft high-performance web applications and AI-driven products with elegant layouts.

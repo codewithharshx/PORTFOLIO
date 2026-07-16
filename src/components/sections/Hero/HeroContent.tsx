@@ -249,7 +249,7 @@ export default function HeroContent() {
             color: isReveal ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)',
           }}
         >
-          RAMESHWAR BHAGWAT • ARCHITECTING MODERN,<br />SCALABLE WEB PLATFORMS WITH PREMIUM LOGIC.
+          HARSHWARDHAN SATHE • BUILDING INTELLIGENT,<br />AI-POWERED SOLUTIONS WITH MODERN MERN STACK.
         </div>
 
         {/* Floating Description Right (Bottom-Right area) */}
@@ -259,7 +259,7 @@ export default function HeroContent() {
             color: isReveal ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)',
           }}
         >
-          CRAFTING ULTRA-FAST REACT APPLICATIONS<br />POWERED BY NEXT.JS & TYPESCRIPT.
+          CRAFTING AI-DRIVEN FULL STACK APPLICATIONS<br />POWERED BY PYTHON, REACT & MACHINE LEARNING.
         </div>
 
         {/* Main Graphic Heading Block */}
@@ -276,14 +276,14 @@ export default function HeroContent() {
             maskImage: 'linear-gradient(to bottom, #fff calc(100% - 8px), transparent 100%)',
             transition: 'color 0.3s ease, text-shadow 0.3s ease, -webkit-text-stroke 0.3s ease',
           }}
-          aria-label="AI & Web Software Developer Rameshwar Bhagwat"
+          aria-label="AI & Data Science Engineer Harshwardhan Sathe"
         >
           {/* Row 1: AI & WEB + GitHub */}
           <div className="flex items-center gap-x-3 sm:gap-x-4 md:gap-x-6 relative">
             <div className={isIntroComplete ? 'hero-row-mask' : ''}>
               <div className={isIntroComplete ? 'hero-row-animated' : 'opacity-0'} style={{ '--row-i': 0 } as React.CSSProperties}>
                 <AnimatedLetters
-                  text="AI & WEB"
+                  text="AI & DATA"
                   baseDelay={0.08}
                   isActive={isIntroComplete}
                 />
@@ -291,7 +291,7 @@ export default function HeroContent() {
             </div>
             {/* Outline GitHub Icon */}
             <a
-              href="https://github.com/Rameshwar-bhagwat10"
+              href="https://github.com/codewithharshx"
               target="_blank"
               rel="noopener noreferrer"
               className={`cursor-pointer transition-all duration-300 hover:scale-115 ${isIntroComplete ? 'hero-social-icon' : 'opacity-0'} ${isReveal
@@ -302,7 +302,7 @@ export default function HeroContent() {
                 pointerEvents: isReveal ? 'none' : 'auto',
                 '--icon-i': 0,
               } as React.CSSProperties}
-              aria-label="Rameshwar Bhagwat on GitHub"
+              aria-label="Harshwardhan Sathe on GitHub"
             >
               <svg
                 className="w-[0.52em] h-[0.52em] transition-colors duration-300"
@@ -322,7 +322,7 @@ export default function HeroContent() {
           <div className="flex items-center gap-x-2 sm:gap-x-4 md:gap-x-6 mt-2 relative">
             {/* Outline LinkedIn Icon */}
             <a
-              href="https://www.linkedin.com/in/rameshwar-bhagwat-888540328"
+              href="https://www.linkedin.com/in/harshwardhan-sathe-774945332/"
               target="_blank"
               rel="noopener noreferrer"
               className={`cursor-pointer transition-all duration-300 hover:scale-115 ${isIntroComplete ? 'hero-social-icon' : 'opacity-0'} ${isReveal
@@ -333,7 +333,7 @@ export default function HeroContent() {
                 pointerEvents: isReveal ? 'none' : 'auto',
                 '--icon-i': 1,
               } as React.CSSProperties}
-              aria-label="Rameshwar Bhagwat on LinkedIn"
+              aria-label="Harshwardhan Sathe on LinkedIn"
             >
               <svg
                 className="w-[0.52em] h-[0.52em] transition-colors duration-300"
@@ -352,7 +352,7 @@ export default function HeroContent() {
             <div className={isIntroComplete ? 'hero-row-mask' : ''}>
               <div className={isIntroComplete ? 'hero-row-animated' : 'opacity-0'} style={{ '--row-i': 1 } as React.CSSProperties}>
                 <AnimatedLetters
-                  text="SOFTWARE"
+                  text="SCIENCE"
                   baseDelay={0.22}
                   isActive={isIntroComplete}
                 />
@@ -365,7 +365,7 @@ export default function HeroContent() {
             <div className={isIntroComplete ? 'hero-row-mask' : ''}>
               <div className={isIntroComplete ? 'hero-row-animated' : 'opacity-0'} style={{ '--row-i': 2 } as React.CSSProperties}>
                 <AnimatedLetters
-                  text="DEVELOPER"
+                  text="ENGINEER"
                   baseDelay={0.4}
                   isActive={isIntroComplete}
                 />
@@ -373,7 +373,7 @@ export default function HeroContent() {
             </div>
             {/* Outline Instagram Icon */}
             <a
-              href="https://www.instagram.com/imram111_/"
+              href="https://www.instagram.com/harsh_r_s_11"
               target="_blank"
               rel="noopener noreferrer"
               className={`cursor-pointer transition-all duration-300 hover:scale-115 ${isIntroComplete ? 'hero-social-icon' : 'opacity-0'} ${isReveal
@@ -384,7 +384,7 @@ export default function HeroContent() {
                 pointerEvents: isReveal ? 'none' : 'auto',
                 '--icon-i': 2,
               } as React.CSSProperties}
-              aria-label="Rameshwar Bhagwat on Instagram"
+              aria-label="Harshwardhan Sathe on Instagram"
             >
               <svg
                 className="w-[0.52em] h-[0.52em] transition-colors duration-300"
@@ -406,7 +406,7 @@ export default function HeroContent() {
         {/* CTA Buttons */}
         <motion.nav
           className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0 mt-8 sm:mt-10 md:mt-12 z-30 ${isIntroComplete ? 'hero-btn-animated' : 'opacity-0'}`}
-          aria-label="Primary navigation - View portfolio or contact Rameshwar Bhagwat"
+          aria-label="Primary navigation - View portfolio or contact Harshwardhan Sathe"
         >
           <Link href={isReveal ? '#' : '/resume'}>
             <motion.div
@@ -414,7 +414,7 @@ export default function HeroContent() {
                   ? 'glowing-border-btn-black text-black'
                   : 'glowing-border-btn-white text-white'
                 }`}
-              aria-label="View Rameshwar Bhagwat's Resume"
+              aria-label="View Harshwardhan Sathe's Resume"
               onMouseMove={isReveal ? undefined : handleButtonMouseMove}
               onMouseLeave={isReveal ? undefined : handleButtonMouseLeave}
               style={{

@@ -81,7 +81,7 @@ export default function Navbar() {
         >
           <Image
             src="/icons/logo.svg"
-            alt="Rameshwar Bhagwat Logo"
+            alt="Harshwardhan Sathe Logo"
             width={80}
             height={80}
             className="w-full h-full object-contain"
@@ -182,7 +182,7 @@ export default function Navbar() {
           >
             <Image
               src="/icons/logo.svg"
-              alt="Rameshwar Bhagwat Logo"
+              alt="Harshwardhan Sathe Logo"
               width={40}
               height={40}
               priority

@@ -27,88 +27,88 @@ interface Certificate {
 
 const CERTIFICATIONS: Certificate[] = [
   {
-    id: 'openai-buildthon',
-    title: 'OpenAI Buildthon 2026 Certificate',
-    issuer: 'OpenAI',
-    year: '2026',
-    serial: 'NO. AI–2026–014',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(140,110,255,0.06)]',
-    artGradient: 'from-[#0d1020] via-[#0d1020] to-[#0d1020]',
-    tagClasses: 'text-[#b9a8ff] bg-[#8c6eff]/14',
-    badgeTextColor: 'text-[#c6b8ff]',
+    id: 'gdg-solution-challenge-2025',
+    title: 'GDG Solution Challenge',
+    issuer: 'Google Developer Groups',
+    year: '2025',
+    serial: 'ID: 2025H2S01GSC–P20352',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(234,67,53,0.07)]',
+    artGradient: 'from-[#1a0f0e] via-[#1a0f0e] to-[#1a0f0e]',
+    tagClasses: 'text-[#ff988f] bg-[#ea4335]/14',
+    badgeTextColor: 'text-[#ffb2aa]',
     badgeSvg: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
-        <circle cx="12" cy="6" r="2.1" /><circle cx="6" cy="17" r="2.1" /><circle cx="18" cy="17" r="2.1" />
-        <path d="M12 8.1V13M12 13L7.6 15.4M12 13l4.4 2.4" />
+      <svg viewBox="0 0 24 24" fill="currentColor" strokeWidth="0" className="w-[17px] h-[17px]">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
       </svg>
     ),
-    image: '/certifications/OpenAI Buildthon Certificate.jpeg',
+    image: '/certifications/solution-challenge-2025.jpg',
     baseRot: -6,
     baseY: 0,
     tx: 0,
     floatDelay: 0.2,
   },
   {
-    id: 'fundamentals-ml',
-    title: 'Fundamentals of Machine Learning',
-    issuer: 'Google Cloud / Kaggle',
-    year: '2025',
-    serial: 'NO. ML–2025–041',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,107,61,0.08)]',
-    artGradient: 'from-[#17130e] via-[#17130e] to-[#17130e]',
-    tagClasses: 'text-[#ffb088] bg-[#ff6b3d]/14',
-    badgeTextColor: 'text-[#ffb088]',
+    id: 'nptel-sustainability-2026',
+    title: 'NPTEL Sustainability Cert',
+    issuer: 'IIT Kharagpur (NPTEL)',
+    year: '2026',
+    serial: 'Roll No: NPTEL26HS58S1352000551',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(30,58,138,0.07)]',
+    artGradient: 'from-[#0d1320] via-[#0d1320] to-[#0d1320]',
+    tagClasses: 'text-[#93c5fd] bg-[#1e3a8a]/14',
+    badgeTextColor: 'text-[#bfdbfe]',
     badgeSvg: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
-        <path d="M6 20h12M9 4h6M10 4v6.5L5.5 18a1.2 1.2 0 0 0 1 1.8h11a1.2 1.2 0 0 0 1-1.8L14 10.5V4" />
+        <path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11.5V17c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-5.5"/>
       </svg>
     ),
-    image: '/certifications/Fundamentals of Machine.jpg',
+    image: '/certifications/nptel-sustainability.png',
     baseRot: 3.5,
     baseY: 10,
     tx: -28,
     floatDelay: 1.3,
   },
   {
-    id: 'developing-ai-solutions',
-    title: 'Developing AI Solutions on Microsoft Azure',
-    issuer: 'Microsoft',
-    year: '2025',
-    serial: 'NO. AZ–2025–208',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(5,166,240,0.07)]',
-    artGradient: 'from-[#14161b] via-[#14161b] to-[#14161b]',
-    tagClasses: 'text-[#8fd0ff] bg-[#05a6f0]/14',
-    badgeTextColor: 'text-[#9fdcff]',
+    id: 'rtc-techutsav-2026',
+    title: 'RTC Techutsav 2K26',
+    issuer: 'Rajgad Technical Campus',
+    year: '2026',
+    serial: 'NO. RTC–2026–TECH',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(217,119,6,0.07)]',
+    artGradient: 'from-[#1a140d] via-[#1a140d] to-[#1a140d]',
+    tagClasses: 'text-[#fef3c7] bg-[#d97706]/14',
+    badgeTextColor: 'text-[#fffbeb]',
     badgeSvg: (
-      <svg viewBox="0 0 24 24" width="16" height="16" className="w-[16px] h-[16px]">
-        <rect x="2" y="2" width="8.5" height="8.5" fill="#05a6f0" />
-        <rect x="13.5" y="2" width="8.5" height="8.5" fill="#81bc06" />
-        <rect x="2" y="13.5" width="8.5" height="8.5" fill="#ffba08" />
-        <rect x="13.5" y="13.5" width="8.5" height="8.5" fill="#f35325" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
+        <path d="M12 4L2 9l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
       </svg>
     ),
-    image: '/certifications/Developing AI solution.jpg',
+    image: '/certifications/techutsav-2026.jpg',
     baseRot: 5.5,
     baseY: 0,
     tx: 0,
     floatDelay: 0.7,
   },
   {
-    id: 'nptel-iit-madras',
-    title: 'Elite NPTEL Online Certification',
-    issuer: 'IIT Madras (NPTEL)',
+    id: 'wlug-metamorphosis-2025',
+    title: 'WLUG Metamorphosis 2K25',
+    issuer: 'Walchand Linux Users Group',
     year: '2025',
-    serial: 'NO. NP–2025–097',
-    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,197,110,0.07)]',
-    artGradient: 'from-[#121317] via-[#121317] to-[#121317]',
-    tagClasses: 'text-[#ffcf8f] bg-[#ffc56e]/14',
-    badgeTextColor: 'text-[#ffcf8f]',
+    serial: 'NO. WLUG–2025–MET',
+    accentShadow: 'shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_4px_rgba(0,0,0,0.45),0_20px_44px_-18px_rgba(0,0,0,0.7),0_0_0_1px_rgba(168,85,247,0.07)]',
+    artGradient: 'from-[#150d1a] via-[#150d1a] to-[#150d1a]',
+    tagClasses: 'text-[#e9d5ff] bg-[#a855f7]/14',
+    badgeTextColor: 'text-[#f3e8ff]',
     badgeSvg: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-[19px] h-[19px]">
-        <path d="M12 4L2 9l10 5 10-5-10-5z" /><path d="M6 11.5V17c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-5.5" />
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
       </svg>
     ),
-    image: '/certifications/nptel certificate_page-0001.jpg',
+    image: '/certifications/metamorphosis-2025.jpg',
     baseRot: -3.5,
     baseY: 10,
     tx: 28,
@@ -292,7 +292,7 @@ export default function CertificationsShowcase() {
                 }}
                 className="w-full flex justify-center lg:justify-end"
               >
-                <Link href="/certifications?cert=openai-buildthon" className="block focus:outline-none">
+                <Link href="/certifications?cert=gdg-solution-challenge-2025" className="block focus:outline-none">
                   <CertCard cert={CERTIFICATIONS[0]} />
                 </Link>
               </motion.div>
@@ -323,7 +323,7 @@ export default function CertificationsShowcase() {
                 }}
                 className="w-full flex justify-center lg:justify-end"
               >
-                <Link href="/certifications?cert=fundamentals-ml" className="block focus:outline-none">
+                <Link href="/certifications?cert=nptel-sustainability-2026" className="block focus:outline-none">
                   <CertCard cert={CERTIFICATIONS[1]} />
                 </Link>
               </motion.div>
@@ -357,7 +357,7 @@ export default function CertificationsShowcase() {
             <motion.div variants={centerItemVariants} className="flex items-center justify-center gap-3.5 text-[11.5px] text-white/40 tracking-wider font-mono">
               <span><b>04</b> certifications</span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/10"></span>
-              <span><b>03</b> platforms</span>
+              <span><b>04</b> platforms</span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/10"></span>
               <span><b>2025–26</b></span>
             </motion.div>
@@ -402,7 +402,7 @@ export default function CertificationsShowcase() {
                 }}
                 className="w-full flex justify-center lg:justify-start"
               >
-                <Link href="/certifications?cert=developing-ai-solutions" className="block focus:outline-none">
+                <Link href="/certifications?cert=rtc-techutsav-2026" className="block focus:outline-none">
                   <CertCard cert={CERTIFICATIONS[2]} />
                 </Link>
               </motion.div>
@@ -433,7 +433,7 @@ export default function CertificationsShowcase() {
                 }}
                 className="w-full flex justify-center lg:justify-start"
               >
-                <Link href="/certifications?cert=nptel-iit-madras" className="block focus:outline-none">
+                <Link href="/certifications?cert=wlug-metamorphosis-2025" className="block focus:outline-none">
                   <CertCard cert={CERTIFICATIONS[3]} />
                 </Link>
               </motion.div>

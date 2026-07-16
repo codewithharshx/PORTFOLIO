@@ -69,8 +69,8 @@ Open your site in incognito/private browsing:
 
 Open these URLs directly in browser:
 ```
-https://rameshwarbhagwat.me/favicon.ico
-https://rameshwarbhagwat.me/favicon.svg
+https://harshwardhansathe.vercel.app/favicon.ico
+https://harshwardhansathe.vercel.app/favicon.svg
 ```
 
 Both should display your logo.

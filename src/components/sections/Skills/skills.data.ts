@@ -1,42 +1,28 @@
 import { IconType } from 'react-icons';
 import {
   SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
   SiNodedotjs,
   SiExpress,
   SiMongodb,
-  SiPostgresql,
   SiGit,
-  SiDocker,
   SiPython,
-  SiAmazon,
   SiJavascript,
   SiGithub,
-  SiVercel,
   SiPostman,
-  SiSupabase,
-  SiKotlin,
-  SiFirebase,
-  SiPrisma,
-  SiStripe,
+  SiTailwindcss,
+  SiVite,
+  SiScikitlearn,
   SiPandas,
   SiNumpy,
-  SiScikitlearn,
-  SiAndroidstudio,
-  SiTauri,
-  SiTensorflow,
-  SiPytorch,
-  SiRedis,
-  SiGraphql,
-  SiRedux,
-  SiThreedotjs,
-  SiFastapi,
+  SiMysql,
+  SiJsonwebtokens,
+  SiHtml5,
+  SiCss3,
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 import { VscVscode } from "react-icons/vsc";
-import { FaAws } from "react-icons/fa6";
+import { SiRazorpay } from 'react-icons/si';
+
 export interface Skill {
   name: string;
   icon: IconType;
@@ -44,39 +30,33 @@ export interface Skill {
 }
 
 export const skills: Skill[] = [
-  { name: 'React', icon: SiReact, color: '#61DAFB' },
-  { name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF' },
-  { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
-  { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-  { name: 'Node.js', icon: SiNodedotjs, color: '#5FA04E' },
+  // Programming Languages
   { name: 'Python', icon: SiPython, color: '#3776AB' },
+  { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+  { name: 'Java', icon: FaJava, color: '#5382A1' },
+  // Frontend
+  { name: 'React.js', icon: SiReact, color: '#61DAFB' },
+  { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
+  { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
   { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
-  { name: 'Redux', icon: SiRedux, color: '#764ABC' },
-  { name: 'GraphQL', icon: SiGraphql, color: '#E10098' },
-  { name: 'Express', icon: SiExpress, color: '#FFFFFF' },
+  { name: 'Vite', icon: SiVite, color: '#646CFF' },
+  // Backend
+  { name: 'Node.js', icon: SiNodedotjs, color: '#5FA04E' },
+  { name: 'Express.js', icon: SiExpress, color: '#FFFFFF' },
+  // Database
   { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
-  { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
-  { name: 'Prisma', icon: SiPrisma, color: '#5A67D8' },
-  { name: 'Supabase', icon: SiSupabase, color: '#3ECF8E' },
-  { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
-  { name: 'Redis', icon: SiRedis, color: '#DC382D' },
-  { name: 'Docker', icon: SiDocker, color: '#2496ED' },
-  { name: 'AWS', icon: FaAws, color: '#FF9900' },
-  { name: 'Vercel', icon: SiVercel, color: '#FFFFFF' },
-  { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
-  { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
-  { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
+  { name: 'SQL', icon: SiMysql, color: '#4479A1' },
+  // Auth & APIs
+  { name: 'JWT Auth', icon: SiJsonwebtokens, color: '#d63aff' },
+  { name: 'REST APIs', icon: SiNodedotjs, color: '#00C7B7' },
+  // AI & Data Science
+  { name: 'Scikit-learn', icon: SiScikitlearn, color: '#F7931E' },
   { name: 'Pandas', icon: SiPandas, color: '#E70488' },
   { name: 'NumPy', icon: SiNumpy, color: '#4DABCF' },
-  { name: 'Scikit-learn', icon: SiScikitlearn, color: '#F7931E' },
-  { name: 'Three.js', icon: SiThreedotjs, color: '#FFFFFF' },
-  { name: 'Java', icon: FaJava, color: '#5382A1' },
-  { name: 'Kotlin', icon: SiKotlin, color: '#7F52FF' },
-  { name: 'Android Studio', icon: SiAndroidstudio, color: '#3DDC84' },
-  { name: 'Tauri', icon: SiTauri, color: '#24C8DB' },
-  { name: 'Stripe', icon: SiStripe, color: '#635BFF' },
+  // Tools
   { name: 'Git', icon: SiGit, color: '#F05032' },
   { name: 'GitHub', icon: SiGithub, color: '#FFFFFF' },
-  { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
   { name: 'VS Code', icon: VscVscode, color: '#007ACC' },
+  { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
+  { name: 'Razorpay', icon: SiRazorpay, color: '#072654' },
 ];

@@ -226,8 +226,8 @@ export default function IntroScreen() {
           }}
         >
           <img
-            src="/rameshwar-signature.svg"
-            alt="Rameshwar signature"
+            src="/harsh-signature.svg"
+            alt="Harshwardhan signature"
             onLoad={() => setIsSvgLoaded(true)}
             className="w-full h-full object-contain brightness-0 invert select-none pointer-events-none"
             draggable={false}

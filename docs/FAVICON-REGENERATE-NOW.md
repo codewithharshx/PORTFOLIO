@@ -1,9 +1,11 @@
 # 🎨 Regenerate High-Quality Favicons - Step by Step
 
 ## Problem
+
 Current favicons are low quality because your detailed logo doesn't scale well to 16x16 or 32x32 pixels.
 
 ## Solution
+
 Use the simplified "RB" logo I created for you.
 
 ---
@@ -15,6 +17,7 @@ Use the simplified "RB" logo I created for you.
 I've created a simplified version: `public/favicon-simple.svg`
 
 This has:
+
 - Black circle background
 - White "RB" text (bold)
 - Orange accent line
@@ -60,6 +63,7 @@ This has:
 6. **Extract:** Unzip the downloaded file
 
 7. **Copy files:** Replace these files in your `public/` folder:
+
    ```
    favicon.ico
    favicon-16x16.png
@@ -88,6 +92,7 @@ This has:
 ### Step 3: Verify Quality
 
 1. **Check file sizes:**
+
    ```bash
    # Should be small and crisp
    favicon-16x16.png: ~1-3 KB
@@ -162,13 +167,13 @@ If you want a different design, use Figma:
 
 ## 🎯 Why This Works Better
 
-| Issue | Old Logo | New Simplified |
-|-------|----------|----------------|
-| Detail level | Too complex | Simple, bold |
-| Readability at 16px | Poor | Excellent |
-| File size | Large | Small |
-| Scaling | Loses detail | Stays crisp |
-| Recognition | Hard to see | Clear "RB" |
+| Issue               | Old Logo     | New Simplified |
+| ------------------- | ------------ | -------------- |
+| Detail level        | Too complex  | Simple, bold   |
+| Readability at 16px | Poor         | Excellent      |
+| File size           | Large        | Small          |
+| Scaling             | Loses detail | Stays crisp    |
+| Recognition         | Hard to see  | Clear "RB"     |
 
 ---
 
@@ -193,8 +198,8 @@ After deploying:
 - [ ] Visit site in Firefox - check favicon
 - [ ] Visit site in Safari - check favicon
 - [ ] Test on mobile - check home screen icon
-- [ ] Verify: https://rameshwarbhagwat.me/favicon.ico loads
-- [ ] Verify: https://rameshwarbhagwat.me/favicon-32x32.png loads
+- [ ] Verify: https://harshwardhansathe.vercel.app/favicon.ico loads
+- [ ] Verify: https://harshwardhansathe.vercel.app/favicon-32x32.png loads
 - [ ] Use checker: https://realfavicongenerator.net/favicon_checker
 
 ---

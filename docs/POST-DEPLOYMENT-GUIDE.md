@@ -8,7 +8,7 @@ Complete guide for tasks to perform after your portfolio is deployed and live.
 
 ### 1. Verify Deployment
 
-- [ ] Visit your live site: `https://rameshwarbhagwat.me`
+- [ ] Visit your live site: `https://harshwardhansathe.vercel.app`
 - [ ] Test on desktop browser (Chrome, Firefox, Safari)
 - [ ] Test on mobile device (iOS and Android if possible)
 - [ ] Check all sections load correctly
@@ -66,20 +66,20 @@ Complete guide for tasks to perform after your portfolio is deployed and live.
 
 **Google Search Console:**
 1. [ ] Go to [Google Search Console](https://search.google.com/search-console)
-2. [ ] Add property: `https://rameshwarbhagwat.me`
+2. [ ] Add property: `https://harshwardhansathe.vercel.app`
 3. [ ] Verify ownership (HTML tag or DNS)
-4. [ ] Submit sitemap: `https://rameshwarbhagwat.me/sitemap.xml`
+4. [ ] Submit sitemap: `https://harshwardhansathe.vercel.app/sitemap.xml`
 5. [ ] Request indexing for homepage
 
 **Bing Webmaster Tools:**
 1. [ ] Go to [Bing Webmaster Tools](https://www.bing.com/webmasters)
-2. [ ] Add site: `https://rameshwarbhagwat.me`
+2. [ ] Add site: `https://harshwardhansathe.vercel.app`
 3. [ ] Verify ownership
 4. [ ] Submit sitemap
 
 **Verify SEO Elements:**
-- [ ] Check `https://rameshwarbhagwat.me/sitemap.xml` loads
-- [ ] Check `https://rameshwarbhagwat.me/robots.txt` loads
+- [ ] Check `https://harshwardhansathe.vercel.app/sitemap.xml` loads
+- [ ] Check `https://harshwardhansathe.vercel.app/robots.txt` loads
 - [ ] View page source (Ctrl+U) - verify meta tags
 - [ ] Test Open Graph: [OpenGraph.xyz](https://www.opengraph.xyz/)
 - [ ] Test Twitter Cards: [Twitter Card Validator](https://cards-dev.twitter.com/validator)
@@ -92,7 +92,7 @@ Complete guide for tasks to perform after your portfolio is deployed and live.
 
 **GitHub:**
 - [ ] Update profile bio
-- [ ] Add website: `https://rameshwarbhagwat.me`
+- [ ] Add website: `https://harshwardhansathe.vercel.app`
 - [ ] Pin your best repositories
 - [ ] Update README.md with portfolio link
 - [ ] Add portfolio to repository descriptions
@@ -142,7 +142,7 @@ Features:
 ✅ GitHub contributions integration
 ✅ Fully responsive & SEO optimized
 
-Check it out: https://rameshwarbhagwat.me
+Check it out: https://harshwardhansathe.vercel.app
 
 #WebDevelopment #NextJS #TypeScript #Portfolio
 ```
@@ -158,7 +158,7 @@ Check it out: https://rameshwarbhagwat.me
 
 - [ ] Add portfolio URL prominently
 - [ ] Update projects section with portfolio link
-- [ ] Add "Portfolio: rameshwarbhagwat.me" to header
+- [ ] Add "Portfolio: harshwardhansathe.vercel.app" to header
 - [ ] Include QR code linking to portfolio (optional)
 
 ---
@@ -170,13 +170,13 @@ Check it out: https://rameshwarbhagwat.me
 Create professional email signature:
 
 ```
-Rameshwar Bhagwat
+Harshwardhan Sathe
 Full Stack Developer
 
-🌐 https://rameshwarbhagwat.me
-📧 rameshwarbhagwat019@gmail.com
-💼 linkedin.com/in/rameshwar-bhagwat
-🐙 github.com/Rameshwar-bhagwat10
+🌐 https://harshwardhansathe.vercel.app
+📧 harshwardhansathe1@gmail.com
+💼 linkedin.com/in/harshwardhan-sathe
+🐙 github.com/codewithharshx
 ```
 
 Add to:
@@ -187,14 +187,14 @@ Add to:
 ### 2. Set Up Email Forwarding (Optional)
 
 If your domain registrar supports it:
-- [ ] Forward `contact@rameshwarbhagwat.me` → your Gmail
-- [ ] Forward `hello@rameshwarbhagwat.me` → your Gmail
+- [ ] Forward `contact@harshwardhansathe.vercel.app` → your Gmail
+- [ ] Forward `hello@harshwardhansathe.vercel.app` → your Gmail
 - [ ] Test forwarding works
 
 ### 3. Professional Email Setup (Optional)
 
 Consider Google Workspace or similar:
-- [ ] Set up `rameshwar@rameshwarbhagwat.me`
+- [ ] Set up `harshwardhan@harshwardhansathe.vercel.app`
 - [ ] Configure email client
 - [ ] Update contact form to use professional email
 
@@ -223,7 +223,7 @@ Consider Google Workspace or similar:
 
 **UptimeRobot (Free):**
 1. [ ] Sign up at [uptimerobot.com](https://uptimerobot.com)
-2. [ ] Add monitor for `https://rameshwarbhagwat.me`
+2. [ ] Add monitor for `https://harshwardhansathe.vercel.app`
 3. [ ] Set check interval: 5 minutes
 4. [ ] Add email alerts
 5. [ ] Optional: Add status page
@@ -609,4 +609,4 @@ npm update
 ---
 
 **Last Updated**: February 28, 2026
-**Portfolio**: https://rameshwarbhagwat.me
+**Portfolio**: https://harshwardhansathe.vercel.app

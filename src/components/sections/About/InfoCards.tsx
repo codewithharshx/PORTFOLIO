@@ -7,8 +7,8 @@ import { Copy, Check } from 'lucide-react';
 import { useVisitorTracking } from '@/hooks/useVisitorTracking';
 import GlowCard from '@/components/ui/GlowCard';
 
-const EMAIL = 'rameshwarbhagwat019@gmail.com';
-const EMAIL_NAME = 'rameshwarbhagwat019';
+const EMAIL = 'harshwardhansathe1@gmail.com';
+const EMAIL_NAME = 'harshwardhansathe1';
 
 // Grid background style (static, no need to recreate)
 const gridBackgroundStyle = {
@@ -104,7 +104,7 @@ const InfoCards = memo(function InfoCards() {
             <div className="relative">
               <Image
                 src="/icons/logo.svg"
-                alt="Rameshwar Bhagwat Portfolio Logo"
+                alt="Harshwardhan Sathe Portfolio Logo"
                 width={50}
                 height={50}
                 className="hover:scale-110 transition-transform duration-300 w-[32px] xs:w-[40px] sm:w-[50px] md:w-[60px] h-[32px] xs:h-[40px] sm:h-[50px] md:h-[60px]"

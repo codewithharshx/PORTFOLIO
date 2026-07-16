@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 832.725 236.312" width="100%" height="100%">
+  <defs>
+    <!-- We can import a Google Font inside the SVG to make sure it looks absolutely premium! -->
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500&amp;family=Caveat:wght@400;500&amp;display=swap');
+      .signature-text {
+        font-family: 'Caveat', 'Brush Script MT', 'Lucida Handwriting', 'Playfair Display', cursive, Georgia, serif;
+        font-size: 130px;
+        font-weight: 400;
+        font-style: italic;
+        fill: #FFFFFF;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .sub-text {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 20px;
+        font-style: italic;
+        fill: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.25em;
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+  <!-- Background is transparent -->
+  <g transform="translate(416.36, 105)">
+    <text class="signature-text" y="0">Harshwardhan</text>
+  </g>
+  <g transform="translate(416.36, 190)">
+    <text class="sub-text">AI &amp; DS ENGINEER</text>
+  </g>
+</svg>
