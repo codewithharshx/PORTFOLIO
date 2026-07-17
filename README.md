@@ -2,7 +2,7 @@
 
 Modern, high-performance portfolio website built with Next.js 16, TypeScript, and Tailwind CSS.
 
-**Live Site**: [https://harshwardhansathe.vercel.app](https://harshwardhansathe.vercel.app)
+**Live Site**: [https://harshwardhansathe.vercel.app](https://harshwardhansathe.vercel.app/)
 
 ---
 
