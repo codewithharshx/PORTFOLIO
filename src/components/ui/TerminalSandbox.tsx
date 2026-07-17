@@ -300,7 +300,7 @@ export default function TerminalSandbox() {
                   <div><span className="text-white font-bold inline-block w-20">neofetch</span> <span className="text-white/40">System info dashboard</span></div>
                   <div><span className="text-[#39d353] font-bold inline-block w-20">hack</span> <span className="text-white/40">Cyberpunk hack simulator</span></div>
                   <div><span className="text-[#00f0ff] font-bold inline-block w-20">matrix</span> <span className="text-white/40">Katakana digital rain</span></div>
-                  <div><span className="text-white font-bold inline-block w-20">weather</span> <span className="text-white/40">Yeola weather report</span></div>
+                  <div><span className="text-white font-bold inline-block w-20">weather</span> <span className="text-white/40">Thane weather report</span></div>
                   <div><span className="text-white font-bold inline-block w-20">quote</span> <span className="text-white/40">Developer inspiration</span></div>
                   <div><span className="text-white font-bold inline-block w-20">theme</span> <span className="text-white/40">matrix|amber|dracula</span></div>
                   <div><span className="text-white font-bold inline-block w-20">clear</span> <span className="text-white/40">Clear console logs</span></div>
@@ -497,7 +497,7 @@ export default function TerminalSandbox() {
             type: 'output',
             text: (
               <div className="py-1 text-xs font-mono text-white/80">
-                <p className="text-emerald-400 font-bold mb-1">WEATHER: Yeola, Maharashtra, India</p>
+                <p className="text-emerald-400 font-bold mb-1">WEATHER: Thane, Maharashtra, India</p>
                 <pre className="leading-tight text-[11px]">
                   {`    \\   /      Today:   ☀️  Clear Sky (28°C / 82.4°F)
      .-.       Mon:     🌤️  Light Clouds (29°C)

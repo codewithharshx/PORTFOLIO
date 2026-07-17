@@ -144,7 +144,7 @@ export default function Footer() {
                 }}
               >
                 <MapPin size={11} className="text-[#BF5AF2]" />
-                <span>Yeola, Maharashtra, India</span>
+                <span>Thane, Maharashtra, India</span>
               </div>
             </div>
             
